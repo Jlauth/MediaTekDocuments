@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace MediaTekDocuments.dal
 {
@@ -14,32 +15,39 @@ namespace MediaTekDocuments.dal
     /// </summary>
     public class Access
     {
+        private const string url = "http://localhost/rest_mediatekdocuments/";
+
         /// <summary>
-        /// adresse de l'API
+        /// Adresse de l'API
         /// </summary>
-        private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
+        private static readonly string uriApi = url;
         /// <summary>
-        /// instance unique de la classe
+        /// Instance unique de la classe
         /// </summary>
         private static Access instance = null;
         /// <summary>
-        /// instance de ApiRest pour envoyer des demandes vers l'api et recevoir la réponse
+        /// Instance de ApiRest pour envoyer des demandes vers l'api et recevoir la réponse
         /// </summary>
         private readonly ApiRest api = null;
         /// <summary>
-        /// méthode HTTP pour select
+        /// Méthode HTTP pour select
         /// </summary>
         private const string GET = "GET";
         /// <summary>
-        /// méthode HTTP pour insert
+        /// Méthode HTTP pour insert
         /// </summary>
         private const string POST = "POST";
         /// <summary>
-        /// méthode HTTP pour update
-
+        /// Méthode HTTP pour update
         /// <summary>
+        private const string PUT = "PUT";
+        /// <summary>
+        /// Méthode HTTP pour delete
+        /// </summary>
+        private const string DELETE = "DELETE";
+
         /// Méthode privée pour créer un singleton
-        /// initialise l'accès à l'API
+        /// Initialise l'accès à l'API
         /// </summary>
         private Access()
         {
@@ -62,13 +70,23 @@ namespace MediaTekDocuments.dal
         /// <returns>instance unique de la classe</returns>
         public static Access GetInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new Access();
             }
             return instance;
         }
 
+        /// <summary>
+        /// Retourne tous les documents à partir de la BDD
+        /// </summary>
+        /// <param name="idDocument"></param>
+        /// <returns></returns>
+        public List<Document> GetAllDocuments(string idDocument)
+        {
+            List<Document> lesDocuments = TraitementRecup<Document>(GET, "document/" + idDocument);
+            return lesDocuments;
+        }
         /// <summary>
         /// Retourne tous les genres à partir de la BDD
         /// </summary>
@@ -129,9 +147,8 @@ namespace MediaTekDocuments.dal
             return lesRevues;
         }
 
-
         /// <summary>
-        /// Retourne les exemplaires d'une revue
+        /// Retourne les exemplaires d'une revue à partir de la BDD
         /// </summary>
         /// <param name="idDocument">id de la revue concernée</param>
         /// <returns>Liste d'objets Exemplaire</returns>
@@ -142,14 +159,102 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// ecriture d'un exemplaire en base de données
+        /// Ajout d'un document dans la BDD
+        /// </summary>
+        /// <param name="document">document à ajouter</param>
+        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        public bool CreerDocument(Document document)
+        {
+            String jsonCreerDocument = JsonConvert.SerializeObject(document);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Document> liste = TraitementRecup<Document>(POST, "document/" + jsonCreerDocument);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ajout d'un livre dans la BDD
+        /// </summary>
+        /// <param name="livre">livre à ajouter</param>
+        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        public bool CreerLivre(Livre livre)
+        {
+            String jsonLivre = JsonConvert.SerializeObject(livre);
+            Console.WriteLine(jsonLivre);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur) 
+                List<Livre> liste = TraitementRecup<Livre>(POST, "livre/" + jsonLivre);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Ajout d'un dvd dans la BDD
+        /// </summary>
+        /// <param name="dvd">dvd à ajouter</param>
+        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        public bool CreerDvd(Dvd dvd)
+        {
+            String jsonDvd = JsonConvert.SerializeObject(dvd);
+            Console.WriteLine(jsonDvd);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Dvd> liste = TraitementRecup<Dvd>(POST, "dvd/" + jsonDvd);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ajout d'une revenue dans la BDD
+        /// </summary>
+        /// <param name="revue">revue à ajouter</param>
+        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        public bool CreerRevue(Revue revue)
+        {
+            String jsonRevue = JsonConvert.SerializeObject(revue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Revue> liste = TraitementRecup<Revue>(POST, "revue/" + jsonRevue);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ajout d'un exemplaire en BDD
         /// </summary>
         /// <param name="exemplaire">exemplaire à insérer</param>
         /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
         public bool CreerExemplaire(Exemplaire exemplaire)
         {
             String jsonExemplaire = JsonConvert.SerializeObject(exemplaire, new CustomDateTimeConverter());
-            try {
+            try
+            {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
                 List<Exemplaire> liste = TraitementRecup<Exemplaire>(POST, "exemplaire/" + jsonExemplaire);
                 return (liste != null);
@@ -158,7 +263,134 @@ namespace MediaTekDocuments.dal
             {
                 Console.WriteLine(ex.Message);
             }
-            return false; 
+            return false;
+        }
+
+        /// <summary>
+        /// Modification d'un livre en BDD
+        /// </summary>
+        /// <param name="livre">le livre à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierLivre(Livre livre)
+        {
+            String jsonLivre = JsonConvert.SerializeObject(livre);
+            Console.WriteLine(jsonLivre);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Livre> liste = TraitementRecup<Livre>(PUT, "livre/" + livre.Id + "/" + jsonLivre);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Modification d'un dvd en BDD
+        /// </summary>
+        /// <param name="dvd">le dvd à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierDvd(Dvd dvd)
+        {
+            String jsonDvd = JsonConvert.SerializeObject(dvd);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Dvd> liste = TraitementRecup<Dvd>(PUT, "dvd/" + dvd.Id + "/" + jsonDvd);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Modification d'une revue en BDD
+        /// </summary>
+        /// <param name="revue">la revue à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierRevue(Revue revue)
+        {
+            String jsonRevue = JsonConvert.SerializeObject(revue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Revue> liste = TraitementRecup<Revue>(PUT, "revue/" + revue.Id + "/" + jsonRevue);
+                return (liste != null);
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Suppression d'un livre en BDD
+        /// </summary>
+        /// <param name="livre">le livre à supprimer</param>
+        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        public bool SupprimerLivre(Livre livre)
+        {
+            String jsonLivre = JsonConvert.SerializeObject(livre);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Livre> liste = TraitementRecup<Livre>(DELETE, "livre/" + jsonLivre);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Suppression d'un dvd en BDD
+        /// </summary>
+        /// <param name="dvd">le dvd à supprimer</param>
+        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        public bool SupprimerDvd(Dvd dvd)
+        {
+            String jsonDvd = JsonConvert.SerializeObject(dvd);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Dvd> liste = TraitementRecup<Dvd>(DELETE, "dvd/" + jsonDvd);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Suppression d'une revue en BDD
+        /// </summary>
+        /// <param name="dvd">la revue à supprimer</param>
+        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        public bool SupprimerRevue(Revue revue)
+        {
+            String jsonRevue = JsonConvert.SerializeObject(revue);
+            Console.WriteLine(jsonRevue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Revue> liste = TraitementRecup<Revue>(DELETE, "revue/" + jsonRevue);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
         }
 
         /// <summary>
@@ -168,7 +400,7 @@ namespace MediaTekDocuments.dal
         /// <param name="methode">verbe HTTP (GET, POST, PUT, DELETE)</param>
         /// <param name="message">information envoyée</param>
         /// <returns>liste d'objets récupérés (ou liste vide)</returns>
-        private List<T> TraitementRecup<T> (String methode, String message)
+        private List<T> TraitementRecup<T>(String methode, String message)
         {
             List<T> liste = new List<T>();
             try
@@ -188,15 +420,17 @@ namespace MediaTekDocuments.dal
                 }
                 else
                 {
-                    Console.WriteLine("code erreur = " + code + " message = " + (String)retour["message"]);
+                    Console.WriteLine("Code erreur = " + code + " message = " + (String)retour["message"]);
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                Console.WriteLine("Erreur lors de l'accès à l'API : "+e.Message);
+                Console.WriteLine("Erreur lors de l'accès à l'API : " + e.Message);
                 Environment.Exit(0);
             }
             return liste;
         }
+
 
         /// <summary>
         /// Modification du convertisseur Json pour gérer le format de date
