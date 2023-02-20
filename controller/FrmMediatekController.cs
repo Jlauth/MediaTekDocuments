@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediaTekDocuments.model;
 using MediaTekDocuments.dal;
+using System;
 
 namespace MediaTekDocuments.controller
 {
@@ -17,84 +18,133 @@ namespace MediaTekDocuments.controller
         /// <summary>
         /// Récupération de l'instance unique d'accès aux données
         /// </summary>
-        public FrmMediatekController()
-        {
-            access = Access.GetInstance();
-        }
+        public FrmMediatekController() => access = Access.GetInstance();
 
         /// <summary>
-        /// getter sur la liste des genres
+        /// Getter sur les documents
+        /// </summary>
+        /// <param name="idDocument"></param>
+        /// <returns></returns>
+        public List<Document> GetDocuments(string idDocument) => access.GetAllDocuments(idDocument);
+
+        /// <summary>
+        /// Getter sur la liste des genres
         /// </summary>
         /// <returns>Liste d'objets Genre</returns>
-        public List<Categorie> GetAllGenres()
-        {
-            return access.GetAllGenres();
-        }
+        public List<Categorie> GetAllGenres() => access.GetAllGenres();
 
         /// <summary>
-        /// getter sur la liste des livres
+        /// Getter sur la liste des livres
         /// </summary>
         /// <returns>Liste d'objets Livre</returns>
-        public List<Livre> GetAllLivres()
-        {
-            return access.GetAllLivres();
-        }
+        public List<Livre> GetAllLivres() => access.GetAllLivres();
 
         /// <summary>
-        /// getter sur la liste des Dvd
+        /// Getter sur la liste des Dvd
         /// </summary>
         /// <returns>Liste d'objets dvd</returns>
-        public List<Dvd> GetAllDvd()
-        {
-            return access.GetAllDvd();
-        }
+        public List<Dvd> GetAllDvd() => access.GetAllDvd();
 
         /// <summary>
-        /// getter sur la liste des revues
+        /// Getter sur la liste des revues
         /// </summary>
         /// <returns>Liste d'objets Revue</returns>
-        public List<Revue> GetAllRevues()
-        {
-            return access.GetAllRevues();
-        }
+        public List<Revue> GetAllRevues() => access.GetAllRevues();
 
         /// <summary>
-        /// getter sur les rayons
+        /// Getter sur les rayons
         /// </summary>
         /// <returns>Liste d'objets Rayon</returns>
-        public List<Categorie> GetAllRayons()
-        {
-            return access.GetAllRayons();
-        }
+        public List<Categorie> GetAllRayons() => access.GetAllRayons();
 
         /// <summary>
-        /// getter sur les publics
+        /// Getter sur les publics
         /// </summary>
         /// <returns>Liste d'objets Public</returns>
-        public List<Categorie> GetAllPublics()
-        {
-            return access.GetAllPublics();
-        }
-
+        public List<Categorie> GetAllPublics() => access.GetAllPublics();
 
         /// <summary>
-        /// récupère les exemplaires d'une revue
+        /// Récupère les exemplaires d'une revue
         /// </summary>
         /// <param name="idDocuement">id de la revue concernée</param>
         /// <returns>Liste d'objets Exemplaire</returns>
-        public List<Exemplaire> GetExemplairesRevue(string idDocuement)
-        {
-            return access.GetExemplairesRevue(idDocuement);
-        }
+        public List<Exemplaire> GetExemplairesRevue(string idDocument) => access.GetExemplairesRevue(idDocument);
 
         /// <summary>
-        /// Crée un exemplaire d'une revue dans la bdd
+        /// Crée un document dans la BDD
         /// </summary>
-        /// <param name="exemplaire">L'objet Exemplaire concerné</param>
-        /// <returns>True si la création a pu se faire</returns>
-        public bool CreerExemplaire(Exemplaire exemplaire)
-        {
-            return access.CreerExemplaire(exemplaire);
-        }
+        /// <param name="document">l'objet document concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerDocument(Document document) => access.CreerDocument(document);
+
+        /// <summary>
+        /// Crée un dvd dans la BDD
+        /// </summary>
+        /// <param name="dvd">l'objet dvd concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerDvd(Dvd dvd) => access.CreerDvd(dvd);
+
+        /// <summary>
+        /// Crée un livre dans la BDD
+        /// </summary>
+        /// <param name="livre">l'objet livre concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerLivre(Livre livre) => access.CreerLivre(livre);
+
+        /// <summary>
+        /// Créer une revue dans la BDD
+        /// </summary>
+        /// <param name="revue">l'objet revue concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerRevue(Revue revue) => access.CreerRevue(revue);
+
+        /// <summary>
+        /// Crée un exemplaire d'une revue dans la BDD
+        /// </summary>
+        /// <param name="exemplaire">l'objet Exemplaire concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerExemplaire(Exemplaire exemplaire) => access.CreerExemplaire(exemplaire);
+
+        /// <summary>
+        /// Modifie un livre dans la BDD
+        /// </summary>
+        /// <param name="livre">l'objet Livre concerné</param>
+        /// <returns>true si la modification a pu se faire</returns>
+        public bool ModifierLivre(Livre livre) => access.ModifierLivre(livre);
+
+        /// <summary>
+        /// Modifier un dvd dans la BDD
+        /// </summary>
+        /// <param name="dvd">l'objet Dvd concerné</param>
+        /// <returns>true si la modification a pu se faire</returns>
+        public bool ModifierDvd(Dvd dvd) => access.ModifierDvd(dvd);
+
+        /// <summary>
+        /// Modifier une revue dans la BDD
+        /// </summary>
+        /// <param name="dvd">l'objet Revue concerné</param>
+        /// <returns>true si la modification a pu se faire</returns>
+        public bool ModifierRevue(Revue revue) => access.ModifierRevue(revue);
+
+        /// <summary>
+        /// Supprimer un livre dans la BDD
+        /// </summary>
+        /// <param name="livre">l'objet livre concerné</param>
+        /// <returns>true si la suppression a pu se faire</returns>
+        public bool SupprimerLivre(Livre livre) => access.SupprimerLivre(livre);
+
+        /// <summary>
+        /// Supprimer un dvd dans la BDD
+        /// </summary>
+        /// <param name="dvd">l'objet dvd concerné</param>
+        /// <returns>true si la suppression a pu se faire</returns>
+        public bool SupprimerDvd(Dvd dvd) => access.SupprimerDvd(dvd);
+
+        /// <summary>
+        /// Supprimer une revue dans la BDD
+        /// </summary>
+        /// <param name="revue">l'objet revue concerné</param>
+        /// <returns>true si la suppression a pu se faire</returns>
+        public bool SupprimerRevue(Revue revue) => access.SupprimerRevue(revue);
     }
 }

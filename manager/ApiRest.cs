@@ -10,7 +10,7 @@ namespace MediaTekDocuments.manager
     class ApiRest
     {
         /// <summary>
-        /// unique instance de la classe
+        /// Instance unique de la classe
         /// </summary>
         private static ApiRest instance = null;
         /// <summary>
@@ -33,7 +33,7 @@ namespace MediaTekDocuments.manager
             // prise en compte dans l'url de l'authentificaiton (basic authorization), si elle n'est pas vide
             if (!String.IsNullOrEmpty(authenticationString))
             {
-                String base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(authenticationString));
+                String base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(authenticationString));
                 httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + base64EncodedAuthenticationString);
             }
         }
