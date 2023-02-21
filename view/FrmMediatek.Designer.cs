@@ -139,6 +139,7 @@ namespace MediaTekDocuments.view
             this.btnModifierDvd = new System.Windows.Forms.Button();
             this.tabRevues = new System.Windows.Forms.TabPage();
             this.btnValiderAjouterRevue = new System.Windows.Forms.Button();
+            this.btnValiderModifierRevue = new System.Windows.Forms.Button();
             this.btnAnnulerRevue = new System.Windows.Forms.Button();
             this.btnSupprimerRevue = new System.Windows.Forms.Button();
             this.grpRevuesInfos = new System.Windows.Forms.GroupBox();
@@ -223,7 +224,7 @@ namespace MediaTekDocuments.view
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.btnReceptionRechercher = new System.Windows.Forms.Button();
-            this.btnValiderModifierRevue = new System.Windows.Forms.Button();
+            this.tabSuiviCommandes = new System.Windows.Forms.TabPage();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -255,6 +256,7 @@ namespace MediaTekDocuments.view
             this.tabOngletsApplication.Controls.Add(this.tabDvd);
             this.tabOngletsApplication.Controls.Add(this.tabRevues);
             this.tabOngletsApplication.Controls.Add(this.tabReceptionRevue);
+            this.tabOngletsApplication.Controls.Add(this.tabSuiviCommandes);
             this.tabOngletsApplication.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabOngletsApplication.ItemSize = new System.Drawing.Size(49, 18);
             this.tabOngletsApplication.Location = new System.Drawing.Point(0, 0);
@@ -1454,6 +1456,18 @@ namespace MediaTekDocuments.view
             this.btnValiderAjouterRevue.Visible = false;
             this.btnValiderAjouterRevue.Click += new System.EventHandler(this.BtnValiderAjoutRevue_Click);
             // 
+            // btnValiderModifierRevue
+            // 
+            this.btnValiderModifierRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValiderModifierRevue.Location = new System.Drawing.Point(345, 639);
+            this.btnValiderModifierRevue.Name = "btnValiderModifierRevue";
+            this.btnValiderModifierRevue.Size = new System.Drawing.Size(96, 23);
+            this.btnValiderModifierRevue.TabIndex = 57;
+            this.btnValiderModifierRevue.Text = "Valider";
+            this.btnValiderModifierRevue.UseVisualStyleBackColor = true;
+            this.btnValiderModifierRevue.Visible = false;
+            this.btnValiderModifierRevue.Click += new System.EventHandler(this.BtnValiderModifierRevue_Click);
+            // 
             // btnAnnulerRevue
             // 
             this.btnAnnulerRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2343,17 +2357,14 @@ namespace MediaTekDocuments.view
             this.btnReceptionRechercher.UseVisualStyleBackColor = true;
             this.btnReceptionRechercher.Click += new System.EventHandler(this.BtnReceptionRechercher_Click);
             // 
-            // btnValiderModifierRevue
+            // tabSuiviCommandes
             // 
-            this.btnValiderModifierRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValiderModifierRevue.Location = new System.Drawing.Point(345, 639);
-            this.btnValiderModifierRevue.Name = "btnValiderModifierRevue";
-            this.btnValiderModifierRevue.Size = new System.Drawing.Size(96, 23);
-            this.btnValiderModifierRevue.TabIndex = 57;
-            this.btnValiderModifierRevue.Text = "Valider";
-            this.btnValiderModifierRevue.UseVisualStyleBackColor = true;
-            this.btnValiderModifierRevue.Visible = false;
-            this.btnValiderModifierRevue.Click += new System.EventHandler(this.BtnValiderModifierRevue_Click);
+            this.tabSuiviCommandes.Location = new System.Drawing.Point(4, 22);
+            this.tabSuiviCommandes.Name = "tabSuiviCommandes";
+            this.tabSuiviCommandes.Size = new System.Drawing.Size(875, 670);
+            this.tabSuiviCommandes.TabIndex = 5;
+            this.tabSuiviCommandes.Text = "Suivi des commandes";
+            this.tabSuiviCommandes.UseVisualStyleBackColor = true;
             // 
             // FrmMediatek
             // 
@@ -2595,6 +2606,7 @@ namespace MediaTekDocuments.view
         private System.Windows.Forms.Button btnValiderAjouterRevue;
         private System.Windows.Forms.Button btnValiderModifierLivre;
         private System.Windows.Forms.Button btnValiderModifierRevue;
+        private System.Windows.Forms.TabPage tabSuiviCommandes;
     }
 }
 
