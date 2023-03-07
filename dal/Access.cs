@@ -148,6 +148,37 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Retourne les suivis à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Suivi</returns>
+        public List<Suivi> GetAllSuivis()
+        {
+            IEnumerable<Suivi> lesSuivis = TraitementRecup<Suivi>(GET, "suivi");
+            return new List<Suivi>(lesSuivis);
+        }
+
+        /// <summary>
+        /// Retournes toutes les commandes de livres à partir de la BDD
+        /// </summary>
+        /// <returns></returns>
+        public List<CommandeDocument> GetAllCommandesLivres()
+        {
+            List<CommandeDocument> lesCommandesLivres = TraitementRecup<CommandeDocument>(GET, "commandeslivres");
+            return lesCommandesLivres;
+        }
+
+        /// <summary>
+        /// Retourne les commandes d'un livre ou dvd à partir de la BDD
+        /// </summary>
+        /// <param name="idDocument">id du document concerné</param>
+        /// <returns>Liste d'objets Commande Document</returns>
+        public List<CommandeDocument> GetCommandedDocument(string idDocument)
+        {
+            List<CommandeDocument> lesCommandesDocument = TraitementRecup<CommandeDocument>(GET, "commandedocument/" + idDocument);
+            return lesCommandesDocument;
+        }
+
+        /// <summary>
         /// Retourne les exemplaires d'une revue à partir de la BDD
         /// </summary>
         /// <param name="idDocument">id de la revue concernée</param>
@@ -267,6 +298,27 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Ajout d'une commande de livre ou dvd en BDD
+        /// </summary>
+        /// <param name="commandeDocument">livre ou dvd commandé</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        public bool CreerCommandeDocument(CommandeDocument commandeDocument)
+        {
+            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument, new CustomDateTimeConverter());
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(POST, "commandedocument/" + jsonCommandeDocument);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Modification d'un livre en BDD
         /// </summary>
         /// <param name="livre">le livre à modifier</param>
@@ -322,7 +374,29 @@ namespace MediaTekDocuments.dal
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
                 List<Revue> liste = TraitementRecup<Revue>(PUT, "revue/" + revue.Id + "/" + jsonRevue);
                 return (liste != null);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Modification d'une commande document en BDD
+        /// </summary>
+        /// <param name="commandeDocument">la commande document à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierCommandeDocument(CommandeDocument commandeDocument)
+        {
+            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(PUT, "commandedocument/" + commandeDocument.Id + "/" + jsonCommandeDocument);
+                return (liste != null);
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -394,6 +468,27 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Suppression d'une commande document en BDD
+        /// </summary>
+        /// <param name="commandeDocument">la commande document à supprimer</param>
+        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        public bool SupprimerCommandeDocument(CommandeDocument commandeDocument)
+        {
+            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
+            Console.WriteLine(jsonCommandeDocument);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(DELETE, "commandedocument/" + jsonCommandeDocument); 
+                return (liste != null);
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Traitement de la récupération du retour de l'api, avec conversion du json en liste pour les select (GET)
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -432,6 +527,8 @@ namespace MediaTekDocuments.dal
         }
 
 
+
+
         /// <summary>
         /// Modification du convertisseur Json pour gérer le format de date
         /// </summary>
@@ -460,6 +557,5 @@ namespace MediaTekDocuments.dal
                 serializer.Serialize(writer, value);
             }
         }
-
     }
 }

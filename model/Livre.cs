@@ -11,8 +11,8 @@ namespace MediaTekDocuments.model
         public string Collection { get; set; }
 
         public Livre(string id, string titre, string image, string isbn, string auteur, string collection,
-            string idGenre, string genre, string idPublic, string lePublic, string idRayon, string rayon)
-            : base(id, titre, image, idGenre, genre, idPublic, lePublic, idRayon, rayon)
+             string idGenre, string genre, string idPublic, string lePublic, string idRayon, string rayon)
+             : base(id, titre, image, idGenre, genre, idPublic, lePublic, idRayon, rayon)
         {
             this.Isbn = isbn;
             this.Auteur = auteur;
