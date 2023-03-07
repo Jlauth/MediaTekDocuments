@@ -1,4 +1,4 @@
-﻿
+
 namespace MediaTekDocuments.view
 {
     partial class FrmMediatek
@@ -3834,7 +3834,6 @@ namespace MediaTekDocuments.view
             this.Controls.Add(this.tabOngletsApplication);
             this.Name = "FrmMediatek";
             this.Text = "Gestion des documents de la médiathèque";
-            this.Load += new System.EventHandler(this.FrmMediatek_Load);
             this.tabCmdLivres.ResumeLayout(false);
             this.grpCmdLivreInfos.ResumeLayout(false);
             this.grpCmdLivreInfos.PerformLayout();
