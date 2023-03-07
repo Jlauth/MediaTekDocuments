@@ -83,6 +83,9 @@
     <Compile Include="manager\ApiRest.cs" />
     <Compile Include="controller\FrmMediatekController.cs" />
     <Compile Include="dal\Access.cs" />
+    <Compile Include="model\Commande.cs" />
+    <Compile Include="model\CommandeDocument.cs" />
+    <Compile Include="model\Suivi.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="view\FrmMediatek.cs">
       <SubType>Form</SubType>

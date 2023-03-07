@@ -64,11 +64,32 @@ namespace MediaTekDocuments.controller
         public List<Categorie> GetAllPublics() => access.GetAllPublics();
 
         /// <summary>
+        /// Getter sur les suivis
+        /// </summary>
+        /// <returns>Liste d'objets Suivi</returns>
+        public List<Suivi> GetAllSuivis() => access.GetAllSuivis();
+
+
+        /// <summary>
+        /// Getter sur les commandes livres
+        /// </summary>
+        /// <returns>Liste d'objets Commande Document</returns>
+        public List<CommandeDocument> GetAllCommandesLivres() => access.GetAllCommandesLivres();
+
+        /// <summary>
+        /// Récupère les commandes d'un document de type livre ou dvd
+        /// </summary>
+        /// /// <param name="idDocument">id du document concerné</param>
+        /// <returns>Liste d'objets Document</returns>
+        public List<CommandeDocument> GetCommandeDocument(string idDocument) => access.GetCommandedDocument(idDocument);
+
+        /// <summary>
         /// Récupère les exemplaires d'une revue
         /// </summary>
-        /// <param name="idDocuement">id de la revue concernée</param>
+        /// <param name="idDocument">id de la revue concernée</param>
         /// <returns>Liste d'objets Exemplaire</returns>
         public List<Exemplaire> GetExemplairesRevue(string idDocument) => access.GetExemplairesRevue(idDocument);
+
 
         /// <summary>
         /// Crée un document dans la BDD
@@ -99,11 +120,18 @@ namespace MediaTekDocuments.controller
         public bool CreerRevue(Revue revue) => access.CreerRevue(revue);
 
         /// <summary>
-        /// Crée un exemplaire d'une revue dans la BDD
+        /// Créer un exemplaire d'une revue dans la BDD
         /// </summary>
         /// <param name="exemplaire">l'objet Exemplaire concerné</param>
         /// <returns>true si la création a pu se faire</returns>
         public bool CreerExemplaire(Exemplaire exemplaire) => access.CreerExemplaire(exemplaire);
+
+        /// <summary>
+        /// Créer la commande d'un livre ou dvd en BDD
+        /// </summary>
+        /// <param name="commandeDocument">l'objet livre ou dvd concerné</param>
+        /// <returns>true si la création a pu se faire</returns>
+        public bool CreerCommandeDocument(CommandeDocument commandeDocument) => access.CreerCommandeDocument(commandeDocument);
 
         /// <summary>
         /// Modifie un livre dans la BDD
@@ -127,6 +155,13 @@ namespace MediaTekDocuments.controller
         public bool ModifierRevue(Revue revue) => access.ModifierRevue(revue);
 
         /// <summary>
+        /// Modifier la commande d'un livre dans la BDD
+        /// </summary>
+        /// <param name="commandeDocument">l'objet commande document concerné</param>
+        /// <returns>true si la modification a pu se faire</returns>
+        public bool ModifierCommandeDocument(CommandeDocument commandeDocument) => access.ModifierCommandeDocument(commandeDocument);
+
+        /// <summary>
         /// Supprimer un livre dans la BDD
         /// </summary>
         /// <param name="livre">l'objet livre concerné</param>
@@ -146,5 +181,12 @@ namespace MediaTekDocuments.controller
         /// <param name="revue">l'objet revue concerné</param>
         /// <returns>true si la suppression a pu se faire</returns>
         public bool SupprimerRevue(Revue revue) => access.SupprimerRevue(revue);
+
+        /// <summary>
+        /// Supprimer une commande document dans la BDD
+        /// </summary>
+        /// <param name="commandeDocument">l'objet commande document concerné</param>
+        /// <returns>true si la suppression a pu se faire</returns>
+        public bool SupprimerCommandeDocument(CommandeDocument commandeDocument) => access.SupprimerCommandeDocument(commandeDocument);
     }
 }
