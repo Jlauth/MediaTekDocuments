@@ -1,4 +1,4 @@
-﻿
+
 namespace MediaTekDocuments.view
 {
     partial class FrmMediatek
