@@ -29,14 +29,14 @@ namespace MediaTekDocuments.view
 
         private List<CommandeDocument> lesCommandesLivres = new List<CommandeDocument>();
         private List<CommandeDocument> lesCommandesDvd = new List<CommandeDocument>();
-        private List<CommandeDocument> lesCommandesRevues = new List<CommandeDocument>();
+        private List<Abonnement> lesAbonnementsRevues = new List<Abonnement>();
 
         private bool DefaultLivre = true;
         private bool DefaultDvd = true;
         private bool DefaultRevue = true;
-        private bool DefaultCommandeLivre = true;
-        private bool DefaultCommandeDvd = true;
-        private bool DefaultCommandeRevue = true;
+        private bool DefaultCmdLivre = true;
+        private bool DefaultCmdDvd = true;
+        private bool DefaultCmdRevue = true;
 
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
@@ -2350,7 +2350,7 @@ namespace MediaTekDocuments.view
 
         private void TabCommandesLivres_Enter(object sender, EventArgs e)
         {
-            if (DefaultCommandeLivre)
+            if (DefaultCmdLivre)
             {
                 lesLivres = controller.GetAllLivres();
                 RemplirComboSuivi(controller.GetAllSuivis(), bdgSuivis, cbxCmdLivreSuivi);
@@ -2385,11 +2385,11 @@ namespace MediaTekDocuments.view
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnCmdLivreRechercheNum_Click(object sender, EventArgs e)
+        private void BtnCmdLivreNumRecherche_Click(object sender, EventArgs e)
         {
-            if (DefaultCommandeLivre && !txbCmdLivreRechercheNum.Text.Equals(""))
+            if (DefaultCmdLivre && !txbCmdLivreNumRecherche.Text.Equals(""))
             {
-                Livre livre = lesLivres.Find(x => x.Id.Equals(txbCmdLivreRechercheNum.Text.ToString()));
+                Livre livre = lesLivres.Find(x => x.Id.Equals(txbCmdLivreNumRecherche.Text.ToString()));
                 if (livre != null)
                 {
                     AfficherCmdLivreInfos(livre);
@@ -2438,7 +2438,7 @@ namespace MediaTekDocuments.view
         /// </summary>
         public void AfficherCmdLivreInfoCmdGrid()
         {
-            string idDocument = txbCmdLivreRechercheNum.Text;
+            string idDocument = txbCmdLivreNumRecherche.Text;
             lesCommandesLivres = controller.GetCommandeDocument(idDocument);
             RemplirCmdLivreListe(lesCommandesLivres);
         }
@@ -2464,7 +2464,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void DgvCmdLivreListe_SelectionChanged(object sender, EventArgs e)
         {
-            if (DefaultCommandeLivre && dgvCmdLivreListe.CurrentCell != null)
+            if (DefaultCmdLivre && dgvCmdLivreListe.CurrentCell != null)
             {
                 try
                 {
@@ -2494,7 +2494,7 @@ namespace MediaTekDocuments.view
             txbCmdLivreGenre.Text = "";
             txbCmdLivrePublic.Text = "";
             txbCmdLivreRayon.Text = "";
-            txbCmdLivreRechercheNum.Text = "";
+            txbCmdLivreNumRecherche.Text = "";
             pcbCmdLivre.Image = null;
         }
 
@@ -2507,7 +2507,7 @@ namespace MediaTekDocuments.view
             txbCmdLivreNbExemplaires.Text = "";
             txbCmdLivreMontant.Text = "";
             cbxCmdLivreSuivi.SelectedIndex = -1;
-            txbCmdLivreRechercheNum.Text = "";
+            txbCmdLivreNumRecherche.Text = "";
             dtpCmdLivre.Value = DateTime.Now;
 
         }
@@ -2520,7 +2520,7 @@ namespace MediaTekDocuments.view
             ViderCmdLivreInfos();
             ViderCmdLivreInfosCmd();
             DesactiverChampsInfosCmdLivre();
-            txbCmdLivreRechercheNum.Text = "";
+            txbCmdLivreNumRecherche.Text = "";
             cbxCmdLivreSuivi.Enabled = false;
         }
 
@@ -2547,12 +2547,13 @@ namespace MediaTekDocuments.view
         private void ActiverChampsInfosCmdLivre()
         {
             SetReadOnlyCmdLivre(false);
-
+            dtpCmdLivre.Enabled = true;
         }
 
         private void DesactiverChampsInfosCmdLivre()
         {
             SetReadOnlyCmdLivre(true);
+            dtpCmdLivre.Enabled = false;
         }
 
         /// <summary>
@@ -2575,14 +2576,14 @@ namespace MediaTekDocuments.view
         public void RestaureConfigCmdLivres()
         {
             // Activer le lien avec le grid
-            DefaultCommandeLivre = true;
+            DefaultCmdLivre = true;
             dgvCmdLivreListe.Enabled = true;
 
             // Désactive l'accès à la gestion commande et le vide
             DesactiverChampsInfosCmdLivre();
             //ViderCmdLivreInfosCmd();
-            // Liste des contrôles à afficher
 
+            // Liste des contrôles à afficher
             Control[] show = { btnCmdLivreCmd, btnCmdLivreModifier, btnCmdLivreSupprimer };
             foreach (Control control in show) { control.Show(); }
 
@@ -2599,7 +2600,7 @@ namespace MediaTekDocuments.view
         private void BtnCmdLivreCmd_Click(object sender, EventArgs e)
         {
             // Désactive le datagrid
-            DefaultCommandeLivre = false;
+            DefaultCmdLivre = false;
             dgvCmdLivreListe.Enabled = false;
 
             // Active l'accès à la gestion de la commande
@@ -2624,7 +2625,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdLivreCmdOk_Click(object sender, EventArgs e)
         {
-            if (!txbCmdLivreRechercheNum.Equals(""))
+            if (!txbCmdLivreNumRecherche.Equals(""))
             {
                 try
                 {
@@ -2677,7 +2678,7 @@ namespace MediaTekDocuments.view
         private void BtnCmdLivreModifier_Click(object sender, EventArgs e)
         {
             // Désactive le datagrid
-            DefaultCommandeLivre = false;
+            DefaultCmdLivre = false;
 
             // Activer l'accès à la gestion de la commande
             AccesInfosCmdLivreGrpBox(true);
@@ -2696,10 +2697,9 @@ namespace MediaTekDocuments.view
             Control[] hide = { btnCmdLivreCmd, btnCmdLivreModifier, btnCmdLivreSupprimer };
             foreach (Control control in hide) { control.Hide(); }
 
-
         }
 
-
+        /// <summary>
         /// Valide ou non la modification d'une commande livre dans la BDD
         /// </summary>
         /// <param name="sender"></param>
@@ -2718,7 +2718,7 @@ namespace MediaTekDocuments.view
                     string libelleSuivi = cbxCmdLivreSuivi.SelectedItem.ToString();
                     string idLivreDvd = txbCmdLivreIdLivreDvd.Text;
                     CommandeDocument commandeDocument = new CommandeDocument(id, dateCommande, montant, nbExemplaire, idLivreDvd, idSuivi, libelleSuivi);
-                    if (MessageBox.Show(this, "Confirmez-vous la modification cette commande ?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show(this, "Confirmez-vous la modification de cette commande ?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         if (recupSuivi.Equals("réglée") || recupSuivi.Equals("livrée"))
                         {
@@ -2835,7 +2835,6 @@ namespace MediaTekDocuments.view
         }
 
 
-
         #endregion
 
         #region Onglet Commandes Dvd
@@ -2847,7 +2846,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void TabCommandesDvd_Enter(object sender, EventArgs e)
         {
-            if (DefaultCommandeDvd)
+            if (DefaultCmdDvd)
             {
                 lesDvds = controller.GetAllDvd();
                 RemplirComboSuivi(controller.GetAllSuivis(), bdgSuivis, cbxCmdDvdSuivi);
@@ -2855,7 +2854,6 @@ namespace MediaTekDocuments.view
                 ViderCmdDvdInfosTotal();
             }
         }
-
 
         /// <summary>
         /// Remplit le datagrid commande dvd avec la liste reçue en paramètre
@@ -2884,7 +2882,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdDvdRechercheNum_Click(object sender, EventArgs e)
         {
-            if (DefaultCommandeDvd && !txbCmdDvdRechercheNum.Text.Equals(""))
+            if (DefaultCmdDvd && !txbCmdDvdRechercheNum.Text.Equals(""))
             {
                 Dvd dvd = lesDvds.Find(x => x.Id.Equals(txbCmdDvdRechercheNum.Text.ToString()));
                 if (dvd != null)
@@ -2931,7 +2929,7 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Récupère et affiche les infos de commande du dvd  dans le datagrid
+        /// Récupère et affiche les infos de commande du dvd dans le datagrid
         /// </summary>
         public void AfficherCmdDvdInfosCmdGrid()
         {
@@ -2956,7 +2954,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void DgvCmdDvdListe_SelectionChanged(object sender, EventArgs e)
         {
-            if (DefaultCommandeDvd && dgvCmdDvdListe.CurrentCell != null)
+            if (DefaultCmdDvd && dgvCmdDvdListe.CurrentCell != null)
             {
                 try
                 {
@@ -3016,7 +3014,7 @@ namespace MediaTekDocuments.view
         /// Permet ou interdit l'accès à la gestion des commandes dvd
         /// </summary>
         /// <param name="access"></param>
-        private void AccesInfoCmdDvdGrpBox(bool access)
+        private void AccesInfosCmdDvdGrpBox(bool access)
         {
             grpCmdDvdCmdInfos.Enabled = access;
         }
@@ -3029,17 +3027,20 @@ namespace MediaTekDocuments.view
         {
             txbCmdDvdMontant.ReadOnly = isReadOnly;
             txbCmdDvdNbExemplaires.ReadOnly = isReadOnly;
+            txbCmdDvdIdSuivi.ReadOnly = isReadOnly;
             txbCmdDvdIdCmd.ReadOnly = isReadOnly;
         }
 
         private void ActiverChampsInfosCmdDvd()
         {
             SetReadOnlyCmdDvd(false);
+            dtpCmdDvd.Enabled = true;
         }
 
         private void DesactiverChampsInfosCmdDvd()
         {
             SetReadOnlyCmdDvd(true);
+            dtpCmdDvd.Enabled = false;
         }
 
         /// <summary>
@@ -3062,36 +3063,42 @@ namespace MediaTekDocuments.view
         public void RestaureConfigCmdDvd()
         {
             // Activer le lien avec le grid
-            DefaultCommandeDvd = true;
+            DefaultCmdDvd = true;
+            dgvCmdDvdListe.Enabled = true;
+
             // Désactive l'accès à la gestion commande et le vide
             DesactiverChampsInfosCmdDvd();
-            ViderCmdDvdInfosCmd();
+
             // Liste des contrôles à afficher
             Control[] show = { btnCmdDvdCommander, btnCmdDvdModifier, btnCmdDvdSupprimer };
             foreach (Control control in show) { control.Show(); }
+
             // Liste des contrôles à masquer
             Control[] hide = { btnCmdDvdCmdOk, btnCmdDvdModifierOk, btnCmdDvdAnnuler };
             foreach (Control control in hide) { control.Hide(); }
         }
-
 
         /// <summary>
         /// Active les champs nécessaires à la création d'une commande dvd
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnCmdDvdCommander_Click(object sender, EventArgs e)
+        private void BtnCmdDvdCmd_Click(object sender, EventArgs e)
         {
             // Désactice le datagrid
-            DefaultCommandeDvd = false;
+            DefaultCmdDvd = false;
+            dgvCmdDvdListe.Enabled = false;
+
             // Active l'accès à la gestion commande
-            AccesInfoCmdDvdGrpBox(true);
+            AccesInfosCmdDvdGrpBox(true);
             ActiverChampsInfosCmdDvd();
-            // Set l'index du cbxSuivi à "en cours"
+            ViderCmdDvdInfosCmd();
             cbxCmdDvdSuivi.SelectedIndex = 0;
+
             // Liste des contrôles à masquer 
             Control[] hide = { btnCmdDvdCommander, btnCmdDvdModifier, btnCmdDvdSupprimer };
             foreach (Control control in hide) { control.Hide(); }
+
             // Liste des contrôles à afficher
             Control[] show = { btnCmdDvdCmdOk, btnCmdDvdAnnuler };
             foreach (Control control in show) { control.Show(); }
@@ -3158,15 +3165,19 @@ namespace MediaTekDocuments.view
         private void BtnCmdModifierDvd_Click(object sender, EventArgs e)
         {
             // Désactive le datagrid
-            DefaultCommandeDvd = false;
+            DefaultCmdDvd = false;
+
             // Active l'accès à la gestion commande
-            AccesInfoCmdDvdGrpBox(true);
+            AccesInfosCmdDvdGrpBox(true);
             ActiverChampsInfosCmdDvd();
+
             // Active la possibilité de modifier le status de la commande
             cbxCmdDvdSuivi.Enabled = true;
+
             // Liste des contrôles à masquer 
             Control[] hide = { btnCmdDvdCommander, btnCmdDvdModifier, btnCmdDvdSupprimer };
             foreach (Control control in hide) { control.Hide(); }
+
             // Liste des contrôles à afficher
             Control[] show = { btnCmdDvdModifierOk, btnCmdDvdAnnuler };
             foreach (Control control in show) { control.Show(); }
@@ -3283,10 +3294,9 @@ namespace MediaTekDocuments.view
 
         private void TabCommandesRevues_Enter(object sender, EventArgs e)
         {
-            if (DefaultCommandeRevue)
+            if (DefaultCmdRevue)
             {
                 lesRevues = controller.GetAllRevues();
-                RemplirComboSuivi(controller.GetAllSuivis(), bdgSuivis, cbxCmdRevueSuivi);
                 dgvCmdRevueListe.DataSource = null;
                 ViderCmdRevueInfosTotal();
             }
@@ -3295,12 +3305,15 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Remplit le datagrid commande revue avec la liste reçue en paramètre
         /// </summary>
-        /// <param name="lesCommandesRevues"></param>
-        private void RemplirCmdRevueListe(List<CommandeDocument> lesCommandesRevues)
+        /// <param name="lesAbonnementsRevues"></param>
+        private void RemplirCmdRevueListe(List<Abonnement> lesAbonnementsRevues)
         {
-            bdgCommandesRevues.DataSource = lesCommandesRevues;
+            bdgCommandesRevues.DataSource = lesAbonnementsRevues;
             dgvCmdRevueListe.DataSource = bdgCommandesRevues;
             dgvCmdRevueListe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCmdRevueListe.Columns["DateCommande"].HeaderText = "Date commande";
+            dgvCmdRevueListe.Columns["DateCommande"].DisplayIndex = 0;
+            dgvCmdRevueListe.Columns["Montant"].DisplayIndex = 1;
         }
 
         /// <summary>
@@ -3310,13 +3323,13 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdRevueNumRecherche_Click(object sender, EventArgs e)
         {
-            if (DefaultCommandeRevue && !txbCmdRevueNumRecherche.Text.Equals(""))
+            if (DefaultCmdRevue && !txbCmdRevueNumRecherche.Text.Equals(""))
             {
                 Revue revue = lesRevues.Find(x => x.Id.Equals(txbCmdRevueNumRecherche.Text.ToString()));
                 if (revue != null)
                 {
                     AfficherCmdRevueInfos(revue);
-                    RemplirCmdRevueListe(lesCommandesRevues);
+                    RemplirCmdRevueListe(lesAbonnementsRevues);
                 }
                 else
                 {
@@ -3325,7 +3338,7 @@ namespace MediaTekDocuments.view
             }
             else
             {
-                MessageBox.Show("Veuillez entrer un numéro de livre valide");
+                MessageBox.Show("Veuillez entrer un numéro de revue valide");
                 TabCommandesRevues_Enter(sender, e);
             }
         }
@@ -3352,12 +3365,56 @@ namespace MediaTekDocuments.view
             {
                 pcbCmdRevue.Image = null;
             }
+            AfficherCmdRevueInfosCmdGrid();
         }
 
+        /// <summary>
+        /// Récupère et affiche les infos de commande de la revue dans le datagrid
+        /// </summary>
         private void AfficherCmdRevueInfosCmdGrid()
         {
-            string idDocument = txbCmdRevueNumRecherche.Text;
-            lesRevues = controller.GetAllRevues();
+            string idRevue = txbCmdRevueNumRecherche.Text;
+            lesAbonnementsRevues = controller.GetAbonnementRevue(idRevue);
+            RemplirCmdRevueListe(lesAbonnementsRevues);
+        }
+
+        /// <summary>
+        /// Récupère les informations de commande d'une revue
+        /// Et initialise les éléments correspondants
+        /// </summary>
+        /// <param name="commandeRevue"></param>
+
+        private void AfficherCmdRevueInfosCmd(Abonnement abonnementRevue)
+        {
+            txbCmdRevueIdCmd.Text = abonnementRevue.Id;
+            txbCmdRevueMontant.Text = abonnementRevue.Montant.ToString();
+            dtpCmdRevueDate.Value = abonnementRevue.DateCommande;
+            dtpCmdRevueAbonnement.Value = abonnementRevue.DateFinAbonnement;
+        }
+
+        /// <summary>
+        /// Affiche le détail de la commande revue en fonction de sa position datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgvCmdRevueListe_SelectionChanged(object sender, EventArgs e)
+        {
+            if (DefaultCmdRevue && dgvCmdRevueListe.CurrentCell != null)
+            {
+                try
+                {
+                    Abonnement commandeRevue = (Abonnement)bdgCommandesRevues.List[bdgCommandesRevues.Position];
+                    AfficherCmdRevueInfosCmd(commandeRevue);
+                }
+                catch
+                {
+                    ViderCmdRevueInfosTotal();
+                }
+            }
+            else
+            {
+                ViderCmdRevueInfosTotal();
+            }
         }
 
         /// <summary>
@@ -3372,6 +3429,7 @@ namespace MediaTekDocuments.view
             txbCmdRevueGenre.Text = "";
             txbCmdRevuePublic.Text = "";
             txbCmdRevueRayon.Text = "";
+            txbCmdRevueNumRecherche.Text = "";
             pcbCmdRevue.Image = null;
         }
 
@@ -3381,11 +3439,10 @@ namespace MediaTekDocuments.view
         private void ViderCmdRevueInfosCmd()
         {
             txbCmdRevueIdCmd.Text = "";
-            txbCmdRevueNbExemplaires.Text = "";
             txbCmdRevueMontant.Text = "";
-            cbxCmdRevueSuivi.SelectedIndex = -1;
             txbCmdRevueNumRecherche.Text = "";
-            dtpCmdRevue.Value = DateTime.Now;
+            dtpCmdRevueDate.Value = DateTime.Now;
+            dtpCmdRevueAbonnement.Value = DateTime.Now;
         }
 
         /// <summary>
@@ -3411,33 +3468,21 @@ namespace MediaTekDocuments.view
         private void SetReadOnlyCmdRevue(bool isReadOnly)
         {
             txbCmdRevueMontant.ReadOnly = isReadOnly;
-            txbCmdRevueNbExemplaires.ReadOnly = isReadOnly;
-            txbCmdRevueIdSuivi.ReadOnly = isReadOnly;
             txbCmdRevueIdCmd.ReadOnly = isReadOnly;
         }
 
         private void ActiverChampsInfosCmdRevue()
         {
             SetReadOnlyCmdRevue(false);
+            dtpCmdRevueDate.Enabled = true;
+            dtpCmdRevueAbonnement.Enabled = true;
         }
 
         private void DesactiverChampsInfosCmdRevue()
         {
             SetReadOnlyCmdRevue(true);
-        }
-
-        /// <summary>
-        /// Récupère l'id du suivi en fonction de la sélection du cbx
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CbxCmdRevueLibelleSuivi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxCmdRevueSuivi.SelectedIndex >= 0)
-            {
-                Suivi suivi = (Suivi)cbxCmdRevueSuivi.SelectedItem;
-                txbCmdRevueIdSuivi.Text = suivi.Id;
-            }
+            dtpCmdRevueDate.Enabled = false;
+            dtpCmdRevueAbonnement.Enabled = false;
         }
 
         /// <summary>
@@ -3446,8 +3491,10 @@ namespace MediaTekDocuments.view
         public void RestaureConfigCmdRevues()
         {
             // Activer le lien avec le grid
-            DefaultCommandeRevue = true;
+            DefaultCmdRevue = true;
             dgvCmdRevueListe.Enabled = true;
+
+            // Désactive l'accès à la gestion commande et le vide
             DesactiverChampsInfosCmdRevue();
 
             // Liste des contrôles à afficher
@@ -3466,40 +3513,49 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdRevueCmd_Click(object sender, EventArgs e)
         {
-            // Désactive le lien datagrid
-            DefaultCommandeRevue = false;
-            dgvCmdRevueListe.Enabled = false;
+            if (!txbCmdRevueNumRecherche.Equals(""))
+            {
+                // Désactive le lien datagrid
+                DefaultCmdRevue = false;
+                dgvCmdRevueListe.Enabled = false;
 
-            // Active l'accès à la gestion de la commande
-            AccesInfosCmdRevueGrpBox(true);
-            ActiverChampsInfosCmdRevue();
-            ViderCmdRevueInfosCmd();
-            cbxCmdRevueSuivi.SelectedIndex = 0;
+                // Active l'accès à la gestion de la commande
+                AccesInfosCmdRevueGrpBox(true);
+                ActiverChampsInfosCmdRevue();
+                ViderCmdRevueInfosCmd();
 
-            // Liste des contrôles à masquer
-            Control[] hide = { btnCmdRevueCmd, btnCmdRevueModifier, btnCmdRevueSupprimer };
-            foreach (Control control in hide) { control.Hide(); }
+                // Liste des contrôles à masquer
+                Control[] hide = { btnCmdRevueCmd, btnCmdRevueModifier, btnCmdRevueSupprimer };
+                foreach (Control control in hide) { control.Hide(); }
 
-            // Liste des contrôles à afficher
-            Control[] show = { btnCmdRevueCmdOk, btnCmdRevueAnnuler };
-            foreach (Control control in show) { control.Show(); }
+                // Liste des contrôles à afficher
+                Control[] show = { btnCmdRevueCmdOk, btnCmdRevueAnnuler };
+                foreach (Control control in show) { control.Show(); }
+            }
+            else
+            {
+                MessageBox.Show("Renseigner un numéro de revue valide", "Erreur");
+            }
         }
 
+        /// <summary>
+        /// Ajout d'une commande (= abonnement) de revue en BDD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCmdRevueCmdOk_Click(object sender, EventArgs e)
         {
-            if (!txbCmdLivreRechercheNum.Equals(""))
+            if (!txbCmdRevueNumRecherche.Equals(""))
             {
                 try
                 {
                     string id = txbCmdRevueIdCmd.Text;
-                    DateTime dateCommande = dtpCmdRevue.Value;
+                    DateTime dateCommande = dtpCmdRevueDate.Value;
+                    DateTime dateAbonnement = dtpCmdRevueAbonnement.Value;
                     double montant = double.Parse(txbCmdRevueMontant.Text);
-                    int nbExemplaires = int.Parse(txbCmdRevueNbExemplaires.Text);
-                    string idLivreDvd = txbCmdRevueIdRevue.Text;
-                    string idSuivi = txbCmdRevueIdSuivi.Text;
-                    string libelleSuivi = cbxCmdRevueSuivi.SelectedItem.ToString();
-                    CommandeDocument commandeRevue = new CommandeDocument(id, dateCommande, montant, nbExemplaires, idLivreDvd, idSuivi, libelleSuivi);
-                    if (controller.CreerCommandeDocument(commandeRevue))
+                    string idRevue = txbCmdRevueIdRevue.Text;
+                    Abonnement commandeRevue = new Abonnement(id, dateCommande, montant, dateAbonnement, idRevue);
+                    if (controller.CreerAbonnementRevue(commandeRevue))
                     {
                         MessageBox.Show("Commande effectuée");
                     }
@@ -3521,7 +3577,115 @@ namespace MediaTekDocuments.view
             TabCommandesRevues_Enter(sender, e);
         }
 
+        /// <summary>
+        /// Annulation de l'action en cours
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCmdRevueAnnuler_Click(object sender, EventArgs e)
+        {
+            RestaureConfigCmdRevues();
+            TabCommandesRevues_Enter(sender, e);
+        }
+
+        /// <summary>
+        /// Active les champs nécessaires à la modification d'une commande revue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCmdRevueModifier_Click(object sender, EventArgs e)
+        {
+            // Désactive le datagrid
+            DefaultCmdRevue = false;
+
+            // Activer l'accès à la gestion de la commande
+            AccesInfosCmdRevueGrpBox(true);
+            ActiverChampsInfosCmdRevue();
+
+            // Liste des contrôles à afficher
+            Control[] show = { btnCmdRevueModifierOk, btnCmdRevueAnnuler };
+            foreach (Control control in show) { control.Show(); }
+
+            // Liste des contrôles à masquer
+            Control[] hide = { btnCmdRevueCmd, btnCmdRevueModifier, btnCmdRevueSupprimer };
+            foreach (Control control in hide) { control.Hide(); }
+        }
+
+        /// <summary>
+        /// Modification d'une commande de type revue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCmdRevueModifierOk_Click(object sender, EventArgs e)
+        {
+            if (!txbCmdRevueIdCmd.Equals(""))
+            {
+                try
+                {
+                    string id = txbCmdRevueIdCmd.Text;
+                    DateTime dateCommande = dtpCmdRevueDate.Value;
+                    double montant = double.Parse(txbCmdRevueMontant.Text);
+                    DateTime dateFinAbonnement = dtpCmdRevueAbonnement.Value;
+                    string idRevue = txbCmdRevueIdRevue.Text;
+                    Abonnement abonnementRevue = new Abonnement(id, dateCommande, montant, dateFinAbonnement, idRevue);
+                    if (MessageBox.Show(this, "Confirmez-vous la modification de cette commande ?", "INFORMATION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        controller.ModifierCommandeRevue(abonnementRevue);
+                        MessageBox.Show("Modification de la commande effectuée");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de la modification de cette commande");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Erreur lors de la modification de cette commande");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de renseigner un numéro de commande valide", "Erreur");
+            }
+            RestaureConfigCmdRevues();
+            TabCommandesRevues_Enter(sender, e);
+        }
+
+        /// <summary>
+        /// Supprimer une commande revue dans la BDD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCmdRevueSupprimer_Click(object sender, EventArgs e)
+        {
+            Abonnement commandeRevue = (Abonnement)bdgCommandesRevues.List[bdgCommandesRevues.Position];
+            if (commandeRevue != null)
+            {
+                try
+                {
+                    if (MessageBox.Show(this, "Confirmez-vous la suppresion de cette commande?", "ATTENTION",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        controller.SupprimerCommandeRevue(commandeRevue);
+                        MessageBox.Show("Suppression effectuée");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Suppression annulée");
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Erreur sur la suppression de cette commande, veuillez recommencer");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Aucune commande sélectionnée");
+            }
+            RestaureConfigCmdRevues();
+            TabCommandesRevues_Enter(sender, e);
+        }
         #endregion
-     
     }
 }

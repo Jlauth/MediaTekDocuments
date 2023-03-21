@@ -23,6 +23,5 @@ namespace MediaTekDocuments.model
         {
             return this.Libelle;
         }
-
     }
 }
