@@ -7,6 +7,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
 using System.Windows.Forms;
+using Org.BouncyCastle.Crypto.Paddings;
 
 namespace MediaTekDocuments.dal
 {
@@ -179,6 +180,17 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Retourne les commandes revues à partir de la BDD
+        /// </summary>
+        /// <param name="idRevue">id de la revue concernée</param>
+        /// <returns>Liste d'objets Commande</returns>
+        public List<Abonnement> GetAbonnementRevue(string idRevue)
+        {
+            List<Abonnement> lesAbonnementsRevues = TraitementRecup<Abonnement>(GET, "commanderevue/" + idRevue);
+            return lesAbonnementsRevues;
+        }
+
+        /// <summary>
         /// Retourne les exemplaires d'une revue à partir de la BDD
         /// </summary>
         /// <param name="idDocument">id de la revue concernée</param>
@@ -218,7 +230,6 @@ namespace MediaTekDocuments.dal
         public bool CreerLivre(Livre livre)
         {
             String jsonLivre = JsonConvert.SerializeObject(livre);
-            Console.WriteLine(jsonLivre);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur) 
@@ -232,7 +243,6 @@ namespace MediaTekDocuments.dal
             return false;
         }
 
-
         /// <summary>
         /// Ajout d'un dvd dans la BDD
         /// </summary>
@@ -241,7 +251,6 @@ namespace MediaTekDocuments.dal
         public bool CreerDvd(Dvd dvd)
         {
             String jsonDvd = JsonConvert.SerializeObject(dvd);
-            Console.WriteLine(jsonDvd);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -319,6 +328,27 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Ajout d'une abonnement de revue en BDD
+        /// </summary>
+        /// <param name="abonnementRevue">revue concernée</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        public bool CreerAbonnementRevue(Abonnement abonnementRevue)
+        {
+            String jsonAbonnementRevue = JsonConvert.SerializeObject(abonnementRevue, new CustomDateTimeConverter());
+            Console.WriteLine(jsonAbonnementRevue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Abonnement> liste = TraitementRecup<Abonnement>(POST, "commanderevue/" + jsonAbonnementRevue);
+                return (liste != null);
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Modification d'un livre en BDD
         /// </summary>
         /// <param name="livre">le livre à modifier</param>
@@ -326,7 +356,6 @@ namespace MediaTekDocuments.dal
         public bool ModifierLivre(Livre livre)
         {
             String jsonLivre = JsonConvert.SerializeObject(livre);
-            Console.WriteLine(jsonLivre);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -404,6 +433,28 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Modification d'une commande revue en BDD
+        /// </summary>
+        /// <param name="abonnementRevue">la revue à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierCommandeRevue(Abonnement abonnementRevue)
+        {
+            String jsonCommandeRevue = JsonConvert.SerializeObject(abonnementRevue);
+            Console.WriteLine(jsonCommandeRevue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Abonnement> liste = TraitementRecup<Abonnement>(PUT, "commanderevue/" + abonnementRevue.Id + "/" + jsonCommandeRevue);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Suppression d'un livre en BDD
         /// </summary>
         /// <param name="livre">le livre à supprimer</param>
@@ -470,7 +521,7 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// Suppression d'une commande document en BDD
         /// </summary>
-        /// <param name="commandeDocument">la commande document à supprimer</param>
+        /// <param name="commandeDocument">le document concerné</param>
         /// <returns>true si la suppression a pu se faire (retour != null)</returns>
         public bool SupprimerCommandeDocument(CommandeDocument commandeDocument)
         {
@@ -480,6 +531,26 @@ namespace MediaTekDocuments.dal
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
                 List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(DELETE, "commandedocument/" + jsonCommandeDocument); 
+                return (liste != null);
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Suppresion d'une commande revue en BDD
+        /// </summary>
+        /// <param name="abonnementRevue">la revue concernée</param>
+        /// <returns></returns>
+        public bool SupprimerCommandeRevue(Abonnement abonnementRevue)
+        {
+            String jsonCommandeRevue = JsonConvert.SerializeObject(abonnementRevue);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Abonnement> liste = TraitementRecup<Abonnement>(DELETE, "commanderevue/" + jsonCommandeRevue);
                 return (liste != null);
             } catch (Exception ex)
             {
