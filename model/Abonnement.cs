@@ -15,7 +15,7 @@ namespace MediaTekDocuments.model
         public string IdRevue { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe Abonnement
+        /// Constructeur de la classe métier Abonnement
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>

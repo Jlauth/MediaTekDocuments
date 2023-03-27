@@ -88,6 +88,7 @@ namespace MediaTekDocuments.dal
             List<Document> lesDocuments = TraitementRecup<Document>(GET, "document/" + idDocument);
             return lesDocuments;
         }
+
         /// <summary>
         /// Retourne tous les genres à partir de la BDD
         /// </summary>
@@ -158,36 +159,67 @@ namespace MediaTekDocuments.dal
             return new List<Suivi>(lesSuivis);
         }
 
-        /// <summary>
-        /// Retournes toutes les commandes de livres à partir de la BDD
-        /// </summary>
-        /// <returns></returns>
-        public List<CommandeDocument> GetAllCommandesLivres()
+       /// <summary>
+       /// Retourne les commandes document à partir de la BDD
+       /// </summary>
+       /// <param name="idDocument">id du document concerné</param>
+       /// <returns>Liste d'objets CommandeDocument</returns>
+        public List<CommandeDocument> GetCommandesDocuments(string idDocument)
         {
-            List<CommandeDocument> lesCommandesLivres = TraitementRecup<CommandeDocument>(GET, "commandeslivres");
-            return lesCommandesLivres;
+            List<CommandeDocument> lesCommandesDocuments = TraitementRecup<CommandeDocument>(GET, "commandesdocuments/" + idDocument);
+            return lesCommandesDocuments;
         }
 
         /// <summary>
-        /// Retourne les commandes d'un livre ou dvd à partir de la BDD
+        /// Retourne tous les états document à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Etat</returns>
+        public List<Etat> GetAllEtatsDocument()
+        {
+            List<Etat> lesEtatsDocument = TraitementRecup<Etat>(GET, "etat");
+            return lesEtatsDocument;
+        }
+
+        /// <summary>
+        /// Retourne tous les services à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Service</returns>
+        public List<Service> GetService()
+        {
+            List<Service> lesServices = TraitementRecup<Service>(GET, "service");
+            return lesServices;
+        }
+
+        /// <summary>
+        /// Retourne les exemplaires d'un document
         /// </summary>
         /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets Commande Document</returns>
-        public List<CommandeDocument> GetCommandedDocument(string idDocument)
+        /// <returns>Liste d'objets Exemplaire</returns>
+        public List<Exemplaire> GetExemplairesDocument(string idDocument)
         {
-            List<CommandeDocument> lesCommandesDocument = TraitementRecup<CommandeDocument>(GET, "commandedocument/" + idDocument);
-            return lesCommandesDocument;
+            List<Exemplaire> lesExemplairesDocument = TraitementRecup<Exemplaire>(GET, "exemplairesdocument/" + idDocument);
+            return lesExemplairesDocument;
         }
 
         /// <summary>
-        /// Retourne les commandes revues à partir de la BDD
+        /// Retourne les abonnements d'une revue à partir de la BDD
         /// </summary>
         /// <param name="idRevue">id de la revue concernée</param>
-        /// <returns>Liste d'objets Commande</returns>
-        public List<Abonnement> GetAbonnementRevue(string idRevue)
+        /// <returns>Liste d'objets Abonnement</returns>
+        public List<Abonnement> GetAbonnementsRevue(string idRevue)
         {
-            List<Abonnement> lesAbonnementsRevues = TraitementRecup<Abonnement>(GET, "commanderevue/" + idRevue);
+            List<Abonnement> lesAbonnementsRevues = TraitementRecup<Abonnement>(GET, "abonnementsrevue/" + idRevue);
             return lesAbonnementsRevues;
+        }
+
+        /// <summary>
+        /// Retourne tous les abonnements à échéance
+        /// </summary>
+        /// <returns>Liste d'objets Abonnement</returns>
+        public List<Abonnement> GetAbonnementsEcheance()
+        {
+            List<Abonnement> lesAbonnementsEcheances = TraitementRecup<Abonnement>(GET, "echeancessabos");
+            return lesAbonnementsEcheances;
         }
 
         /// <summary>
@@ -199,6 +231,47 @@ namespace MediaTekDocuments.dal
         {
             List<Exemplaire> lesExemplaires = TraitementRecup<Exemplaire>(GET, "exemplaire/" + idDocument);
             return lesExemplaires;
+        }
+
+        /// <summary>
+        /// Retourne les abonnements arrivant à échéance à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets </returns>
+        public List<Abonnement> GetRevueByEcheancesAbos()
+        {
+            List<Abonnement> lesEcheancesAbos = TraitementRecup<Abonnement>(GET, "revuesecheancesabo");
+            return lesEcheancesAbos;
+        }
+
+        /// <summary>
+        /// Récupère l'utilisateur cible en BDD
+        /// </summary>
+        /// <param name="utilisateur">l'utilisateur cible</param>
+        /// <returns>true si l'utilisateur a été trouvé (retour != null)</returns>
+        public string ControleAuthentification(Utilisateur utilisateur)
+        {
+            String jsonRecupererUtilisateur = JsonConvert.SerializeObject(utilisateur);
+            try
+            {
+                List<Utilisateur> utilisateurs = TraitementRecup<Utilisateur>(GET, "utilisateur/" + jsonRecupererUtilisateur);
+                if (utilisateurs != null && utilisateurs.Count > 0)
+                {
+                    // récupération de l'utilisateur authentifié
+                    Utilisateur utilisateurCible = utilisateurs[0];
+                    // mise à jour l'objet utilisateur avec l'idService
+                    utilisateur.IdService = utilisateurCible.IdService;
+                    return utilisateur.IdService;
+                }
+                else
+                {
+                    return utilisateur.IdService = null;
+                }
+
+            }
+            catch 
+            {
+                return utilisateur.IdService = null;
+            }
         }
 
         /// <summary>
@@ -307,20 +380,40 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'une commande de livre ou dvd en BDD
+        /// Ajout d'un abonnement en BDD
         /// </summary>
-        /// <param name="commandeDocument">livre ou dvd commandé</param>
+        /// <param name="abonnement">objet abonnement</param>
         /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
-        public bool CreerCommandeDocument(CommandeDocument commandeDocument)
+        public bool CreerAbonnement(Abonnement abonnement)
         {
-            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument, new CustomDateTimeConverter());
+            String jsonAbonnement = JsonConvert.SerializeObject(abonnement, new CustomDateTimeConverter());
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
-                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(POST, "commandedocument/" + jsonCommandeDocument);
+                List<Abonnement> liste = TraitementRecup<Abonnement>(POST, "abonnement/" + jsonAbonnement);
                 return (liste != null);
             }
             catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ajout d'une commande document en BDD
+        /// </summary>
+        /// <param name="commandeDocument">objet commande document</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        public bool CreerCommandeDocument(CommandeDocument commandeDocument)
+        {
+            String jsonCreerCommandeDocument = JsonConvert.SerializeObject(commandeDocument, new CustomDateTimeConverter());
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(POST, "commandedocument/" + jsonCreerCommandeDocument);
+                return (liste != null);
+            } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -332,16 +425,17 @@ namespace MediaTekDocuments.dal
         /// </summary>
         /// <param name="abonnementRevue">revue concernée</param>
         /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
-        public bool CreerAbonnementRevue(Abonnement abonnementRevue)
+        public bool CreerAbonnementRevue(string id, DateTime dateFinAbonnement, string idRevue)
         {
-            String jsonAbonnementRevue = JsonConvert.SerializeObject(abonnementRevue, new CustomDateTimeConverter());
-            Console.WriteLine(jsonAbonnementRevue);
+            String jsonDateCommande = JsonConvert.SerializeObject(dateFinAbonnement, new CustomDateTimeConverter());
+            String jsonCreerAbonnement = "{\"id\":\"" + id + "\", \"dateFinAbonnement\" : " + jsonDateCommande + ", \"idRevue\" :  \"" + idRevue + "\"}";
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
-                List<Abonnement> liste = TraitementRecup<Abonnement>(POST, "commanderevue/" + jsonAbonnementRevue);
+                List<Abonnement> liste = TraitementRecup<Abonnement>(POST, "abonnement/" + jsonCreerAbonnement);
                 return (liste != null);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -418,7 +512,7 @@ namespace MediaTekDocuments.dal
         /// <returns>true si la modification a pu se faire (retour != null)</returns>
         public bool ModifierCommandeDocument(CommandeDocument commandeDocument)
         {
-            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
+            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);   
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -523,16 +617,17 @@ namespace MediaTekDocuments.dal
         /// </summary>
         /// <param name="commandeDocument">le document concerné</param>
         /// <returns>true si la suppression a pu se faire (retour != null)</returns>
-        public bool SupprimerCommandeDocument(CommandeDocument commandeDocument)
+        public bool SupprimerCommandeDocument(Commande commandeDocument)
         {
             String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
             Console.WriteLine(jsonCommandeDocument);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
-                List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(DELETE, "commandedocument/" + jsonCommandeDocument); 
+                List<Commande> liste = TraitementRecup<Commande>(DELETE, "commandedocument/" + jsonCommandeDocument);
                 return (liste != null);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -552,12 +647,16 @@ namespace MediaTekDocuments.dal
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
                 List<Abonnement> liste = TraitementRecup<Abonnement>(DELETE, "commanderevue/" + jsonCommandeRevue);
                 return (liste != null);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             return false;
         }
+
+
+
 
         /// <summary>
         /// Traitement de la récupération du retour de l'api, avec conversion du json en liste pour les select (GET)
@@ -597,8 +696,10 @@ namespace MediaTekDocuments.dal
             return liste;
         }
 
-
-
+        internal Utilisateur GetUser(object login)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Modification du convertisseur Json pour gérer le format de date
