@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier CommandeDocument hérite de Commande
+    /// Classe métier Commande Document hérite de Commande
     /// </summary>
     public class CommandeDocument : Commande
     {
@@ -17,7 +17,7 @@ namespace MediaTekDocuments.model
         public string LibelleSuivi { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier CommandeDocument
+        /// Constructeur de la classe métier Commande Document
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>

@@ -9,6 +9,12 @@ namespace MediaTekDocuments.model
         public string Id { get; set; }
         public string Libelle { get; set; }
 
+        /// <summary>
+        /// Constructeur de la classe métier Categorie
+        /// Valorise les propriétés de cette classe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="libelle"></param>
         public Categorie(string id, string libelle)
         {
             this.Id = id;
