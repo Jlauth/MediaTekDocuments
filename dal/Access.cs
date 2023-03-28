@@ -16,8 +16,7 @@ namespace MediaTekDocuments.dal
     /// </summary>
     public class Access
     {
-        private const string url = "http://localhost/rest_mediatekdocuments/";
-
+        private const string url = "MediaTekDocuments.Properties.Settings.mediatekdocumentsConnectionString";
         /// <summary>
         /// Adresse de l'API
         /// </summary>
@@ -50,12 +49,10 @@ namespace MediaTekDocuments.dal
         /// Méthode privée pour créer un singleton
         /// Initialise l'accès à l'API
         /// </summary>
-        private Access()
+        private Access(String authenticationString)
         {
-            String authenticationString;
             try
             {
-                authenticationString = "admin:adminpwd";
                 api = ApiRest.GetInstance(uriApi, authenticationString);
             }
             catch (Exception e)
@@ -69,11 +66,11 @@ namespace MediaTekDocuments.dal
         /// Création et retour de l'instance unique de la classe
         /// </summary>
         /// <returns>instance unique de la classe</returns>
-        public static Access GetInstance()
+        public static Access GetInstance(String authenticationString)
         {
             if (instance == null)
             {
-                instance = new Access();
+                instance = new Access(authenticationString);
             }
             return instance;
         }
