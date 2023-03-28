@@ -216,31 +216,10 @@ namespace MediaTekDocuments.dal
         /// Retourne tous les abonnements à échéance
         /// </summary>
         /// <returns>Liste d'objets Abonnement</returns>
-        public List<Abonnement> GetAbonnementsEcheance()
+        public List<EcheanceAbonnement> GetAbonnementsEcheance()
         {
-            List<Abonnement> lesAbonnementsEcheances = TraitementRecup<Abonnement>(GET, "echeancessabos");
+            List<EcheanceAbonnement> lesAbonnementsEcheances = TraitementRecup<EcheanceAbonnement>(GET, "echeancessabos");
             return lesAbonnementsEcheances;
-        }
-
-        /// <summary>
-        /// Retourne les exemplaires d'une revue à partir de la BDD
-        /// </summary>
-        /// <param name="idDocument">id de la revue concernée</param>
-        /// <returns>Liste d'objets Exemplaire</returns>
-        public List<Exemplaire> GetExemplairesRevue(string idDocument)
-        {
-            List<Exemplaire> lesExemplaires = TraitementRecup<Exemplaire>(GET, "exemplaire/" + idDocument);
-            return lesExemplaires;
-        }
-
-        /// <summary>
-        /// Retourne les abonnements arrivant à échéance à partir de la BDD
-        /// </summary>
-        /// <returns>Liste d'objets </returns>
-        public List<Abonnement> GetRevueByEcheancesAbos()
-        {
-            List<Abonnement> lesEcheancesAbos = TraitementRecup<Abonnement>(GET, "revuesecheancesabo");
-            return lesEcheancesAbos;
         }
 
         /// <summary>
@@ -598,7 +577,6 @@ namespace MediaTekDocuments.dal
         public bool SupprimerRevue(Revue revue)
         {
             String jsonRevue = JsonConvert.SerializeObject(revue);
-            Console.WriteLine(jsonRevue);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -639,13 +617,13 @@ namespace MediaTekDocuments.dal
         /// </summary>
         /// <param name="abonnementRevue">la revue concernée</param>
         /// <returns></returns>
-        public bool SupprimerCommandeRevue(Abonnement abonnementRevue)
+        public bool SupprimerAbonnement(Abonnement abonnement)
         {
-            String jsonCommandeRevue = JsonConvert.SerializeObject(abonnementRevue);
+            String jsonSupprimerAbonnement = JsonConvert.SerializeObject(abonnement);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
-                List<Abonnement> liste = TraitementRecup<Abonnement>(DELETE, "commanderevue/" + jsonCommandeRevue);
+                List<Abonnement> liste = TraitementRecup<Abonnement>(DELETE, "abonnement/" + jsonSupprimerAbonnement);
                 return (liste != null);
             }
             catch (Exception ex)
@@ -654,9 +632,6 @@ namespace MediaTekDocuments.dal
             }
             return false;
         }
-
-
-
 
         /// <summary>
         /// Traitement de la récupération du retour de l'api, avec conversion du json en liste pour les select (GET)

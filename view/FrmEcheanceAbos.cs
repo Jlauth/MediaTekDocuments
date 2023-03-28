@@ -17,19 +17,18 @@ namespace MediaTekDocuments.view
     {
         private readonly FrmMediatekController controller;
         private readonly BindingSource bdgEcheancesAbos = new BindingSource();
-        private readonly List<AbonnementEcheance> lesEcheancesAbos;
+        private readonly List<EcheanceAbonnement> lesEcheancesAbos;
         public FrmEcheancesAbos()
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
             lesEcheancesAbos = controller.GetAbonnementsEcheance();
-            RemplirEcheancesAbos();
-
+            RemplirEcheancesAbos(lesEcheancesAbos);
         }
 
-        private void RemplirEcheancesAbos()
+        private void RemplirEcheancesAbos(List<EcheanceAbonnement> echeanceAbonnements)
         {
-            bdgEcheancesAbos.DataSource = lesEcheancesAbos;
+            bdgEcheancesAbos.DataSource = echeanceAbonnements;
             dgvEcheancesAbosListe.DataSource = bdgEcheancesAbos;
             dgvEcheancesAbosListe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEcheancesAbosListe.Columns["DateFinAbonnement"].HeaderText = "Date de fin d'abonnement";
@@ -37,6 +36,33 @@ namespace MediaTekDocuments.view
             dgvEcheancesAbosListe.Columns["Montant"].Visible = false;
             dgvEcheancesAbosListe.Columns["Id"].Visible = false;
             dgvEcheancesAbosListe.Columns["DateCommande"].Visible = false;
+            dgvEcheancesAbosListe.Columns["IdRevue"].Visible = false;
+        }
+
+        private void BtnOkEcheancesAbos_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
+        /// Tri sur les colonnes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgvEcheancesAbos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string titreColonne = dgvEcheancesAbosListe.Columns[e.ColumnIndex].HeaderText;
+            List<EcheanceAbonnement> sortedList = new List<EcheanceAbonnement>();
+            switch (titreColonne)
+            {
+                case "Date de fin d'abonnement":
+                    sortedList = lesEcheancesAbos.OrderBy(o => o.DateFinAbonnement).ToList();
+                    break;
+                case "TitreRevue":
+                    sortedList = lesEcheancesAbos.OrderBy(o => o.TitreRevue).ToList();
+                    break;
+            }
+            RemplirEcheancesAbos(sortedList);
         }
     }
 }

@@ -2,6 +2,7 @@
 using MediaTekDocuments.model;
 using MediaTekDocuments.dal;
 using System;
+using System.Linq;
 
 namespace MediaTekDocuments.controller
 {
@@ -24,7 +25,7 @@ namespace MediaTekDocuments.controller
         /// Getter sur les abonnements arrivant à échéance
         /// </summary>
         /// <returns>Liste d'objets Abonnement</returns>
-        public List<Abonnement> GetAbonnementsEcheance() => access.GetAbonnementsEcheance();
+        public List<EcheanceAbonnement> GetAbonnementsEcheance() => access.GetAbonnementsEcheance();
 
         /// <summary>
         /// Récupère le document concerné dans la BDD
@@ -96,12 +97,6 @@ namespace MediaTekDocuments.controller
         /// <returns>Liste d'objets Commande</returns>
         public List<Abonnement> GetAbonnementsRevue(string idRevue) => access.GetAbonnementsRevue(idRevue);
 
-        /// <summary>
-        /// Récupère les exemplaires d'une revue
-        /// </summary>
-        /// <param name="idDocument">id de la revue concernée</param>
-        /// <returns>Liste d'objets Exemplaire</returns>
-        public List<Exemplaire> GetExemplairesRevue(string idDocument) => access.GetExemplairesRevue(idDocument);
 
         /// <summary>
         /// Récupère les états des documents
@@ -229,10 +224,11 @@ namespace MediaTekDocuments.controller
         public bool SupprimerCommandeDocument(Commande commandeDocument) => access.SupprimerCommandeDocument(commandeDocument);
 
         /// <summary>
-        /// Supprimer une commande revue dans la BDD
+        /// Supprimer un abonnement dans la BDD
         /// </summary>
-        /// <param name="abonnement">l'objet revue concerné</param>
+        /// <param name="abonnement">l'abonnement concerné</param>
         /// <returns>true si la suppresion a pu se faire</returns>
-        public bool SupprimerCommandeRevue(Abonnement abonnement) => access.SupprimerCommandeRevue(abonnement);
+        public bool SupprimerAbonnement(Abonnement abonnement) => access.SupprimerAbonnement(abonnement);
+
     }
 }
