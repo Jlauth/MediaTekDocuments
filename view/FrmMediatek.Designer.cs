@@ -746,9 +746,9 @@ namespace MediaTekDocuments.view
             this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label72.Location = new System.Drawing.Point(6, 45);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(78, 13);
+            this.label72.Size = new System.Drawing.Size(41, 13);
             this.label72.TabIndex = 8;
-            this.label72.Text = "TitreRevue :";
+            this.label72.Text = "Titre :";
             // 
             // label73
             // 
@@ -1175,9 +1175,9 @@ namespace MediaTekDocuments.view
             this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(6, 45);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(78, 13);
+            this.label50.Size = new System.Drawing.Size(41, 13);
             this.label50.TabIndex = 36;
-            this.label50.Text = "TitreRevue :";
+            this.label50.Text = "Titre :";
             // 
             // label51
             // 
@@ -1562,9 +1562,9 @@ namespace MediaTekDocuments.view
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label43.Location = new System.Drawing.Point(6, 45);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(78, 13);
+            this.label43.Size = new System.Drawing.Size(41, 13);
             this.label43.TabIndex = 8;
-            this.label43.Text = "TitreRevue :";
+            this.label43.Text = "Titre :";
             // 
             // label44
             // 
@@ -2140,9 +2140,9 @@ namespace MediaTekDocuments.view
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(6, 45);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(78, 13);
+            this.label26.Size = new System.Drawing.Size(41, 13);
             this.label26.TabIndex = 8;
-            this.label26.Text = "TitreRevue :";
+            this.label26.Text = "Titre :";
             // 
             // label27
             // 
@@ -2712,9 +2712,9 @@ namespace MediaTekDocuments.view
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(6, 45);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(78, 13);
+            this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 8;
-            this.label10.Text = "TitreRevue :";
+            this.label10.Text = "Titre :";
             // 
             // label7
             // 
@@ -3316,9 +3316,9 @@ namespace MediaTekDocuments.view
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label78.Location = new System.Drawing.Point(6, 45);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(78, 13);
+            this.label78.Size = new System.Drawing.Size(41, 13);
             this.label78.TabIndex = 8;
-            this.label78.Text = "TitreRevue :";
+            this.label78.Text = "Titre :";
             // 
             // label79
             // 
@@ -3732,9 +3732,9 @@ namespace MediaTekDocuments.view
             this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label92.Location = new System.Drawing.Point(6, 45);
             this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(78, 13);
+            this.label92.Size = new System.Drawing.Size(41, 13);
             this.label92.TabIndex = 8;
-            this.label92.Text = "TitreRevue :";
+            this.label92.Text = "Titre :";
             // 
             // label93
             // 

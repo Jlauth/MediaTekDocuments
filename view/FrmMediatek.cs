@@ -342,10 +342,10 @@ namespace MediaTekDocuments.view
             List<Livre> sortedList = new List<Livre>();
             switch (titreColonne)
             {
-                case "Login":
+                case "Id":
                     sortedList = lesLivres.OrderBy(o => o.Id).ToList();
                     break;
-                case "TitreRevue":
+                case "Titre":
                     sortedList = lesLivres.OrderBy(o => o.Titre).ToList();
                     break;
                 case "Collection":
@@ -822,7 +822,7 @@ namespace MediaTekDocuments.view
             dgvDvdListe.Columns["synopsis"].Visible = false;
             dgvDvdListe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDvdListe.Columns["id"].DisplayIndex = 0;
-            dgvDvdListe.Columns["titreRevue"].DisplayIndex = 1;
+            dgvDvdListe.Columns["titre"].DisplayIndex = 1;
         }
 
         /// <summary>
@@ -1433,10 +1433,10 @@ namespace MediaTekDocuments.view
             List<Dvd> sortedList = new List<Dvd>();
             switch (titreColonne)
             {
-                case "Login":
+                case "Id":
                     sortedList = lesDvd.OrderBy(o => o.Id).ToList();
                     break;
-                case "TitreRevue":
+                case "Titre":
                     sortedList = lesDvd.OrderBy(o => o.Titre).ToList();
                     break;
                 case "Duree":
@@ -1493,7 +1493,7 @@ namespace MediaTekDocuments.view
             dgvRevuesListe.Columns["image"].Visible = false;
             dgvRevuesListe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRevuesListe.Columns["id"].DisplayIndex = 0;
-            dgvRevuesListe.Columns["titreRevue"].DisplayIndex = 1;
+            dgvRevuesListe.Columns["titre"].DisplayIndex = 1;
         }
 
         /// <summary>
@@ -2075,10 +2075,10 @@ namespace MediaTekDocuments.view
             List<Revue> sortedList = new List<Revue>();
             switch (titreColonne)
             {
-                case "Login":
+                case "Id":
                     sortedList = lesRevues.OrderBy(o => o.Id).ToList();
                     break;
-                case "TitreRevue":
+                case "Titre":
                     sortedList = lesRevues.OrderBy(o => o.Titre).ToList();
                     break;
                 case "Periodicite":
@@ -2214,7 +2214,7 @@ namespace MediaTekDocuments.view
         private void AfficheReceptionExemplairesRevue()
         {
             string idDocuement = txbReceptionRevueNumero.Text;
-            lesExemplaires = controller.GetExemplairesRevue(idDocuement);
+            lesExemplaires = controller.GetExemplairesDocument(idDocuement);
             RemplirReceptionExemplairesListe(lesExemplaires);
             AccesReceptionExemplaireGroupBox(true);
         }
@@ -3402,14 +3402,14 @@ namespace MediaTekDocuments.view
         /// Récupère les informations de commande d'une revue
         /// Et initialise les éléments correspondants
         /// </summary>
-        /// <param name="abonnementRevue"></param>
+        /// <param name="abonnement"></param>
 
-        private void AfficherCmdRevueInfosCmd(Abonnement abonnementRevue)
+        private void AfficherCmdRevueInfosCmd(Abonnement abonnement)
         {
-            txbCmdRevueIdCmd.Text = abonnementRevue.Id;
-            txbCmdRevueMontant.Text = abonnementRevue.Montant.ToString();
-            dtpCmdRevueDateCmd.Value = abonnementRevue.DateCommande;
-            dtpCmdRevueFinAbo.Value = abonnementRevue.DateFinAbonnement;
+            txbCmdRevueIdCmd.Text = abonnement.Id;
+            txbCmdRevueMontant.Text = abonnement.Montant.ToString();
+            dtpCmdRevueDateCmd.Value = abonnement.DateCommande;
+            dtpCmdRevueFinAbo.Value = abonnement.DateFinAbonnement;
         }
 
         /// <summary>
@@ -3671,33 +3671,31 @@ namespace MediaTekDocuments.view
             TabCommandesRevues_Enter(sender, e);
         }
 
-        /// <summary>
+        // <summary>
         /// Vérifie si la date de parution est comprise entre date commande et date fin abonnement
-        /// </summary>
         /// <param name="dateCommande">date de prise de commande</param>
         /// <param name="dateFinAbonnement">date de fin d'abonnement</param>
         /// <param name="dateParution">date de comparaison entre les deux précédentes</param>
         /// <returns>true si la date est comprise entre ces deux dates</returns>
-        public bool VerifierParutionDansAbonnement(DateTime dateCommande, DateTime dateFinAbonnement, DateTime dateParution)
+        public bool ParutionAbonnement(DateTime dateCommande, DateTime dateFinAbonnement, DateTime dateParution)
         {
             return (DateTime.Compare(dateCommande, dateParution) < 0 && DateTime.Compare(dateParution, dateFinAbonnement) < 0);
         }
 
         /// <summary>
-        /// Vérifie qu'aucun exemplaire ne soit rattaché à un abonnement de type revue
+        /// Vérifie qu'aucun exemplaire ne soit rattaché à un abonnement
         /// </summary>
         /// <param name="abonnement">l'abonnement cible</param>
-        /// <returns>return dateParution=true si aucun exemplaire rattaché</returns>
-        public bool VerifierExemplaireDansAbonnement(Abonnement abonnement)
+        /// <returns>return true si aucun exemplaire rattaché</returns>
+        public bool VerifierLienAbonnementExemplaire(Abonnement abonnement)
         {
-            bool dateParution = false;
-            List<Exemplaire> lesExemplairesRevue = controller.GetExemplairesRevue(abonnement.IdRevue);
-            foreach (Exemplaire exemplaire in lesExemplairesRevue.Where(exemplaires =>
-            VerifierParutionDansAbonnement(abonnement.DateCommande, abonnement.DateFinAbonnement, exemplaires.DateAchat)))
+            List<Exemplaire> lesExemplairesLienAbo = controller.GetExemplairesDocument(abonnement.IdRevue);
+            bool supprimer = false;
+            foreach (Exemplaire exemplaire in lesExemplairesLienAbo.Where(exemplaires => ParutionAbonnement(abonnement.DateCommande, abonnement.DateFinAbonnement, exemplaires.DateAchat)))
             {
-                dateParution = true;
+                supprimer = true;
             }
-            return !dateParution;
+            return !supprimer;
         }
 
         /// <summary>
@@ -3707,21 +3705,22 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdRevueSupprimer_Click(object sender, EventArgs e)
         {
-            Abonnement commandeRevue = (Abonnement)bdgCommandesRevues.List[bdgCommandesRevues.Position];
-            if (commandeRevue != null)
+            Abonnement abonnement = (Abonnement)bdgCommandesRevues.List[bdgCommandesRevues.Position];
+            if (VerifierLienAbonnementExemplaire(abonnement))
             {
                 try
                 {
-                    if (MessageBox.Show(this, "Confirmez-vous la suppresion de l'abonnement " + commandeRevue.IdRevue + "?", "ATTENTION",
+                    if (MessageBox.Show(this, "Confirmez-vous la suppresion de l'abonnement " + abonnement.IdRevue + "?", "ATTENTION",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (VerifierExemplaireDansAbonnement(commandeRevue) && controller.SupprimerCommandeRevue(commandeRevue))
+                        if (controller.SupprimerAbonnement(abonnement))
                         {
                             MessageBox.Show("Suppression effectuée", "INFORMATION");
+                            AfficherCmdRevueInfosCmdGrid();
                         }
                         else
                         {
-                            MessageBox.Show("Impossible de supprimer un abonnement contenant un ou plusieurs exemplaires", "ERREUR");
+                            MessageBox.Show("Erreur sur la suppression de cette commande, veuillez recommencer", "ERREUR");
                         }
                     }
                     else
@@ -3736,7 +3735,7 @@ namespace MediaTekDocuments.view
             }
             else
             {
-                MessageBox.Show("Aucune commande sélectionnée", "INFORMATION");
+                MessageBox.Show("Impossible de supprimer un abonnement contenant un ou plusieurs exemplaires", "INFORMATION");
             }
             RestaureConfigCmdRevues();
             TabCommandesRevues_Enter(sender, e);

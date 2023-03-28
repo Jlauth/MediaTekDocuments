@@ -87,6 +87,7 @@
     <Compile Include="model\Abonnement.cs" />
     <Compile Include="model\Commande.cs" />
     <Compile Include="model\CommandeDocument.cs" />
+    <Compile Include="model\EcheanceAbonnement.cs" />
     <Compile Include="model\Service.cs" />
     <Compile Include="model\Suivi.cs" />
     <Compile Include="model\Utilisateur.cs" />
