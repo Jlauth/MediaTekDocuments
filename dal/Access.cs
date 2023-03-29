@@ -6,8 +6,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
+using Serilog;
 using System.Windows.Forms;
 using Org.BouncyCastle.Crypto.Paddings;
+using System.Security.Policy;
+using static System.Net.WebRequestMethods;
+using Serilog.Formatting.Json;
 
 namespace MediaTekDocuments.dal
 {
@@ -16,20 +20,22 @@ namespace MediaTekDocuments.dal
     /// </summary>
     public class Access
     {
-        private const string url = "http://localhost/rest_mediatekdocuments/";
-
+        /// <summary>
+        /// Chaîne de connection référence externe
+        /// </summary>
+        private static readonly string connectionName = "MediaTekDocuments.Properties.Settings.mediatek86ConnectionString";
         /// <summary>
         /// Adresse de l'API
         /// </summary>
-        private static readonly string uriApi = url;
+        private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
         /// <summary>
         /// Instance unique de la classe
         /// </summary>
-        private static Access instance = null;
+        private static Access instance;
         /// <summary>
         /// Instance de ApiRest pour envoyer des demandes vers l'api et recevoir la réponse
         /// </summary>
-        private readonly ApiRest api = null;
+        private readonly ApiRest api;
         /// <summary>
         /// Méthode HTTP pour select
         /// </summary>
@@ -52,15 +58,21 @@ namespace MediaTekDocuments.dal
         /// </summary>
         private Access()
         {
-            String authenticationString;
+            String connectionString;
             try
             {
-                authenticationString = "admin:adminpwd";
-                api = ApiRest.GetInstance(uriApi, authenticationString);
+                connectionString = GetConnectionStringByName(connectionName);
+                Log.Logger = new LoggerConfiguration()
+                    .WriteTo.Console()
+                    .WriteTo.File(new JsonFormatter(), "logs/log.txt",
+                    rollingInterval: RollingInterval.Day)
+                    .CreateLogger();
+                api = ApiRest.GetInstance(uriApi, connectionString);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                Log.Fatal("Access.Access catch connectionString={0} error={1}", connectionName, e);
                 Environment.Exit(0);
             }
         }
@@ -76,6 +88,22 @@ namespace MediaTekDocuments.dal
                 instance = new Access();
             }
             return instance;
+        }
+
+        /// <summary>
+        /// Récupération de la chaîne de connexion
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        static string GetConnectionStringByName(string name)
+        {
+            string returnValue = null;
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
+            if (settings != null)
+            {
+                returnValue = settings.ConnectionString;
+            }
+            return returnValue;
         }
 
         /// <summary>
@@ -159,11 +187,11 @@ namespace MediaTekDocuments.dal
             return new List<Suivi>(lesSuivis);
         }
 
-       /// <summary>
-       /// Retourne les commandes document à partir de la BDD
-       /// </summary>
-       /// <param name="idDocument">id du document concerné</param>
-       /// <returns>Liste d'objets CommandeDocument</returns>
+        /// <summary>
+        /// Retourne les commandes document à partir de la BDD
+        /// </summary>
+        /// <param name="idDocument">id du document concerné</param>
+        /// <returns>Liste d'objets CommandeDocument</returns>
         public List<CommandeDocument> GetCommandesDocuments(string idDocument)
         {
             List<CommandeDocument> lesCommandesDocuments = TraitementRecup<CommandeDocument>(GET, "commandesdocuments/" + idDocument);
@@ -247,8 +275,10 @@ namespace MediaTekDocuments.dal
                 }
 
             }
-            catch 
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Log.Error("Access.ControleAuthentification catch jsonRecupererUtilisateur={0} error={1}", jsonRecupererUtilisateur, ex);
                 return utilisateur.IdService = null;
             }
         }
@@ -270,6 +300,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerDocument catch jsonCreerDocument={0} error={1}", jsonCreerDocument, ex);
             }
             return false;
         }
@@ -291,6 +322,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerLivre catch jsonLivre={0} error={1}", jsonLivre, ex);
             }
             return false;
         }
@@ -312,6 +344,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerDvd catch jsonDvd={0} error={1}", jsonDvd, ex);
             }
             return false;
         }
@@ -333,6 +366,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerRevue catch jsonRevue={0} error={1}", jsonRevue, ex);
             }
             return false;
         }
@@ -354,6 +388,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerExemplaire catch jsonExemplaire={0} error={1}", jsonExemplaire, ex);
             }
             return false;
         }
@@ -375,6 +410,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerAbonnement catch jsonAbonnement={0} error={1}", jsonAbonnement, ex);
             }
             return false;
         }
@@ -392,9 +428,11 @@ namespace MediaTekDocuments.dal
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
                 List<CommandeDocument> liste = TraitementRecup<CommandeDocument>(POST, "commandedocument/" + jsonCreerCommandeDocument);
                 return (liste != null);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerCommandeDocument catch jsonCreerDocument={0} error={1}", jsonCreerCommandeDocument, ex);
             }
             return false;
         }
@@ -417,6 +455,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.CreerAbonnementRevue catch jsonCreerAbonnement={0} error={1}", jsonCreerAbonnement, ex);
             }
             return false;
         }
@@ -438,6 +477,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierLivre catch jsonLivre={0} error={1}", jsonLivre, ex);
             }
             return false;
         }
@@ -459,6 +499,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierDvd catch jsonDvd={1} error={1}", jsonDvd, ex);
             }
             return false;
         }
@@ -480,6 +521,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierRevue catch jsonRevue={0} error={1}", jsonRevue, ex);
             }
             return false;
         }
@@ -491,7 +533,7 @@ namespace MediaTekDocuments.dal
         /// <returns>true si la modification a pu se faire (retour != null)</returns>
         public bool ModifierCommandeDocument(CommandeDocument commandeDocument)
         {
-            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);   
+            String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -501,6 +543,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierCommandeDocument catch jsonCommandeDocument={0} error={1}", jsonCommandeDocument, ex);
             }
             return false;
         }
@@ -523,6 +566,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierCommandeRevue catch jsonCommandeRevue={0} error={1}", jsonCommandeRevue, ex);
             }
             return false;
         }
@@ -544,6 +588,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerLivre catch jsonLivre={0} error={1}", jsonLivre, ex);
             }
             return false;
         }
@@ -565,6 +610,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerDvd catch jsonDvd={0} error={1}", jsonDvd, ex);
             }
             return false;
         }
@@ -586,6 +632,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerRevue catch jsonRevue={0} error={1}", jsonRevue, ex);
             }
             return false;
         }
@@ -608,6 +655,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerCommandeDocument catch jsonCommandeDocument={0} error={1}", jsonCommandeDocument, ex);
             }
             return false;
         }
@@ -629,6 +677,7 @@ namespace MediaTekDocuments.dal
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerAbonnement catch jsonSupprimerAbonnement={0} error={1}", jsonSupprimerAbonnement, ex);
             }
             return false;
         }
@@ -661,11 +710,13 @@ namespace MediaTekDocuments.dal
                 else
                 {
                     Console.WriteLine("Code erreur = " + code + " message = " + (String)retour["message"]);
+                    Log.Error("Access.TraitementRecup catch code={0} error={1}", code);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Erreur lors de l'accès à l'API : " + e.Message);
+                Console.WriteLine("Erreur lors de l'accès à l'API : " + ex.Message);
+                Log.Error("Access.TraitementRecup catch liste={0} error={1}", liste, ex);
                 Environment.Exit(0);
             }
             return liste;
