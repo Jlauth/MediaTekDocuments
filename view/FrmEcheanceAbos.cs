@@ -18,6 +18,7 @@ namespace MediaTekDocuments.view
         private readonly FrmMediatekController controller;
         private readonly BindingSource bdgEcheancesAbos = new BindingSource();
         private readonly List<EcheanceAbonnement> lesEcheancesAbos;
+
         public FrmEcheancesAbos()
         {
             InitializeComponent();
