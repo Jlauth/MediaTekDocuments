@@ -41,6 +41,7 @@ namespace MediaTekDocuments.view
             this.dgvEcheancesAbosListe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEcheancesAbosListe.Location = new System.Drawing.Point(71, 75);
             this.dgvEcheancesAbosListe.Name = "dgvEcheancesAbosListe";
+            this.dgvEcheancesAbosListe.ReadOnly = true;
             this.dgvEcheancesAbosListe.Size = new System.Drawing.Size(529, 153);
             this.dgvEcheancesAbosListe.TabIndex = 1;
             this.dgvEcheancesAbosListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvEcheancesAbos_ColumnHeaderMouseClick);

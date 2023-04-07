@@ -80,10 +80,11 @@ namespace MediaTekDocuments.view
             }
         }
 
+        /// <summary>
         /// Hashe le mot de passe
         /// </summary>
-        /// <param name="randomString">RandomString</param>
-        /// <returns>Hash</returns>
+        /// <param name="randomString">la valeur à hashe</param>
+        /// <returns></returns>
         static string Sha256(string randomString)
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();

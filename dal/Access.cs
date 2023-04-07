@@ -62,6 +62,7 @@ namespace MediaTekDocuments.dal
             try
             {
                 connectionString = GetConnectionStringByName(connectionName);
+                //connectionString = "admin:adminpwd";
                 Log.Logger = new LoggerConfiguration()
                     .WriteTo.Console()
                     .WriteTo.File(new JsonFormatter(), "logs/log.txt",
@@ -188,6 +189,26 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Retourne tous les états document à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Etat</returns>
+        public List<Etat> GetAllEtats()
+        {
+            IEnumerable<Etat> lesEtatsDocument = TraitementRecup<Etat>(GET, "etat");
+            return new List<Etat>(lesEtatsDocument);
+        }
+
+        /// <summary>
+        /// Retourne les exemplaires à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Exemplaire</returns>
+        public List<Exemplaire> GetAllExemplaires()
+        {
+            List<Exemplaire> lesExemplaires = TraitementRecup<Exemplaire>(GET, "exemplairesdocument");
+            return lesExemplaires;
+        }
+
+        /// <summary>
         /// Retourne les commandes document à partir de la BDD
         /// </summary>
         /// <param name="idDocument">id du document concerné</param>
@@ -196,16 +217,6 @@ namespace MediaTekDocuments.dal
         {
             List<CommandeDocument> lesCommandesDocuments = TraitementRecup<CommandeDocument>(GET, "commandesdocuments/" + idDocument);
             return lesCommandesDocuments;
-        }
-
-        /// <summary>
-        /// Retourne tous les états document à partir de la BDD
-        /// </summary>
-        /// <returns>Liste d'objets Etat</returns>
-        public List<Etat> GetAllEtatsDocument()
-        {
-            List<Etat> lesEtatsDocument = TraitementRecup<Etat>(GET, "etat");
-            return lesEtatsDocument;
         }
 
         /// <summary>
@@ -227,6 +238,17 @@ namespace MediaTekDocuments.dal
         {
             List<Exemplaire> lesExemplairesDocument = TraitementRecup<Exemplaire>(GET, "exemplairesdocument/" + idDocument);
             return lesExemplairesDocument;
+        }
+
+        /// <summary>
+        /// Retourne le détail des exemplaires d'un document
+        /// </summary>
+        /// <param name="idDocument">id du document concerné</param>
+        /// <returns>Liste d'objets ExemplaireDetail</returns>
+        public List<ExemplaireDetail> GetExemplairesDetailsDocument(string idDocument)
+        {
+            List<ExemplaireDetail> lesDetailsExemplairesDocuments = TraitementRecup<ExemplaireDetail>(GET, "detaildocument/" + idDocument);
+            return lesDetailsExemplairesDocuments;
         }
 
         /// <summary>
@@ -534,6 +556,7 @@ namespace MediaTekDocuments.dal
         public bool ModifierCommandeDocument(CommandeDocument commandeDocument)
         {
             String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
+            Console.WriteLine(jsonCommandeDocument);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur)
@@ -567,6 +590,29 @@ namespace MediaTekDocuments.dal
             {
                 Console.WriteLine(ex.Message);
                 Log.Error("Access.ModifierCommandeRevue catch jsonCommandeRevue={0} error={1}", jsonCommandeRevue, ex);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Modification d'un exemplaire en BDD
+        /// </summary>
+        /// <param name="exemplaire">exemplaire à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        public bool ModifierExemplaire(Exemplaire exemplaire)
+        {
+            String jsonModifierExemplaire = JsonConvert.SerializeObject(exemplaire);
+            Console.WriteLine(jsonModifierExemplaire);
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Exemplaire> liste = TraitementRecup<Exemplaire>(PUT, "modifierexemplaire/" + exemplaire.Numero + "/" + jsonModifierExemplaire);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Log.Error("Access.ModifierExemplaire catch jsonModifierExemplaire={0} error={1}", jsonModifierExemplaire, ex);
             }
             return false;
         }
@@ -618,7 +664,7 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// Suppression d'une revue en BDD
         /// </summary>
-        /// <param name="dvd">la revue à supprimer</param>
+        /// <param name="revue">la revue à supprimer</param>
         /// <returns>true si la suppression a pu se faire (retour != null)</returns>
         public bool SupprimerRevue(Revue revue)
         {
@@ -633,6 +679,28 @@ namespace MediaTekDocuments.dal
             {
                 Console.WriteLine(ex.Message);
                 Log.Error("Access.SupprimerRevue catch jsonRevue={0} error={1}", jsonRevue, ex);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Suppression d'un exemplaire en BDD
+        /// </summary>
+        /// <param name="exemplaire">l'exemplaire à supprimer</param>
+        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        public bool SupprimerExemplaire(Exemplaire exemplaire)
+        {
+            String jsonExemplaire = "{\"id\":\"" + exemplaire.Id + "\",\"numero\":\"" + exemplaire.Numero + "\"}";
+            try
+            {
+                // récupération soit d'une liste vide (requête ok) soit de null (erreur)
+                List<Exemplaire> liste = TraitementRecup<Exemplaire>(DELETE, "exemplaire/" + jsonExemplaire);
+                return (liste != null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Log.Error("Access.SupprimerExemplaire catch jsonExemplaire={0} error={1}", jsonExemplaire, ex);
             }
             return false;
         }

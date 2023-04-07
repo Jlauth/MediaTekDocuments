@@ -64,6 +64,7 @@
             this.txbAuthentificationLogin.Name = "txbAuthentificationLogin";
             this.txbAuthentificationLogin.Size = new System.Drawing.Size(188, 20);
             this.txbAuthentificationLogin.TabIndex = 2;
+            this.txbAuthentificationLogin.MaxLength = 16; // taille maximale
             // 
             // txbAuthentificationPwd
             // 
@@ -71,6 +72,8 @@
             this.txbAuthentificationPwd.Name = "txbAuthentificationPwd";
             this.txbAuthentificationPwd.Size = new System.Drawing.Size(188, 20);
             this.txbAuthentificationPwd.TabIndex = 3;
+            this.txbAuthentificationPwd.MaxLength = 8; // taille maximale autorisée du mot de passe
+            this.txbAuthentificationPwd.PasswordChar = '*'; // assignation de l'astérisque 
             // 
             // grpBoxAuth
             // 
