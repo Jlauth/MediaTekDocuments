@@ -7,11 +7,18 @@ using System.Threading.Tasks;
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Services
+    /// Classe métier Service
     /// </summary>
     public class Service
     {
+        /// <summary>
+        /// Propriété Id de Service
+        /// </summary>
         public string Id { get; }
+
+        /// <summary>
+        /// Propriété Libelle de Service
+        /// </summary>
         public string Libelle { get; }
 
         /// <summary>

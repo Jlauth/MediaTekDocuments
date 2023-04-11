@@ -1,33 +1,27 @@
 ﻿using MediaTekDocuments.controller;
 using MediaTekDocuments.model;
-using Org.BouncyCastle.Asn1;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TechTalk.SpecFlow.Assist;
 
 namespace MediaTekDocuments.view
 {
+    /// <summary>
+    /// Classe d'affichage Authentification
+    /// </summary>
     public partial class FrmAuthentification : Form
     {
-        #region Commun
+
         private readonly FrmAuthentificationController controller;
 
+        /// <summary>
+        /// Constructeur de la classe FrmAuthentification
+        /// </summary>
         public FrmAuthentification()
         {
             InitializeComponent();
             this.controller = new FrmAuthentificationController();
         }
-        #endregion
 
-        #region Authentification
         /// <summary>
         /// Vide les champs d'authentification
         /// </summary>
@@ -37,6 +31,12 @@ namespace MediaTekDocuments.view
             txbAuthentificationPwd.Text = "";
         }
 
+        /// <summary>
+        /// Authentification valide ou non en fonction des champs renseignés 
+        /// Hashe du mot de passe via la fonction appelée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnConnexion_Click(object sender, EventArgs e)
         {
             string login = txbAuthentificationLogin.Text.ToString();
@@ -96,6 +96,15 @@ namespace MediaTekDocuments.view
             }
             return hash.ToString();
         }
-        #endregion
+
+        /// <summary>
+        /// Quitter l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnQuitter_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

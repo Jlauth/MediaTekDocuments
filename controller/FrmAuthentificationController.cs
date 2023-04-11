@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MediaTekDocuments.dal;
+﻿using MediaTekDocuments.dal;
 using MediaTekDocuments.model;
-using System.Threading.Tasks;
+using System;
 
 namespace MediaTekDocuments.controller
 {

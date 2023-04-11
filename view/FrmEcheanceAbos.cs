@@ -13,12 +13,18 @@ using TechTalk.SpecFlow.Tracing;
 
 namespace MediaTekDocuments.view
 {
+    /// <summary>
+    /// Classe d'affichage des abonnements arrivant à échéance
+    /// </summary>
     public partial class FrmEcheancesAbos : Form
     {
         private readonly FrmMediatekController controller;
         private readonly BindingSource bdgEcheancesAbos = new BindingSource();
         private readonly List<EcheanceAbonnement> lesEcheancesAbos;
 
+        /// <summary>
+        /// Constructeur de la classe FrmEcheancesAbos
+        /// </summary>
         public FrmEcheancesAbos()
         {
             InitializeComponent();
@@ -27,22 +33,31 @@ namespace MediaTekDocuments.view
             RemplirEcheancesAbos(lesEcheancesAbos);
         }
 
+        /// <summary>
+        /// Rempli le grid avec la liste reçue en paramètre
+        /// </summary>
+        /// <param name="echeanceAbonnements">liste des abonnements arrivant à échéance</param>
         private void RemplirEcheancesAbos(List<EcheanceAbonnement> echeanceAbonnements)
         {
             bdgEcheancesAbos.DataSource = echeanceAbonnements;
             dgvEcheancesAbosListe.DataSource = bdgEcheancesAbos;
             dgvEcheancesAbosListe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEcheancesAbosListe.Columns["DateFinAbonnement"].HeaderText = "Date de fin d'abonnement";
-            dgvEcheancesAbosListe.Columns["IdRevue"].HeaderText = "Id Revue";
+            dgvEcheancesAbosListe.Columns["TitreRevue"].HeaderText = "Titre de la revue";
             dgvEcheancesAbosListe.Columns["Montant"].Visible = false;
             dgvEcheancesAbosListe.Columns["Id"].Visible = false;
             dgvEcheancesAbosListe.Columns["DateCommande"].Visible = false;
             dgvEcheancesAbosListe.Columns["IdRevue"].Visible = false;
         }
 
+        /// <summary>
+        /// Ferme la fenêtre d'authentification
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOkEcheancesAbos_Click(object sender, EventArgs e)
         {
-            Close();
+            Dispose();
         }
 
         /// <summary>

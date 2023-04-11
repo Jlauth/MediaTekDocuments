@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace MediaTekDocuments.manager
 {
     /// <summary>
-    /// Classe indépendante d'accès à une api rest avec éventuellement une "basic authorization"
+    /// Classe indépendante d'accès à une api rest avec éventuellement une "Basic authorization"
     /// </summary>
     class ApiRest
     {
@@ -30,7 +30,7 @@ namespace MediaTekDocuments.manager
         private ApiRest(String uriApi, String authenticationString="")
         {
             httpClient = new HttpClient() { BaseAddress = new Uri(uriApi) };
-            // prise en compte dans l'url de l'authentificaiton (basic authorization), si elle n'est pas vide
+            // prise en compte dans l'url de l’authentification (Basic authorization), si elle n'est pas vide
             if (!String.IsNullOrEmpty(authenticationString))
             {
                 String base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(authenticationString));
@@ -42,7 +42,7 @@ namespace MediaTekDocuments.manager
         /// Crée une instance unique de la classe
         /// </summary>
         /// <param name="uriApi">adresse de l'api</param>
-        /// <param name="authenticationString">chaîne d'authentificatio (login:pwd)</param>
+        /// <param name="authenticationString">chaîne d’authentification (login:pwd)</param>
         /// <returns></returns>
         public static ApiRest GetInstance(String uriApi, String authenticationString)
         {
@@ -56,7 +56,6 @@ namespace MediaTekDocuments.manager
         /// <summary>
         /// Envoi une demande à l'API et récupère la réponse
         /// </summary>
-        /// <typeparam name="T">type d'une des classes du model</typeparam>
         /// <param name="methode">verbe http (GET, POST, PUT, DELETE)</param>
         /// <param name="message">message à envoyer dans l'URL</param>
         /// <returns>liste d'objets (select) ou liste vide (ok) ou null si erreur</returns>
@@ -77,7 +76,7 @@ namespace MediaTekDocuments.manager
                 case "DELETE":
                     httpResponse = httpClient.DeleteAsync(message).Result;
                     break;
-                // methode incorrecte
+                // méthode incorrecte
                 default:
                     return new JObject();
             }

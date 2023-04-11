@@ -2,16 +2,27 @@
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Dvd hérite de LivreDvd : contient des propriétés spécifiques aux dvd
+    /// Classe métier DVD hérite de LivreDvd : contient des propriétés spécifiques aux DVD
     /// </summary>
     public class Dvd : LivreDvd
     {
+        /// <summary>
+        /// Propriété Durée de DVD
+        /// </summary>
         public int Duree { get; set; }
+
+        /// <summary>
+        /// Propriété Réalisateur de DVD
+        /// </summary>
         public string Realisateur { get; set; }
+
+        /// <summary>
+        /// Propriété Synopsis de DVD
+        /// </summary>
         public string Synopsis { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier Dvd héritant de LivreDvd
+        /// Constructeur de la classe métier DVD héritant de LivreDvd
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>

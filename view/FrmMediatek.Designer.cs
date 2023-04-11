@@ -397,6 +397,8 @@ namespace MediaTekDocuments.view
             this.label84 = new System.Windows.Forms.Label();
             this.txbCmdRevueNumRecherche = new System.Windows.Forms.TextBox();
             this.dgvCmdRevueListe = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabCmdLivres.SuspendLayout();
             this.grpCmdLivreInfos.SuspendLayout();
             this.grpCommandeLivreInfo.SuspendLayout();
@@ -451,17 +453,14 @@ namespace MediaTekDocuments.view
             ((System.ComponentModel.ISupportInitialize)(this.pcbCmdRevue)).BeginInit();
             this.grpCmdRevueRecherche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCmdRevueListe)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabCmdLivres
             // 
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreModifierOk);
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreSupprimer);
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreAnnuler);
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreModifier);
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreCmdOk);
+            this.tabCmdLivres.Controls.Add(this.groupBox1);
             this.tabCmdLivres.Controls.Add(this.grpCmdLivreInfos);
-            this.tabCmdLivres.Controls.Add(this.btnCmdLivreCmd);
             this.tabCmdLivres.Controls.Add(this.grpCommandeLivreInfo);
             this.tabCmdLivres.Controls.Add(this.grpCommandeLivreRecherche);
             this.tabCmdLivres.Location = new System.Drawing.Point(4, 22);
@@ -475,10 +474,10 @@ namespace MediaTekDocuments.view
             // 
             // btnCmdLivreModifierOk
             // 
-            this.btnCmdLivreModifierOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdLivreModifierOk.Location = new System.Drawing.Point(568, 663);
+            this.btnCmdLivreModifierOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreModifierOk.Location = new System.Drawing.Point(62, 57);
             this.btnCmdLivreModifierOk.Name = "btnCmdLivreModifierOk";
-            this.btnCmdLivreModifierOk.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreModifierOk.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreModifierOk.TabIndex = 45;
             this.btnCmdLivreModifierOk.Text = "Enregistrer";
             this.btnCmdLivreModifierOk.UseVisualStyleBackColor = true;
@@ -487,10 +486,10 @@ namespace MediaTekDocuments.view
             // 
             // btnCmdLivreSupprimer
             // 
-            this.btnCmdLivreSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdLivreSupprimer.Location = new System.Drawing.Point(214, 659);
+            this.btnCmdLivreSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreSupprimer.Location = new System.Drawing.Point(560, 57);
             this.btnCmdLivreSupprimer.Name = "btnCmdLivreSupprimer";
-            this.btnCmdLivreSupprimer.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreSupprimer.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreSupprimer.TabIndex = 44;
             this.btnCmdLivreSupprimer.Text = "Supprimer";
             this.btnCmdLivreSupprimer.UseVisualStyleBackColor = true;
@@ -498,11 +497,11 @@ namespace MediaTekDocuments.view
             // 
             // btnCmdLivreAnnuler
             // 
-            this.btnCmdLivreAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCmdLivreAnnuler.ForeColor = System.Drawing.Color.Red;
-            this.btnCmdLivreAnnuler.Location = new System.Drawing.Point(756, 659);
+            this.btnCmdLivreAnnuler.Location = new System.Drawing.Point(560, 57);
             this.btnCmdLivreAnnuler.Name = "btnCmdLivreAnnuler";
-            this.btnCmdLivreAnnuler.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreAnnuler.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreAnnuler.TabIndex = 15;
             this.btnCmdLivreAnnuler.Text = "Annuler";
             this.btnCmdLivreAnnuler.UseVisualStyleBackColor = true;
@@ -511,10 +510,10 @@ namespace MediaTekDocuments.view
             // 
             // btnCmdLivreModifier
             // 
-            this.btnCmdLivreModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdLivreModifier.Location = new System.Drawing.Point(112, 659);
+            this.btnCmdLivreModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreModifier.Location = new System.Drawing.Point(297, 56);
             this.btnCmdLivreModifier.Name = "btnCmdLivreModifier";
-            this.btnCmdLivreModifier.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreModifier.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreModifier.TabIndex = 43;
             this.btnCmdLivreModifier.Text = "Modifier";
             this.btnCmdLivreModifier.UseVisualStyleBackColor = true;
@@ -522,10 +521,10 @@ namespace MediaTekDocuments.view
             // 
             // btnCmdLivreCmdOk
             // 
-            this.btnCmdLivreCmdOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdLivreCmdOk.Location = new System.Drawing.Point(568, 662);
+            this.btnCmdLivreCmdOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreCmdOk.Location = new System.Drawing.Point(62, 56);
             this.btnCmdLivreCmdOk.Name = "btnCmdLivreCmdOk";
-            this.btnCmdLivreCmdOk.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreCmdOk.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreCmdOk.TabIndex = 42;
             this.btnCmdLivreCmdOk.Text = "Enregistrer";
             this.btnCmdLivreCmdOk.UseVisualStyleBackColor = true;
@@ -545,9 +544,9 @@ namespace MediaTekDocuments.view
             this.grpCmdLivreInfos.Controls.Add(this.lblDateCmdLivre);
             this.grpCmdLivreInfos.Controls.Add(this.txbCmdLivreMontant);
             this.grpCmdLivreInfos.Controls.Add(this.txbCmdLivreNbExemplaires);
-            this.grpCmdLivreInfos.Location = new System.Drawing.Point(10, 539);
+            this.grpCmdLivreInfos.Location = new System.Drawing.Point(8, 554);
             this.grpCmdLivreInfos.Name = "grpCmdLivreInfos";
-            this.grpCmdLivreInfos.Size = new System.Drawing.Size(856, 114);
+            this.grpCmdLivreInfos.Size = new System.Drawing.Size(856, 170);
             this.grpCmdLivreInfos.TabIndex = 21;
             this.grpCmdLivreInfos.TabStop = false;
             this.grpCmdLivreInfos.Text = "Commandes";
@@ -556,7 +555,7 @@ namespace MediaTekDocuments.view
             // 
             this.label97.AutoSize = true;
             this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label97.Location = new System.Drawing.Point(598, 30);
+            this.label97.Location = new System.Drawing.Point(294, 33);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(136, 13);
             this.label97.TabIndex = 45;
@@ -564,7 +563,7 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdLivreIdCmd
             // 
-            this.txbCmdLivreIdCmd.Location = new System.Drawing.Point(742, 26);
+            this.txbCmdLivreIdCmd.Location = new System.Drawing.Point(439, 30);
             this.txbCmdLivreIdCmd.MaxLength = 5;
             this.txbCmdLivreIdCmd.Name = "txbCmdLivreIdCmd";
             this.txbCmdLivreIdCmd.Size = new System.Drawing.Size(100, 20);
@@ -574,7 +573,7 @@ namespace MediaTekDocuments.view
             // 
             this.cbxCmdLivreSuivi.Enabled = false;
             this.cbxCmdLivreSuivi.FormattingEnabled = true;
-            this.cbxCmdLivreSuivi.Location = new System.Drawing.Point(439, 76);
+            this.cbxCmdLivreSuivi.Location = new System.Drawing.Point(438, 110);
             this.cbxCmdLivreSuivi.MaxDropDownItems = 4;
             this.cbxCmdLivreSuivi.Name = "cbxCmdLivreSuivi";
             this.cbxCmdLivreSuivi.Size = new System.Drawing.Size(100, 21);
@@ -583,7 +582,7 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdLivreIdSuivi
             // 
-            this.txbCmdLivreIdSuivi.Location = new System.Drawing.Point(558, 77);
+            this.txbCmdLivreIdSuivi.Location = new System.Drawing.Point(732, 20);
             this.txbCmdLivreIdSuivi.Name = "txbCmdLivreIdSuivi";
             this.txbCmdLivreIdSuivi.Size = new System.Drawing.Size(100, 20);
             this.txbCmdLivreIdSuivi.TabIndex = 42;
@@ -601,7 +600,7 @@ namespace MediaTekDocuments.view
             // 
             this.lblEtapeCmdLivre.AutoSize = true;
             this.lblEtapeCmdLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEtapeCmdLivre.Location = new System.Drawing.Point(294, 80);
+            this.lblEtapeCmdLivre.Location = new System.Drawing.Point(294, 113);
             this.lblEtapeCmdLivre.Name = "lblEtapeCmdLivre";
             this.lblEtapeCmdLivre.Size = new System.Drawing.Size(96, 13);
             this.lblEtapeCmdLivre.TabIndex = 40;
@@ -611,7 +610,7 @@ namespace MediaTekDocuments.view
             // 
             this.lblNbCmdLivre.AutoSize = true;
             this.lblNbCmdLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNbCmdLivre.Location = new System.Drawing.Point(294, 26);
+            this.lblNbCmdLivre.Location = new System.Drawing.Point(294, 61);
             this.lblNbCmdLivre.Name = "lblNbCmdLivre";
             this.lblNbCmdLivre.Size = new System.Drawing.Size(138, 13);
             this.lblNbCmdLivre.TabIndex = 39;
@@ -621,7 +620,7 @@ namespace MediaTekDocuments.view
             // 
             this.lblMontantCmdLivre.AutoSize = true;
             this.lblMontantCmdLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontantCmdLivre.Location = new System.Drawing.Point(294, 51);
+            this.lblMontantCmdLivre.Location = new System.Drawing.Point(294, 87);
             this.lblMontantCmdLivre.Name = "lblMontantCmdLivre";
             this.lblMontantCmdLivre.Size = new System.Drawing.Size(61, 13);
             this.lblMontantCmdLivre.TabIndex = 38;
@@ -639,24 +638,24 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdLivreMontant
             // 
-            this.txbCmdLivreMontant.Location = new System.Drawing.Point(439, 51);
+            this.txbCmdLivreMontant.Location = new System.Drawing.Point(438, 84);
             this.txbCmdLivreMontant.Name = "txbCmdLivreMontant";
             this.txbCmdLivreMontant.Size = new System.Drawing.Size(100, 20);
             this.txbCmdLivreMontant.TabIndex = 35;
             // 
             // txbCmdLivreNbExemplaires
             // 
-            this.txbCmdLivreNbExemplaires.Location = new System.Drawing.Point(439, 23);
+            this.txbCmdLivreNbExemplaires.Location = new System.Drawing.Point(438, 58);
             this.txbCmdLivreNbExemplaires.Name = "txbCmdLivreNbExemplaires";
             this.txbCmdLivreNbExemplaires.Size = new System.Drawing.Size(100, 20);
             this.txbCmdLivreNbExemplaires.TabIndex = 34;
             // 
             // btnCmdLivreCmd
             // 
-            this.btnCmdLivreCmd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdLivreCmd.Location = new System.Drawing.Point(10, 659);
+            this.btnCmdLivreCmd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCmdLivreCmd.Location = new System.Drawing.Point(62, 57);
             this.btnCmdLivreCmd.Name = "btnCmdLivreCmd";
-            this.btnCmdLivreCmd.Size = new System.Drawing.Size(96, 22);
+            this.btnCmdLivreCmd.Size = new System.Drawing.Size(180, 50);
             this.btnCmdLivreCmd.TabIndex = 15;
             this.btnCmdLivreCmd.Text = "Commander";
             this.btnCmdLivreCmd.UseVisualStyleBackColor = true;
@@ -1534,9 +1533,9 @@ namespace MediaTekDocuments.view
             // grpRevuesExemplaires
             // 
             this.grpRevuesExemplaires.Controls.Add(this.dgvExemplairesRevueListe);
-            this.grpRevuesExemplaires.Location = new System.Drawing.Point(3, 707);
+            this.grpRevuesExemplaires.Location = new System.Drawing.Point(8, 707);
             this.grpRevuesExemplaires.Name = "grpRevuesExemplaires";
-            this.grpRevuesExemplaires.Size = new System.Drawing.Size(569, 168);
+            this.grpRevuesExemplaires.Size = new System.Drawing.Size(564, 168);
             this.grpRevuesExemplaires.TabIndex = 63;
             this.grpRevuesExemplaires.TabStop = false;
             this.grpRevuesExemplaires.Text = "Exemplaires de la revue sélectionnée";
@@ -1559,9 +1558,9 @@ namespace MediaTekDocuments.view
             this.groupBox2.Controls.Add(this.btnSupprimerRevue);
             this.groupBox2.Controls.Add(this.btnModifierRevue);
             this.groupBox2.Controls.Add(this.btnAjouterRevue);
-            this.groupBox2.Location = new System.Drawing.Point(3, 635);
+            this.groupBox2.Location = new System.Drawing.Point(8, 632);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(864, 66);
+            this.groupBox2.Size = new System.Drawing.Size(861, 66);
             this.groupBox2.TabIndex = 62;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestion revues";
@@ -1570,7 +1569,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnAnnulerRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerRevue.ForeColor = System.Drawing.Color.Red;
-            this.btnAnnulerRevue.Location = new System.Drawing.Point(753, 22);
+            this.btnAnnulerRevue.Location = new System.Drawing.Point(438, 22);
             this.btnAnnulerRevue.Name = "btnAnnulerRevue";
             this.btnAnnulerRevue.Size = new System.Drawing.Size(96, 23);
             this.btnAnnulerRevue.TabIndex = 61;
@@ -1582,7 +1581,7 @@ namespace MediaTekDocuments.view
             // btnValiderAjouterRevue
             // 
             this.btnValiderAjouterRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValiderAjouterRevue.Location = new System.Drawing.Point(565, 22);
+            this.btnValiderAjouterRevue.Location = new System.Drawing.Point(150, 22);
             this.btnValiderAjouterRevue.Name = "btnValiderAjouterRevue";
             this.btnValiderAjouterRevue.Size = new System.Drawing.Size(96, 23);
             this.btnValiderAjouterRevue.TabIndex = 57;
@@ -1594,7 +1593,7 @@ namespace MediaTekDocuments.view
             // btnValiderModifierRevue
             // 
             this.btnValiderModifierRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValiderModifierRevue.Location = new System.Drawing.Point(565, 22);
+            this.btnValiderModifierRevue.Location = new System.Drawing.Point(150, 22);
             this.btnValiderModifierRevue.Name = "btnValiderModifierRevue";
             this.btnValiderModifierRevue.Size = new System.Drawing.Size(96, 23);
             this.btnValiderModifierRevue.TabIndex = 58;
@@ -1606,7 +1605,7 @@ namespace MediaTekDocuments.view
             // btnSupprimerRevue
             // 
             this.btnSupprimerRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimerRevue.Location = new System.Drawing.Point(220, 22);
+            this.btnSupprimerRevue.Location = new System.Drawing.Point(438, 22);
             this.btnSupprimerRevue.Name = "btnSupprimerRevue";
             this.btnSupprimerRevue.Size = new System.Drawing.Size(96, 23);
             this.btnSupprimerRevue.TabIndex = 58;
@@ -1617,7 +1616,7 @@ namespace MediaTekDocuments.view
             // btnModifierRevue
             // 
             this.btnModifierRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierRevue.Location = new System.Drawing.Point(111, 22);
+            this.btnModifierRevue.Location = new System.Drawing.Point(294, 22);
             this.btnModifierRevue.Name = "btnModifierRevue";
             this.btnModifierRevue.Size = new System.Drawing.Size(96, 23);
             this.btnModifierRevue.TabIndex = 60;
@@ -1628,7 +1627,7 @@ namespace MediaTekDocuments.view
             // btnAjouterRevue
             // 
             this.btnAjouterRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterRevue.Location = new System.Drawing.Point(9, 22);
+            this.btnAjouterRevue.Location = new System.Drawing.Point(150, 22);
             this.btnAjouterRevue.Name = "btnAjouterRevue";
             this.btnAjouterRevue.Size = new System.Drawing.Size(96, 23);
             this.btnAjouterRevue.TabIndex = 59;
@@ -2117,7 +2116,7 @@ namespace MediaTekDocuments.view
             // 
             this.grpDvdExemplaires.Controls.Add(this.grpGestionExemplairesDvd);
             this.grpDvdExemplaires.Controls.Add(this.dgvExemplairesDvdListe);
-            this.grpDvdExemplaires.Location = new System.Drawing.Point(8, 696);
+            this.grpDvdExemplaires.Location = new System.Drawing.Point(8, 707);
             this.grpDvdExemplaires.Name = "grpDvdExemplaires";
             this.grpDvdExemplaires.Size = new System.Drawing.Size(859, 181);
             this.grpDvdExemplaires.TabIndex = 56;
@@ -2264,7 +2263,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnAnnulerAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerAjouterDvd.ForeColor = System.Drawing.Color.Red;
-            this.btnAnnulerAjouterDvd.Location = new System.Drawing.Point(744, 17);
+            this.btnAnnulerAjouterDvd.Location = new System.Drawing.Point(441, 17);
             this.btnAnnulerAjouterDvd.Name = "btnAnnulerAjouterDvd";
             this.btnAnnulerAjouterDvd.Size = new System.Drawing.Size(96, 23);
             this.btnAnnulerAjouterDvd.TabIndex = 54;
@@ -2276,7 +2275,7 @@ namespace MediaTekDocuments.view
             // btnAjouterDvd
             // 
             this.btnAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterDvd.Location = new System.Drawing.Point(7, 17);
+            this.btnAjouterDvd.Location = new System.Drawing.Point(150, 17);
             this.btnAjouterDvd.Name = "btnAjouterDvd";
             this.btnAjouterDvd.Size = new System.Drawing.Size(96, 23);
             this.btnAjouterDvd.TabIndex = 48;
@@ -2288,7 +2287,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnAnnulerModifierDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerModifierDvd.ForeColor = System.Drawing.Color.Red;
-            this.btnAnnulerModifierDvd.Location = new System.Drawing.Point(745, 17);
+            this.btnAnnulerModifierDvd.Location = new System.Drawing.Point(441, 17);
             this.btnAnnulerModifierDvd.Name = "btnAnnulerModifierDvd";
             this.btnAnnulerModifierDvd.Size = new System.Drawing.Size(96, 23);
             this.btnAnnulerModifierDvd.TabIndex = 53;
@@ -2300,7 +2299,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnValiderModifierDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderModifierDvd.ForeColor = System.Drawing.Color.Black;
-            this.btnValiderModifierDvd.Location = new System.Drawing.Point(566, 17);
+            this.btnValiderModifierDvd.Location = new System.Drawing.Point(150, 17);
             this.btnValiderModifierDvd.Name = "btnValiderModifierDvd";
             this.btnValiderModifierDvd.Size = new System.Drawing.Size(96, 23);
             this.btnValiderModifierDvd.TabIndex = 52;
@@ -2313,7 +2312,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnValiderAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderAjouterDvd.ForeColor = System.Drawing.Color.Black;
-            this.btnValiderAjouterDvd.Location = new System.Drawing.Point(567, 17);
+            this.btnValiderAjouterDvd.Location = new System.Drawing.Point(150, 17);
             this.btnValiderAjouterDvd.Name = "btnValiderAjouterDvd";
             this.btnValiderAjouterDvd.Size = new System.Drawing.Size(96, 23);
             this.btnValiderAjouterDvd.TabIndex = 51;
@@ -2325,7 +2324,7 @@ namespace MediaTekDocuments.view
             // btnSupprimerDvd
             // 
             this.btnSupprimerDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimerDvd.Location = new System.Drawing.Point(208, 15);
+            this.btnSupprimerDvd.Location = new System.Drawing.Point(441, 17);
             this.btnSupprimerDvd.Name = "btnSupprimerDvd";
             this.btnSupprimerDvd.Size = new System.Drawing.Size(96, 23);
             this.btnSupprimerDvd.TabIndex = 50;
@@ -2336,7 +2335,7 @@ namespace MediaTekDocuments.view
             // btnModifierDvd
             // 
             this.btnModifierDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierDvd.Location = new System.Drawing.Point(106, 15);
+            this.btnModifierDvd.Location = new System.Drawing.Point(296, 17);
             this.btnModifierDvd.Name = "btnModifierDvd";
             this.btnModifierDvd.Size = new System.Drawing.Size(96, 23);
             this.btnModifierDvd.TabIndex = 49;
@@ -2848,7 +2847,7 @@ namespace MediaTekDocuments.view
             // 
             this.grpLivresExemplaires.Controls.Add(this.grpGestionExemplairesLivre);
             this.grpLivresExemplaires.Controls.Add(this.dgvExemplairesLivreListe);
-            this.grpLivresExemplaires.Location = new System.Drawing.Point(8, 696);
+            this.grpLivresExemplaires.Location = new System.Drawing.Point(8, 707);
             this.grpLivresExemplaires.Name = "grpLivresExemplaires";
             this.grpLivresExemplaires.Size = new System.Drawing.Size(859, 181);
             this.grpLivresExemplaires.TabIndex = 29;
@@ -2924,7 +2923,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnAnnulerExemplairesLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerExemplairesLivre.ForeColor = System.Drawing.Color.Red;
-            this.btnAnnulerExemplairesLivre.Location = new System.Drawing.Point(181, 115);
+            this.btnAnnulerExemplairesLivre.Location = new System.Drawing.Point(181, 113);
             this.btnAnnulerExemplairesLivre.Name = "btnAnnulerExemplairesLivre";
             this.btnAnnulerExemplairesLivre.Size = new System.Drawing.Size(94, 24);
             this.btnAnnulerExemplairesLivre.TabIndex = 3;
@@ -2936,7 +2935,7 @@ namespace MediaTekDocuments.view
             // btnModifierExemplairesLivreOk
             // 
             this.btnModifierExemplairesLivreOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierExemplairesLivreOk.Location = new System.Drawing.Point(11, 115);
+            this.btnModifierExemplairesLivreOk.Location = new System.Drawing.Point(11, 113);
             this.btnModifierExemplairesLivreOk.Name = "btnModifierExemplairesLivreOk";
             this.btnModifierExemplairesLivreOk.Size = new System.Drawing.Size(94, 24);
             this.btnModifierExemplairesLivreOk.TabIndex = 2;
@@ -2996,7 +2995,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnAnnulerLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerLivre.ForeColor = System.Drawing.Color.Red;
-            this.btnAnnulerLivre.Location = new System.Drawing.Point(757, 19);
+            this.btnAnnulerLivre.Location = new System.Drawing.Point(445, 19);
             this.btnAnnulerLivre.Name = "btnAnnulerLivre";
             this.btnAnnulerLivre.Size = new System.Drawing.Size(96, 23);
             this.btnAnnulerLivre.TabIndex = 21;
@@ -3009,7 +3008,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnValiderAjouterLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderAjouterLivre.ForeColor = System.Drawing.Color.Black;
-            this.btnValiderAjouterLivre.Location = new System.Drawing.Point(557, 19);
+            this.btnValiderAjouterLivre.Location = new System.Drawing.Point(150, 19);
             this.btnValiderAjouterLivre.Name = "btnValiderAjouterLivre";
             this.btnValiderAjouterLivre.Size = new System.Drawing.Size(96, 23);
             this.btnValiderAjouterLivre.TabIndex = 27;
@@ -3021,7 +3020,7 @@ namespace MediaTekDocuments.view
             // btnModifierLivre
             // 
             this.btnModifierLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifierLivre.Location = new System.Drawing.Point(191, 19);
+            this.btnModifierLivre.Location = new System.Drawing.Point(297, 19);
             this.btnModifierLivre.Name = "btnModifierLivre";
             this.btnModifierLivre.Size = new System.Drawing.Size(96, 23);
             this.btnModifierLivre.TabIndex = 18;
@@ -3033,7 +3032,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnValiderModifierLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderModifierLivre.ForeColor = System.Drawing.Color.Black;
-            this.btnValiderModifierLivre.Location = new System.Drawing.Point(557, 19);
+            this.btnValiderModifierLivre.Location = new System.Drawing.Point(150, 19);
             this.btnValiderModifierLivre.Name = "btnValiderModifierLivre";
             this.btnValiderModifierLivre.Size = new System.Drawing.Size(96, 23);
             this.btnValiderModifierLivre.TabIndex = 26;
@@ -3045,7 +3044,7 @@ namespace MediaTekDocuments.view
             // btnSupprimerLivre
             // 
             this.btnSupprimerLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimerLivre.Location = new System.Drawing.Point(341, 19);
+            this.btnSupprimerLivre.Location = new System.Drawing.Point(445, 19);
             this.btnSupprimerLivre.Name = "btnSupprimerLivre";
             this.btnSupprimerLivre.Size = new System.Drawing.Size(96, 23);
             this.btnSupprimerLivre.TabIndex = 25;
@@ -3056,7 +3055,7 @@ namespace MediaTekDocuments.view
             // btnAjouterLivre
             // 
             this.btnAjouterLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterLivre.Location = new System.Drawing.Point(45, 19);
+            this.btnAjouterLivre.Location = new System.Drawing.Point(150, 19);
             this.btnAjouterLivre.Name = "btnAjouterLivre";
             this.btnAjouterLivre.Size = new System.Drawing.Size(96, 23);
             this.btnAjouterLivre.TabIndex = 24;
@@ -3566,12 +3565,7 @@ namespace MediaTekDocuments.view
             // 
             // tabCmdDvd
             // 
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdModifierOk);
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdCmdOk);
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdSupprimer);
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdAnnuler);
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdModifier);
-            this.tabCmdDvd.Controls.Add(this.btnCmdDvdCommander);
+            this.tabCmdDvd.Controls.Add(this.groupBox3);
             this.tabCmdDvd.Controls.Add(this.grpCmdDvdCmdInfos);
             this.tabCmdDvd.Controls.Add(this.grpCmdDvdInfos);
             this.tabCmdDvd.Controls.Add(this.grpCmdDvdRecherche);
@@ -3587,7 +3581,7 @@ namespace MediaTekDocuments.view
             // btnCmdDvdModifierOk
             // 
             this.btnCmdDvdModifierOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdDvdModifierOk.Location = new System.Drawing.Point(568, 660);
+            this.btnCmdDvdModifierOk.Location = new System.Drawing.Point(96, 94);
             this.btnCmdDvdModifierOk.Name = "btnCmdDvdModifierOk";
             this.btnCmdDvdModifierOk.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdModifierOk.TabIndex = 51;
@@ -3599,7 +3593,7 @@ namespace MediaTekDocuments.view
             // btnCmdDvdCmdOk
             // 
             this.btnCmdDvdCmdOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdDvdCmdOk.Location = new System.Drawing.Point(572, 659);
+            this.btnCmdDvdCmdOk.Location = new System.Drawing.Point(96, 38);
             this.btnCmdDvdCmdOk.Name = "btnCmdDvdCmdOk";
             this.btnCmdDvdCmdOk.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdCmdOk.TabIndex = 50;
@@ -3611,7 +3605,7 @@ namespace MediaTekDocuments.view
             // btnCmdDvdSupprimer
             // 
             this.btnCmdDvdSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdDvdSupprimer.Location = new System.Drawing.Point(214, 659);
+            this.btnCmdDvdSupprimer.Location = new System.Drawing.Point(586, 76);
             this.btnCmdDvdSupprimer.Name = "btnCmdDvdSupprimer";
             this.btnCmdDvdSupprimer.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdSupprimer.TabIndex = 49;
@@ -3623,7 +3617,7 @@ namespace MediaTekDocuments.view
             // 
             this.btnCmdDvdAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCmdDvdAnnuler.ForeColor = System.Drawing.Color.Red;
-            this.btnCmdDvdAnnuler.Location = new System.Drawing.Point(758, 659);
+            this.btnCmdDvdAnnuler.Location = new System.Drawing.Point(586, 48);
             this.btnCmdDvdAnnuler.Name = "btnCmdDvdAnnuler";
             this.btnCmdDvdAnnuler.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdAnnuler.TabIndex = 46;
@@ -3635,7 +3629,7 @@ namespace MediaTekDocuments.view
             // btnCmdDvdModifier
             // 
             this.btnCmdDvdModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdDvdModifier.Location = new System.Drawing.Point(112, 659);
+            this.btnCmdDvdModifier.Location = new System.Drawing.Point(338, 48);
             this.btnCmdDvdModifier.Name = "btnCmdDvdModifier";
             this.btnCmdDvdModifier.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdModifier.TabIndex = 48;
@@ -3646,7 +3640,7 @@ namespace MediaTekDocuments.view
             // btnCmdDvdCommander
             // 
             this.btnCmdDvdCommander.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCmdDvdCommander.Location = new System.Drawing.Point(10, 659);
+            this.btnCmdDvdCommander.Location = new System.Drawing.Point(96, 66);
             this.btnCmdDvdCommander.Name = "btnCmdDvdCommander";
             this.btnCmdDvdCommander.Size = new System.Drawing.Size(96, 22);
             this.btnCmdDvdCommander.TabIndex = 47;
@@ -3669,7 +3663,7 @@ namespace MediaTekDocuments.view
             this.grpCmdDvdCmdInfos.Controls.Add(this.txbCmdDvdNbExemplaires);
             this.grpCmdDvdCmdInfos.Location = new System.Drawing.Point(10, 539);
             this.grpCmdDvdCmdInfos.Name = "grpCmdDvdCmdInfos";
-            this.grpCmdDvdCmdInfos.Size = new System.Drawing.Size(858, 114);
+            this.grpCmdDvdCmdInfos.Size = new System.Drawing.Size(858, 185);
             this.grpCmdDvdCmdInfos.TabIndex = 23;
             this.grpCmdDvdCmdInfos.TabStop = false;
             this.grpCmdDvdCmdInfos.Text = "Commandes";
@@ -3678,7 +3672,7 @@ namespace MediaTekDocuments.view
             // 
             this.label98.AutoSize = true;
             this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label98.Location = new System.Drawing.Point(555, 26);
+            this.label98.Location = new System.Drawing.Point(294, 29);
             this.label98.Name = "label98";
             this.label98.Size = new System.Drawing.Size(136, 13);
             this.label98.TabIndex = 46;
@@ -3686,7 +3680,7 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdDvdIdCmd
             // 
-            this.txbCmdDvdIdCmd.Location = new System.Drawing.Point(742, 23);
+            this.txbCmdDvdIdCmd.Location = new System.Drawing.Point(439, 29);
             this.txbCmdDvdIdCmd.MaxLength = 5;
             this.txbCmdDvdIdCmd.Name = "txbCmdDvdIdCmd";
             this.txbCmdDvdIdCmd.Size = new System.Drawing.Size(100, 20);
@@ -3696,7 +3690,7 @@ namespace MediaTekDocuments.view
             // 
             this.cbxCmdDvdSuivi.Enabled = false;
             this.cbxCmdDvdSuivi.FormattingEnabled = true;
-            this.cbxCmdDvdSuivi.Location = new System.Drawing.Point(439, 76);
+            this.cbxCmdDvdSuivi.Location = new System.Drawing.Point(439, 131);
             this.cbxCmdDvdSuivi.MaxDropDownItems = 4;
             this.cbxCmdDvdSuivi.Name = "cbxCmdDvdSuivi";
             this.cbxCmdDvdSuivi.Size = new System.Drawing.Size(100, 21);
@@ -3705,7 +3699,7 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdDvdIdSuivi
             // 
-            this.txbCmdDvdIdSuivi.Location = new System.Drawing.Point(558, 77);
+            this.txbCmdDvdIdSuivi.Location = new System.Drawing.Point(693, 44);
             this.txbCmdDvdIdSuivi.Name = "txbCmdDvdIdSuivi";
             this.txbCmdDvdIdSuivi.Size = new System.Drawing.Size(100, 20);
             this.txbCmdDvdIdSuivi.TabIndex = 42;
@@ -3723,7 +3717,7 @@ namespace MediaTekDocuments.view
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(294, 80);
+            this.label62.Location = new System.Drawing.Point(294, 135);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(96, 13);
             this.label62.TabIndex = 40;
@@ -3733,7 +3727,7 @@ namespace MediaTekDocuments.view
             // 
             this.label63.AutoSize = true;
             this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(294, 26);
+            this.label63.Location = new System.Drawing.Point(294, 81);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(138, 13);
             this.label63.TabIndex = 39;
@@ -3743,7 +3737,7 @@ namespace MediaTekDocuments.view
             // 
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(294, 51);
+            this.label64.Location = new System.Drawing.Point(294, 106);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(61, 13);
             this.label64.TabIndex = 38;
@@ -3761,14 +3755,14 @@ namespace MediaTekDocuments.view
             // 
             // txbCmdDvdMontant
             // 
-            this.txbCmdDvdMontant.Location = new System.Drawing.Point(439, 51);
+            this.txbCmdDvdMontant.Location = new System.Drawing.Point(439, 106);
             this.txbCmdDvdMontant.Name = "txbCmdDvdMontant";
             this.txbCmdDvdMontant.Size = new System.Drawing.Size(100, 20);
             this.txbCmdDvdMontant.TabIndex = 35;
             // 
             // txbCmdDvdNbExemplaires
             // 
-            this.txbCmdDvdNbExemplaires.Location = new System.Drawing.Point(439, 23);
+            this.txbCmdDvdNbExemplaires.Location = new System.Drawing.Point(439, 78);
             this.txbCmdDvdNbExemplaires.Name = "txbCmdDvdNbExemplaires";
             this.txbCmdDvdNbExemplaires.Size = new System.Drawing.Size(100, 20);
             this.txbCmdDvdNbExemplaires.TabIndex = 34;
@@ -4434,6 +4428,36 @@ namespace MediaTekDocuments.view
             this.dgvCmdRevueListe.TabIndex = 4;
             this.dgvCmdRevueListe.SelectionChanged += new System.EventHandler(this.DgvCmdRevueListe_SelectionChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnCmdLivreAnnuler);
+            this.groupBox1.Controls.Add(this.btnCmdLivreCmd);
+            this.groupBox1.Controls.Add(this.btnCmdLivreCmdOk);
+            this.groupBox1.Controls.Add(this.btnCmdLivreModifierOk);
+            this.groupBox1.Controls.Add(this.btnCmdLivreModifier);
+            this.groupBox1.Controls.Add(this.btnCmdLivreSupprimer);
+            this.groupBox1.Location = new System.Drawing.Point(8, 730);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(855, 148);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Gestion des commandes livres";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnCmdDvdModifierOk);
+            this.groupBox3.Controls.Add(this.btnCmdDvdCmdOk);
+            this.groupBox3.Controls.Add(this.btnCmdDvdAnnuler);
+            this.groupBox3.Controls.Add(this.btnCmdDvdCommander);
+            this.groupBox3.Controls.Add(this.btnCmdDvdModifier);
+            this.groupBox3.Controls.Add(this.btnCmdDvdSupprimer);
+            this.groupBox3.Location = new System.Drawing.Point(8, 730);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(859, 145);
+            this.groupBox3.TabIndex = 24;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Gestion des commandes DVD";
+            // 
             // FrmMediatek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4517,6 +4541,8 @@ namespace MediaTekDocuments.view
             this.grpCmdRevueRecherche.ResumeLayout(false);
             this.grpCmdRevueRecherche.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCmdRevueListe)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4891,6 +4917,8 @@ namespace MediaTekDocuments.view
         private System.Windows.Forms.Button btnAnnulerParution;
         private System.Windows.Forms.Button btnModifierParutionOk;
         private System.Windows.Forms.Button btnModifierParution;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

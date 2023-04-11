@@ -2,15 +2,22 @@
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Etat (état d'usure d'un document)
+    /// Classe métier État (état d'usure d'un document)
     /// </summary>
     public class Etat
     {
+        /// <summary>
+        /// Propriété Id de État
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Propriété Libelle de État
+        /// </summary>
         public string Libelle { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier Etat
+        /// Constructeur de la classe métier État
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>
