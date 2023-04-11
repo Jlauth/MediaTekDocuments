@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using MediaTekDocuments.dal;
 using MediaTekDocuments.model;
-using MediaTekDocuments.dal;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace MediaTekDocuments.controller
 {
@@ -47,9 +46,9 @@ namespace MediaTekDocuments.controller
         public List<Livre> GetAllLivres() => access.GetAllLivres();
 
         /// <summary>
-        /// Getter sur la liste des Dvd
+        /// Getter sur la liste des DVD
         /// </summary>
-        /// <returns>Liste d'objets dvd</returns>
+        /// <returns>Liste d'objets DVD</returns>
         public List<Dvd> GetAllDvd() => access.GetAllDvd();
 
         /// <summary>
@@ -79,7 +78,7 @@ namespace MediaTekDocuments.controller
         /// <summary>
         /// Récupère les états des documents
         /// </summary>
-        /// <returns>Liste d'objets Etat</returns>
+        /// <returns>Liste d'objets État</returns>
         public List<Etat> GetAllEtats() => access.GetAllEtats();
 
         /// <summary>
@@ -89,7 +88,7 @@ namespace MediaTekDocuments.controller
         public List<Exemplaire> GetAllExemplaires() => access.GetAllExemplaires();
 
         /// <summary>
-        /// Récupère les commandes d'un document de type livre ou dvd
+        /// Récupère les commandes d'un document de type livre ou DVD
         /// </summary>
         /// /// <param name="idDocument">id du document concerné</param>
         /// <returns>Liste d'objets Commande</returns>
@@ -124,9 +123,9 @@ namespace MediaTekDocuments.controller
         public bool CreerDocument(Document document) => access.CreerDocument(document);
 
         /// <summary>
-        /// Crée un dvd dans la BDD
+        /// Crée un DVD dans la BDD
         /// </summary>
-        /// <param name="dvd">l'objet dvd concerné</param>
+        /// <param name="dvd">l'objet DVD concerné</param>
         /// <returns>true si la création a pu se faire</returns>
         public bool CreerDvd(Dvd dvd) => access.CreerDvd(dvd);
 
@@ -166,10 +165,12 @@ namespace MediaTekDocuments.controller
         public bool CreerCommandeDocument(CommandeDocument commandeDocument) => access.CreerCommandeDocument(commandeDocument);
 
         /// <summary>
-        /// Créer une commande revue en BDD
+        /// Créer un abonnement revue en BDD
         /// </summary>
-        /// <param name="abonnementRevue">l'objet revue concerné</param>
-        /// <returns>true si la création a pu se faire</returns>
+        /// <param name="id">id de l'abonnement</param>
+        /// <param name="dateFinAbonnement">date de fin d'abonnement</param>
+        /// <param name="idRevue">id de la revue concernée</param>
+        /// <returns></returns>
         public bool CreerAbonnementRevue(string id, DateTime dateFinAbonnement, string idRevue) => access.CreerAbonnementRevue(id, dateFinAbonnement, idRevue);
 
         /// <summary>
@@ -180,16 +181,15 @@ namespace MediaTekDocuments.controller
         public bool ModifierLivre(Livre livre) => access.ModifierLivre(livre);
 
         /// <summary>
-        /// Modifier un dvd dans la BDD
+        /// Modifier un DVD dans la BDD
         /// </summary>
-        /// <param name="dvd">l'objet Dvd concerné</param>
+        /// <param name="dvd">l'objet DVD concerné</param>
         /// <returns>true si la modification a pu se faire</returns>
         public bool ModifierDvd(Dvd dvd) => access.ModifierDvd(dvd);
 
         /// <summary>
         /// Modifier une revue dans la BDD
         /// </summary>
-        /// <param name="dvd">l'objet Revue concerné</param>
         /// <returns>true si la modification a pu se faire</returns>
         public bool ModifierRevue(Revue revue) => access.ModifierRevue(revue);
 
@@ -222,9 +222,9 @@ namespace MediaTekDocuments.controller
         public bool SupprimerLivre(Livre livre) => access.SupprimerLivre(livre);
 
         /// <summary>
-        /// Supprimer un dvd dans la BDD
+        /// Supprimer un DVD dans la BDD
         /// </summary>
-        /// <param name="dvd">l'objet dvd concerné</param>
+        /// <param name="dvd">l'objet DVD concerné</param>
         /// <returns>true si la suppression a pu se faire</returns>
         public bool SupprimerDvd(Dvd dvd) => access.SupprimerDvd(dvd);
 
@@ -253,7 +253,7 @@ namespace MediaTekDocuments.controller
         /// Supprimer un abonnement dans la BDD
         /// </summary>
         /// <param name="abonnement">l'abonnement concerné</param>
-        /// <returns>true si la suppresion a pu se faire</returns>
+        /// <returns>true si la suppression a pu se faire</returns>
         public bool SupprimerAbonnement(Abonnement abonnement) => access.SupprimerAbonnement(abonnement);
 
     }

@@ -11,11 +11,34 @@ namespace MediaTekDocuments.model
     /// </summary>
     public class ExemplaireDetail
     {
+        /// <summary>
+        /// Propriété Numéro de ExemplaireDetail
+        /// </summary>
         public int Numero { get; set; }
+
+        /// <summary>
+        /// Propriété DateAchat de ExemplaireDetail
+        /// </summary>
         public DateTime DateAchat { get; set; }
+
+        /// <summary>
+        /// Propriété Photo de ExemplaireDetail
+        /// </summary>
         public string Photo { get; set; }
+
+        /// <summary>
+        /// Propriété IdEtat de ExemplaireDetail
+        /// </summary>
         public string IdEtat { get; set; }
+
+        /// <summary>
+        /// Propriété LibelleEtat de ExemplaireDetail
+        /// </summary>
         public string LibelleEtat { get; set; }
+
+        /// <summary>
+        /// Propriété Id de ExemplaireDetail
+        /// </summary>
         public string Id { get; set; }
 
         /// <summary>

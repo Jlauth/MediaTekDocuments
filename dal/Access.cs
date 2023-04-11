@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MediaTekDocuments.manager;
 using MediaTekDocuments.model;
-using MediaTekDocuments.manager;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using System.Configuration;
 using Serilog;
-using System.Windows.Forms;
-using Org.BouncyCastle.Crypto.Paddings;
-using System.Security.Policy;
-using static System.Net.WebRequestMethods;
 using Serilog.Formatting.Json;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 
 namespace MediaTekDocuments.dal
 {
@@ -21,38 +17,46 @@ namespace MediaTekDocuments.dal
     public class Access
     {
         /// <summary>
-        /// Chaîne de connection référence externe
+        /// Chaîne de connexion référence externe
         /// </summary>
         private static readonly string connectionName = "MediaTekDocuments.Properties.Settings.mediatek86ConnectionString";
+
         /// <summary>
         /// Adresse de l'API
         /// </summary>
         private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
+
         /// <summary>
         /// Instance unique de la classe
         /// </summary>
         private static Access instance;
+
         /// <summary>
         /// Instance de ApiRest pour envoyer des demandes vers l'api et recevoir la réponse
         /// </summary>
         private readonly ApiRest api;
+
         /// <summary>
         /// Méthode HTTP pour select
         /// </summary>
         private const string GET = "GET";
+
         /// <summary>
         /// Méthode HTTP pour insert
         /// </summary>
         private const string POST = "POST";
+
         /// <summary>
         /// Méthode HTTP pour update
-        /// <summary>
+        /// </summary>
         private const string PUT = "PUT";
+
         /// <summary>
         /// Méthode HTTP pour delete
         /// </summary>
         private const string DELETE = "DELETE";
 
+        /// <summary>
         /// Méthode privée pour créer un singleton
         /// Initialise l'accès à l'API
         /// </summary>
@@ -159,9 +163,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne toutes les dvd à partir de la BDD
+        /// Retourne toutes les DVD à partir de la BDD
         /// </summary>
-        /// <returns>Liste d'objets Dvd</returns>
+        /// <returns>Liste d'objets DVD</returns>
         public List<Dvd> GetAllDvd()
         {
             List<Dvd> lesDvd = TraitementRecup<Dvd>(GET, "dvd");
@@ -191,7 +195,7 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// Retourne tous les états document à partir de la BDD
         /// </summary>
-        /// <returns>Liste d'objets Etat</returns>
+        /// <returns>Liste d'objets État</returns>
         public List<Etat> GetAllEtats()
         {
             IEnumerable<Etat> lesEtatsDocument = TraitementRecup<Etat>(GET, "etat");
@@ -460,9 +464,11 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'une abonnement de revue en BDD
+        /// Créer un abonnement d'une revue en BDD
         /// </summary>
-        /// <param name="abonnementRevue">revue concernée</param>
+        /// <param name="id">id de l'abonnement</param>
+        /// <param name="dateFinAbonnement">date de fin d'abonnement</param>
+        /// <param name="idRevue">idRevue lié à la revue</param>
         /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
         public bool CreerAbonnementRevue(string id, DateTime dateFinAbonnement, string idRevue)
         {
@@ -729,9 +735,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppresion d'une commande revue en BDD
+        /// Suppression d'une commande revue en BDD
         /// </summary>
-        /// <param name="abonnementRevue">la revue concernée</param>
+        /// <param name="abonnement">la revue concernée</param>
         /// <returns></returns>
         public bool SupprimerAbonnement(Abonnement abonnement)
         {
@@ -802,7 +808,7 @@ namespace MediaTekDocuments.dal
         {
             public CustomDateTimeConverter()
             {
-                base.DateTimeFormat = "yyyy-MM-dd";
+                DateTimeFormat = "yyyy-MM-dd";
             }
         }
 

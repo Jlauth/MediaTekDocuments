@@ -11,7 +11,14 @@ namespace MediaTekDocuments.model
     /// </summary>
     public class Suivi
     {
+        /// <summary>
+        /// Propriété Id de Suivi
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Propriété Libelle de Suivi
+        /// </summary>
         public string Libelle { get; set; }
 
         /// <summary>

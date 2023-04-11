@@ -58,9 +58,9 @@ namespace MediaTekDocuments.view
             // btnOkEcheancesAbos
             // 
             this.btnOkEcheancesAbos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOkEcheancesAbos.Location = new System.Drawing.Point(515, 268);
+            this.btnOkEcheancesAbos.Location = new System.Drawing.Point(474, 268);
             this.btnOkEcheancesAbos.Name = "btnOkEcheancesAbos";
-            this.btnOkEcheancesAbos.Size = new System.Drawing.Size(85, 35);
+            this.btnOkEcheancesAbos.Size = new System.Drawing.Size(126, 35);
             this.btnOkEcheancesAbos.TabIndex = 2;
             this.btnOkEcheancesAbos.Text = "Ok";
             this.btnOkEcheancesAbos.UseVisualStyleBackColor = true;

@@ -11,8 +11,19 @@ namespace MediaTekDocuments.model
     /// </summary>
     public class Utilisateur
     {
+        /// <summary>
+        /// Propriété Login de Utilisateur
+        /// </summary>
         public string Login { get; set; }
+
+        /// <summary>
+        /// Propriété Pwd de Utilisateur
+        /// </summary>
         public string Pwd { get; set; }
+
+        /// <summary>
+        /// Propriété IdServuce de Utilisateur
+        /// </summary>
         public string IdService { get; set; }
 
         /// <summary>
@@ -28,6 +39,5 @@ namespace MediaTekDocuments.model
             this.Pwd = pwd;
             this.IdService= idService;
         }
-       
     }
 }

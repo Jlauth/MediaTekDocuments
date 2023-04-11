@@ -2,15 +2,22 @@
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Categorie (réunit les informations des classes Public, Genre et Rayon)
+    /// Classe métier Catégorie (réunit les informations des classes Public, Genre et Rayon)
     /// </summary>
     public class Categorie
     {
+        /// <summary>
+        /// Propriété Id de Catégorie
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Propriété Libelle de Catégorie
+        /// </summary>
         public string Libelle { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier Categorie
+        /// Constructeur de la classe métier Catégorie
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>

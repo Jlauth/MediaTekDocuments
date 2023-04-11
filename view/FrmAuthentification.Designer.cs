@@ -35,6 +35,7 @@
             this.grpBoxAuth = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAuthConnexion = new System.Windows.Forms.Button();
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.grpBoxAuth.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(84, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 16);
+            this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Identifiant : ";
             // 
@@ -54,26 +55,26 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(84, 124);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 16);
+            this.label2.Size = new System.Drawing.Size(114, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mot de passe : ";
             // 
             // txbAuthentificationLogin
             // 
             this.txbAuthentificationLogin.Location = new System.Drawing.Point(237, 65);
+            this.txbAuthentificationLogin.MaxLength = 16;
             this.txbAuthentificationLogin.Name = "txbAuthentificationLogin";
             this.txbAuthentificationLogin.Size = new System.Drawing.Size(188, 20);
             this.txbAuthentificationLogin.TabIndex = 2;
-            this.txbAuthentificationLogin.MaxLength = 16; // taille maximale
             // 
             // txbAuthentificationPwd
             // 
             this.txbAuthentificationPwd.Location = new System.Drawing.Point(237, 120);
+            this.txbAuthentificationPwd.MaxLength = 8;
             this.txbAuthentificationPwd.Name = "txbAuthentificationPwd";
+            this.txbAuthentificationPwd.PasswordChar = '*';
             this.txbAuthentificationPwd.Size = new System.Drawing.Size(188, 20);
             this.txbAuthentificationPwd.TabIndex = 3;
-            this.txbAuthentificationPwd.MaxLength = 8; // taille maximale autorisée du mot de passe
-            this.txbAuthentificationPwd.PasswordChar = '*'; // assignation de l'astérisque 
             // 
             // grpBoxAuth
             // 
@@ -84,17 +85,17 @@
             this.grpBoxAuth.Controls.Add(this.label1);
             this.grpBoxAuth.Location = new System.Drawing.Point(58, 47);
             this.grpBoxAuth.Name = "grpBoxAuth";
-            this.grpBoxAuth.Size = new System.Drawing.Size(544, 200);
+            this.grpBoxAuth.Size = new System.Drawing.Size(544, 187);
             this.grpBoxAuth.TabIndex = 4;
             this.grpBoxAuth.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(212, 16);
+            this.label3.Size = new System.Drawing.Size(213, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Veuillez renseigner vos identifiants";
             // 
@@ -109,11 +110,24 @@
             this.btnAuthConnexion.UseVisualStyleBackColor = true;
             this.btnAuthConnexion.Click += new System.EventHandler(this.BtnConnexion_Click);
             // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuitter.ForeColor = System.Drawing.Color.Red;
+            this.btnQuitter.Location = new System.Drawing.Point(58, 262);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(150, 33);
+            this.btnQuitter.TabIndex = 5;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
+            // 
             // FrmAuthentification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 321);
+            this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnAuthConnexion);
             this.Controls.Add(this.grpBoxAuth);
             this.Name = "FrmAuthentification";
@@ -121,7 +135,6 @@
             this.grpBoxAuth.ResumeLayout(false);
             this.grpBoxAuth.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -133,5 +146,6 @@
         private System.Windows.Forms.GroupBox grpBoxAuth;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAuthConnexion;
+        private System.Windows.Forms.Button btnQuitter;
     }
 }

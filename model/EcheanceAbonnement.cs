@@ -11,8 +11,19 @@ namespace MediaTekDocuments.model
     /// </summary>
     public class EcheanceAbonnement : Commande
     {
+        /// <summary>
+        /// Propriété DateFinAbonnement de EcheanceAbonnement
+        /// </summary>
         public DateTime DateFinAbonnement { get; set; }
+
+        /// <summary>
+        /// Propriété IdRevue de EcheanceAbonnement
+        /// </summary>
         public string IdRevue { get; set; }
+
+        /// <summary>
+        /// Propriété TitreRevue de EcheanceAbonnement
+        /// </summary>
         public string TitreRevue { get; set; }
 
         /// <summary>
@@ -24,6 +35,7 @@ namespace MediaTekDocuments.model
         /// <param name="montant"></param>
         /// <param name="DateFinAbonnement"></param>
         /// <param name="idRevue"></param>
+        /// <param name="titreRevue"></param>
         public EcheanceAbonnement(string id, DateTime dateCommande, double montant, DateTime DateFinAbonnement, string idRevue, string titreRevue) :
             base(id, dateCommande, montant)
         {

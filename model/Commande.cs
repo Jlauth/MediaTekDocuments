@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
 {
@@ -11,8 +7,19 @@ namespace MediaTekDocuments.model
     /// </summary>
     public class Commande
     {
+        /// <summary>
+        /// Propriété Id de Commande
+        /// </summary>
         public string Id { get; set; }
+        
+        /// <summary>
+        /// Propriété DateCommande de Commande
+        /// </summary>
         public DateTime DateCommande { get; set; }
+        
+        /// <summary>
+        /// Propriété Montant de Commande
+        /// </summary>
         public double Montant { get; set; }
 
         /// <summary>
