@@ -30,6 +30,7 @@ namespace MediaTekDocuments.view
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEcheancesAbos));
             this.dgvEcheancesAbosListe = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOkEcheancesAbos = new System.Windows.Forms.Button();
@@ -58,11 +59,11 @@ namespace MediaTekDocuments.view
             // btnOkEcheancesAbos
             // 
             this.btnOkEcheancesAbos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOkEcheancesAbos.Location = new System.Drawing.Point(474, 268);
+            this.btnOkEcheancesAbos.Location = new System.Drawing.Point(452, 250);
             this.btnOkEcheancesAbos.Name = "btnOkEcheancesAbos";
-            this.btnOkEcheancesAbos.Size = new System.Drawing.Size(126, 35);
+            this.btnOkEcheancesAbos.Size = new System.Drawing.Size(150, 45);
             this.btnOkEcheancesAbos.TabIndex = 2;
-            this.btnOkEcheancesAbos.Text = "Ok";
+            this.btnOkEcheancesAbos.Text = "Continuer";
             this.btnOkEcheancesAbos.UseVisualStyleBackColor = true;
             this.btnOkEcheancesAbos.Click += new System.EventHandler(this.BtnOkEcheancesAbos_Click);
             // 
@@ -70,11 +71,13 @@ namespace MediaTekDocuments.view
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 344);
+            this.ClientSize = new System.Drawing.Size(640, 321);
             this.Controls.Add(this.btnOkEcheancesAbos);
             this.Controls.Add(this.dgvEcheancesAbosListe);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmEcheancesAbos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alerte échéance abonnement";
             ((System.ComponentModel.ISupportInitialize)(this.dgvEcheancesAbosListe)).EndInit();
             this.ResumeLayout(false);

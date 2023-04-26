@@ -150,7 +150,7 @@
     <Compile Include="model\Abonnement.cs" />
     <Compile Include="model\Commande.cs" />
     <Compile Include="model\CommandeDocument.cs" />
-    <Compile Include="model\EcheanceAbonnement.cs" />
+    <Compile Include="model\AbonnementEcheance.cs" />
     <Compile Include="model\ExemplaireDetail.cs" />
     <Compile Include="model\Service.cs" />
     <Compile Include="model\Suivi.cs" />
@@ -205,6 +205,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\FrmMediatek.resx">
       <DependentUpon>FrmMediatek.cs</DependentUpon>
+      <LastGenOutput>FrmMediatek1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>

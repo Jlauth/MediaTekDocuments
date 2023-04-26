@@ -12,12 +12,12 @@ namespace MediaTekDocuments.model
     public class Abonnement : Commande
     {
         /// <summary>
-        /// propriété DateFinAbonnement
+        /// Propriété DateFinAbonnement de Abonnement
         /// </summary>
         public DateTime DateFinAbonnement { get; set; }
 
         /// <summary>
-        /// Propriété IdRevue
+        /// Propriété IdRevue de Abonnement
         /// </summary>
         public string IdRevue { get; set; }
 

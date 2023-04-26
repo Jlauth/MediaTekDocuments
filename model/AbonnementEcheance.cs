@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Abonnement hérite de Commande
+    /// Classe métier AbonnementEcheance hérite de Commande
     /// </summary>
-    public class EcheanceAbonnement : Commande
+    public class AbonnementEcheance : Commande
     {
         /// <summary>
-        /// Propriété DateFinAbonnement de EcheanceAbonnement
+        /// Propriété DateFinAbonnement de AbonnementEcheance
         /// </summary>
         public DateTime DateFinAbonnement { get; set; }
 
         /// <summary>
-        /// Propriété IdRevue de EcheanceAbonnement
+        /// Propriété IdRevue de AbonnementEcheance
         /// </summary>
         public string IdRevue { get; set; }
 
         /// <summary>
-        /// Propriété TitreRevue de EcheanceAbonnement
+        /// Propriété TitreRevue de AbonnementEcheance
         /// </summary>
         public string TitreRevue { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier Abonnement
+        /// Constructeur de la classe métier AbonnementEcheance
         /// Valorise les propriétés de cette classe
         /// </summary>
         /// <param name="id"></param>
@@ -36,7 +36,7 @@ namespace MediaTekDocuments.model
         /// <param name="DateFinAbonnement"></param>
         /// <param name="idRevue"></param>
         /// <param name="titreRevue"></param>
-        public EcheanceAbonnement(string id, DateTime dateCommande, double montant, DateTime DateFinAbonnement, string idRevue, string titreRevue) :
+        public AbonnementEcheance(string id, DateTime dateCommande, double montant, DateTime DateFinAbonnement, string idRevue, string titreRevue) :
             base(id, dateCommande, montant)
         {
             this.DateFinAbonnement = DateFinAbonnement;

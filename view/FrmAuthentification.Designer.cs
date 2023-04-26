@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAuthentification));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txbAuthentificationLogin = new System.Windows.Forms.TextBox();
@@ -65,16 +66,16 @@
             this.txbAuthentificationLogin.MaxLength = 16;
             this.txbAuthentificationLogin.Name = "txbAuthentificationLogin";
             this.txbAuthentificationLogin.Size = new System.Drawing.Size(188, 20);
-            this.txbAuthentificationLogin.TabIndex = 2;
+            this.txbAuthentificationLogin.TabIndex = 1;
             // 
             // txbAuthentificationPwd
             // 
             this.txbAuthentificationPwd.Location = new System.Drawing.Point(237, 120);
-            this.txbAuthentificationPwd.MaxLength = 8;
+            this.txbAuthentificationPwd.MaxLength = 16;
             this.txbAuthentificationPwd.Name = "txbAuthentificationPwd";
             this.txbAuthentificationPwd.PasswordChar = '*';
             this.txbAuthentificationPwd.Size = new System.Drawing.Size(188, 20);
-            this.txbAuthentificationPwd.TabIndex = 3;
+            this.txbAuthentificationPwd.TabIndex = 2;
             // 
             // grpBoxAuth
             // 
@@ -83,7 +84,7 @@
             this.grpBoxAuth.Controls.Add(this.txbAuthentificationLogin);
             this.grpBoxAuth.Controls.Add(this.label2);
             this.grpBoxAuth.Controls.Add(this.label1);
-            this.grpBoxAuth.Location = new System.Drawing.Point(58, 47);
+            this.grpBoxAuth.Location = new System.Drawing.Point(58, 45);
             this.grpBoxAuth.Name = "grpBoxAuth";
             this.grpBoxAuth.Size = new System.Drawing.Size(544, 187);
             this.grpBoxAuth.TabIndex = 4;
@@ -92,20 +93,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 16);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 16);
+            this.label3.Size = new System.Drawing.Size(235, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Veuillez renseigner vos identifiants";
+            this.label3.Text = "Veuillez renseigner vos identifiants de connexion";
             // 
             // btnAuthConnexion
             // 
             this.btnAuthConnexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuthConnexion.Location = new System.Drawing.Point(452, 262);
+            this.btnAuthConnexion.Location = new System.Drawing.Point(452, 250);
             this.btnAuthConnexion.Name = "btnAuthConnexion";
-            this.btnAuthConnexion.Size = new System.Drawing.Size(150, 33);
-            this.btnAuthConnexion.TabIndex = 4;
+            this.btnAuthConnexion.Size = new System.Drawing.Size(150, 45);
+            this.btnAuthConnexion.TabIndex = 3;
             this.btnAuthConnexion.Text = "Connexion";
             this.btnAuthConnexion.UseVisualStyleBackColor = true;
             this.btnAuthConnexion.Click += new System.EventHandler(this.BtnConnexion_Click);
@@ -114,10 +115,10 @@
             // 
             this.btnQuitter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitter.ForeColor = System.Drawing.Color.Red;
-            this.btnQuitter.Location = new System.Drawing.Point(58, 262);
+            this.btnQuitter.Location = new System.Drawing.Point(58, 250);
             this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(150, 33);
-            this.btnQuitter.TabIndex = 5;
+            this.btnQuitter.Size = new System.Drawing.Size(150, 45);
+            this.btnQuitter.TabIndex = 4;
             this.btnQuitter.Text = "Quitter";
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.BtnQuitter_Click);
@@ -130,11 +131,14 @@
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnAuthConnexion);
             this.Controls.Add(this.grpBoxAuth);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAuthentification";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Page d\'authentification";
             this.grpBoxAuth.ResumeLayout(false);
             this.grpBoxAuth.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion
