@@ -20,7 +20,7 @@ namespace MediaTekDocuments.view
     {
         private readonly FrmMediatekController controller;
         private readonly BindingSource bdgEcheancesAbos = new BindingSource();
-        private readonly List<EcheanceAbonnement> lesEcheancesAbos;
+        private readonly List<AbonnementEcheance> lesEcheancesAbos;
 
         /// <summary>
         /// Constructeur de la classe FrmEcheancesAbos
@@ -37,7 +37,7 @@ namespace MediaTekDocuments.view
         /// Rempli le grid avec la liste reçue en paramètre
         /// </summary>
         /// <param name="echeanceAbonnements">liste des abonnements arrivant à échéance</param>
-        private void RemplirEcheancesAbos(List<EcheanceAbonnement> echeanceAbonnements)
+        private void RemplirEcheancesAbos(List<AbonnementEcheance> echeanceAbonnements)
         {
             bdgEcheancesAbos.DataSource = echeanceAbonnements;
             dgvEcheancesAbosListe.DataSource = bdgEcheancesAbos;
@@ -68,7 +68,7 @@ namespace MediaTekDocuments.view
         private void DgvEcheancesAbos_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string titreColonne = dgvEcheancesAbosListe.Columns[e.ColumnIndex].HeaderText;
-            List<EcheanceAbonnement> sortedList = new List<EcheanceAbonnement>();
+            List<AbonnementEcheance> sortedList = new List<AbonnementEcheance>();
             switch (titreColonne)
             {
                 case "Date de fin d'abonnement":

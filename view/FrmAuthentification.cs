@@ -46,7 +46,7 @@ namespace MediaTekDocuments.view
             {
                 if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(pwdNoH))
                 {
-                    MessageBox.Show("Tous les champs doivent être remplis", "INFORMATION");
+                    MessageBox.Show("Tous les champs doivent être remplis", "Information");
                     ViderChampsAuth();
                 }
                 else
@@ -58,7 +58,7 @@ namespace MediaTekDocuments.view
                     {
                         if (idService == "50003")
                         {
-                            MessageBox.Show("Vos droits ne sont pas suffisants pour accèder à cette application.", "INFORMATION");
+                            MessageBox.Show("Vos droits ne sont pas suffisants pour accéder à cette application.", "Information");
                             ViderChampsAuth();
                         }
                         else
@@ -69,7 +69,7 @@ namespace MediaTekDocuments.view
                     }
                     else
                     {
-                        MessageBox.Show("Mot de passe et/ou login incorrects", "ERREUR");
+                        MessageBox.Show("Mot de passe et/ou login incorrect(s)", "Erreur");
                         ViderChampsAuth();
                     }
                 }

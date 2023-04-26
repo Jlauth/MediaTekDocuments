@@ -6,67 +6,67 @@ using System.Collections.Generic;
 namespace MediaTekDocuments.controller
 {
     /// <summary>
-    /// Contrôleur lié à FrmMediatek
+    /// Contrôleur lié à FrmMediatek.
     /// </summary>
     class FrmMediatekController
     {
         /// <summary>
-        /// Objet d'accès aux données
+        /// Objet d'accès aux données.
         /// </summary>
         private readonly Access access;
 
         /// <summary>
-        /// Récupération de l'instance unique d'accès aux données
+        /// Récupération de l'instance unique d'accès aux données.
         /// </summary>
         public FrmMediatekController() => access = Access.GetInstance();
 
         /// <summary>
-        /// Getter sur les abonnements arrivant à échéance
+        /// Getter sur les abonnements arrivant à échéance.
         /// </summary>
-        /// <returns>Liste d'objets Abonnement</returns>
-        public List<EcheanceAbonnement> GetAbonnementsEcheance() => access.GetAbonnementsEcheance();
+        /// <returns>Liste d'objets Abonnement.</returns>
+        public List<AbonnementEcheance> GetAbonnementsEcheance() => access.GetAbonnementsEcheance();
 
         /// <summary>
-        /// Récupère le document concerné dans la BDD
+        /// Récupère le document concerné dans la BDD.
         /// </summary>
-        /// <param name="idDocument">le document cible</param>
+        /// <param name="idDocument">Le document recherché.</param>
         /// <returns></returns>
         public List<Document> GetDocuments(string idDocument) => access.GetAllDocuments(idDocument);
 
         /// <summary>
-        /// Getter sur la liste des genres
+        /// Getter sur la liste des genres.
         /// </summary>
-        /// <returns>Liste d'objets Genre</returns>
+        /// <returns>Liste d'objets Genre.</returns>
         public List<Categorie> GetAllGenres() => access.GetAllGenres();
 
         /// <summary>
-        /// Getter sur la liste des livres
+        /// Getter sur la liste des livres.
         /// </summary>
-        /// <returns>Liste d'objets Livre</returns>
+        /// <returns>Liste d'objets Livre.</returns>
         public List<Livre> GetAllLivres() => access.GetAllLivres();
 
         /// <summary>
-        /// Getter sur la liste des DVD
+        /// Getter sur la liste des DVD.
         /// </summary>
-        /// <returns>Liste d'objets DVD</returns>
+        /// <returns>Liste d'objets DVD.</returns>
         public List<Dvd> GetAllDvd() => access.GetAllDvd();
 
         /// <summary>
-        /// Getter sur la liste des revues
+        /// Getter sur la liste des revues.
         /// </summary>
-        /// <returns>Liste d'objets Revue</returns>
+        /// <returns>Liste d'objets Revue.</returns>
         public List<Revue> GetAllRevues() => access.GetAllRevues();
 
         /// <summary>
-        /// Getter sur les rayons
+        /// Getter sur les rayons.
         /// </summary>
-        /// <returns>Liste d'objets Rayon</returns>
+        /// <returns>Liste d'objets Rayon.</returns>
         public List<Categorie> GetAllRayons() => access.GetAllRayons();
 
         /// <summary>
-        /// Getter sur les publics
+        /// Getter sur les publics.
         /// </summary>
-        /// <returns>Liste d'objets Public</returns>
+        /// <returns>Liste d'objets Public.</returns>
         public List<Categorie> GetAllPublics() => access.GetAllPublics();
 
         /// <summary>
@@ -76,37 +76,51 @@ namespace MediaTekDocuments.controller
         public List<Suivi> GetAllSuivis() => access.GetAllSuivis();
 
         /// <summary>
-        /// Récupère les états des documents
+        /// Récupère les états des documents.
         /// </summary>
-        /// <returns>Liste d'objets État</returns>
+        /// <returns>Liste d'objets État.</returns>
         public List<Etat> GetAllEtats() => access.GetAllEtats();
 
         /// <summary>
-        /// Getter sur les exemplaires
+        /// Getter sur les exemplaires.
         /// </summary>
-        /// <returns>Liste d'objets Exemplaire</returns>
+        /// <returns>Liste d'objets Exemplaire.</returns>
         public List<Exemplaire> GetAllExemplaires() => access.GetAllExemplaires();
 
         /// <summary>
-        /// Récupère les commandes d'un document de type livre ou DVD
+        /// Récupère les commandes d'un document de type livre ou DVD.
         /// </summary>
-        /// /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets Commande</returns>
+        /// /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets Commande.</returns>
         public List<CommandeDocument> GetCommandesDocument(string idDocument) => access.GetCommandesDocuments(idDocument);
 
         /// <summary>
-        /// Récupère les exemplaires d'un document
+        /// Récupère le numéro de commande d'un document.
         /// </summary>
-        /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets Exemplaire</returns>
+        /// <param name="id">ID de la commande concernée.</param>
+        /// <returns>Liste d'objets Commande.</returns>
+        public List<Commande> GetCommandeId(string id) => access.GetCommandeId(id);
+
+        /// <summary>
+        /// Récupère les exemplaires d'un document.
+        /// </summary>
+        /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets Exemplaire.</returns>
         public List<Exemplaire> GetExemplairesDocument(string idDocument) => access.GetExemplairesDocument(idDocument);
 
         /// <summary>
-        /// Récupère le détail des exemplaires d'un document
+        /// Récupère le détail des exemplaires d'un document.
         /// </summary>
-        /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets ExemplaireDetail</returns>
+        /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets ExemplaireDetail.</returns>
         public List<ExemplaireDetail> GetExemplaireDetailsDocument(string idDocument) => access.GetExemplairesDetailsDocument(idDocument);
+
+        /// <summary>
+        /// Récupère le numéro de parution dans le cas d'une revue.
+        /// </summary>
+        /// <param name="numero">Numéro de parution de la revue concernée</param>
+        /// <returns></returns>
+        public List<Exemplaire> GetNumeroParution(string numero) => access.GetNumeroParution(numero);
 
         /// <summary>
         /// Récupère les abonnements d'une revue 

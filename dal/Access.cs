@@ -23,7 +23,9 @@ namespace MediaTekDocuments.dal
 
         /// <summary>
         /// Adresse de l'API
+        /// Switch de la déclaration au besoin (local ou distant)
         /// </summary>
+        //private static readonly string uriApi = "http://hafsatc.cluster027.hosting.ovh.net/rest_mediatekdocuments/";
         private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
 
         /// <summary>
@@ -59,6 +61,7 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// Méthode privée pour créer un singleton
         /// Initialise l'accès à l'API
+        /// Switch de l'initialisation de connectionString au besoin pour SpecFlow
         /// </summary>
         private Access()
         {
@@ -66,7 +69,7 @@ namespace MediaTekDocuments.dal
             try
             {
                 connectionString = GetConnectionStringByName(connectionName);
-                //connectionString = "admin:adminpwd";
+                // connectionString = "admin:adminpwd"; pour SpecFlow                       
                 Log.Logger = new LoggerConfiguration()
                     .WriteTo.Console()
                     .WriteTo.File(new JsonFormatter(), "logs/log.txt",
@@ -203,9 +206,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne les exemplaires à partir de la BDD
+        /// Retourne les exemplaires à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Exemplaire</returns>
+        /// <returns>Liste d'objets Exemplaire.</returns>
         public List<Exemplaire> GetAllExemplaires()
         {
             List<Exemplaire> lesExemplaires = TraitementRecup<Exemplaire>(GET, "exemplairesdocument");
@@ -213,10 +216,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne les commandes document à partir de la BDD
+        /// Retourne les commandes document à partir de la BDD.
         /// </summary>
-        /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets CommandeDocument</returns>
+        /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets CommandeDocument.</returns>
         public List<CommandeDocument> GetCommandesDocuments(string idDocument)
         {
             List<CommandeDocument> lesCommandesDocuments = TraitementRecup<CommandeDocument>(GET, "commandesdocuments/" + idDocument);
@@ -224,9 +227,20 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne tous les services à partir de la BDD
+        /// Retourne ID commande à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Service</returns>
+        /// <param name="id">ID de la commande concernée.</param>
+        /// <returns>List d'objets Commande.</returns>
+        public List<Commande> GetCommandeId(string id)
+        {
+            List<Commande> idCommande = TraitementRecup<Commande>(GET, "commandeid/" + id);
+            return idCommande;
+        }
+
+        /// <summary>
+        /// Retourne tous les services à partir de la BDD.
+        /// </summary>
+        /// <returns>Liste d'objets Service.</returns>
         public List<Service> GetService()
         {
             List<Service> lesServices = TraitementRecup<Service>(GET, "service");
@@ -234,9 +248,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne les exemplaires d'un document
+        /// Retourne les exemplaires d'un document.
         /// </summary>
-        /// <param name="idDocument">id du document concerné</param>
+        /// <param name="idDocument">ID du document concerné.</param>
         /// <returns>Liste d'objets Exemplaire</returns>
         public List<Exemplaire> GetExemplairesDocument(string idDocument)
         {
@@ -245,10 +259,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne le détail des exemplaires d'un document
+        /// Retourne le détail des exemplaires d'un document.
         /// </summary>
-        /// <param name="idDocument">id du document concerné</param>
-        /// <returns>Liste d'objets ExemplaireDetail</returns>
+        /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets ExemplaireDetail.</returns>
         public List<ExemplaireDetail> GetExemplairesDetailsDocument(string idDocument)
         {
             List<ExemplaireDetail> lesDetailsExemplairesDocuments = TraitementRecup<ExemplaireDetail>(GET, "detaildocument/" + idDocument);
@@ -256,10 +270,23 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne les abonnements d'une revue à partir de la BDD
+        /// Retourne le numéro de parution d'un exemplaire de type Revue.
         /// </summary>
-        /// <param name="idRevue">id de la revue concernée</param>
-        /// <returns>Liste d'objets Abonnement</returns>
+        /// <param name="numero">Le numéro de parution de la revue.</param>
+        /// <returns>Liste d'objets Exemplaire.</returns>
+        public List<Exemplaire> GetNumeroParution(string numero)
+        {
+            List<Exemplaire> leNumeroDeParution = TraitementRecup<Exemplaire>(GET, "numeroparution/" + numero);
+            String checkParution = JsonConvert.SerializeObject(leNumeroDeParution);
+            Console.WriteLine(checkParution);
+            return leNumeroDeParution;
+        }
+
+        /// <summary>
+        /// Retourne les abonnements d'une revue à partir de la BDD.
+        /// </summary>
+        /// <param name="idRevue">id de la revue concernée.</param>
+        /// <returns>Liste d'objets Abonnement.</returns>
         public List<Abonnement> GetAbonnementsRevue(string idRevue)
         {
             List<Abonnement> lesAbonnementsRevues = TraitementRecup<Abonnement>(GET, "abonnementsrevue/" + idRevue);
@@ -270,9 +297,9 @@ namespace MediaTekDocuments.dal
         /// Retourne tous les abonnements à échéance
         /// </summary>
         /// <returns>Liste d'objets Abonnement</returns>
-        public List<EcheanceAbonnement> GetAbonnementsEcheance()
+        public List<AbonnementEcheance> GetAbonnementsEcheance()
         {
-            List<EcheanceAbonnement> lesAbonnementsEcheances = TraitementRecup<EcheanceAbonnement>(GET, "echeancessabos");
+            List<AbonnementEcheance> lesAbonnementsEcheances = TraitementRecup<AbonnementEcheance>(GET, "echeancessabos");
             return lesAbonnementsEcheances;
         }
 
@@ -338,17 +365,18 @@ namespace MediaTekDocuments.dal
         /// <returns>true si ajout a pu se faire (retour != null)</returns>
         public bool CreerLivre(Livre livre)
         {
-            String jsonLivre = JsonConvert.SerializeObject(livre);
+            String jsonCreerLivre = JsonConvert.SerializeObject(livre);
+            Console.WriteLine("jsonCreerLivre = " + jsonCreerLivre);
             try
             {
                 // récupération soit d'une liste vide (requête ok) soit de null (erreur) 
-                List<Livre> liste = TraitementRecup<Livre>(POST, "livre/" + jsonLivre);
+                List<Livre> liste = TraitementRecup<Livre>(POST, "livre/" + jsonCreerLivre);
                 return (liste != null);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Log.Error("Access.CreerLivre catch jsonLivre={0} error={1}", jsonLivre, ex);
+                Log.Error("Access.CreerLivre catch jsonCreerLivre={0} error={1}", jsonCreerLivre, ex);
             }
             return false;
         }
@@ -711,7 +739,7 @@ namespace MediaTekDocuments.dal
             return false;
         }
 
-        /// <summary>
+        /// <summary>²
         /// Suppression d'une commande document en BDD
         /// </summary>
         /// <param name="commandeDocument">le document concerné</param>

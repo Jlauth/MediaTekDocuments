@@ -39,6 +39,5 @@ namespace MediaTekDocuments.model
             this.Periodicite = periodicite;
             this.DelaiMiseADispo = delaiMiseADispo;
         }
-
     }
 }
