@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace MediaTekDocuments.view
 {
     /// <summary>
-    /// Classe d'affichage Authentification
+    /// Classe d'affichage Authentification.
     /// </summary>
     public partial class FrmAuthentification : Form
     {
@@ -14,7 +14,7 @@ namespace MediaTekDocuments.view
         private readonly FrmAuthentificationController controller;
 
         /// <summary>
-        /// Constructeur de la classe FrmAuthentification
+        /// Constructeur de la classe FrmAuthentification.
         /// </summary>
         public FrmAuthentification()
         {
@@ -23,7 +23,7 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Vide les champs d'authentification
+        /// Vide les champs d'authentification.
         /// </summary>
         private void ViderChampsAuth()
         {
@@ -32,8 +32,8 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Authentification valide ou non en fonction des champs renseignés 
-        /// Hashe du mot de passe via la fonction appelée
+        /// Authentification valide ou non en fonction des champs renseignés .
+        /// Hashe du mot de passe via la fonction appelée.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,10 +81,10 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Hashe le mot de passe
+        /// Hashe le mot de passe.
         /// </summary>
-        /// <param name="randomString">la valeur à hashe</param>
-        /// <returns></returns>
+        /// <param name="randomString">Valeur à hashe.</param>
+        /// <returns>Le hash SHA256 de la valeur à hashe.</returns>
         static string Sha256(string randomString)
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();
@@ -98,7 +98,7 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Quitter l'application
+        /// Quitter l'application.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

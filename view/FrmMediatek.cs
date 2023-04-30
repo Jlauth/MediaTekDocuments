@@ -2,6 +2,7 @@
 using MediaTekDocuments.model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -70,6 +71,7 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire.
         /// </summary>
+        /// <param name="idService">L'ID du service auquel le formulaire est associé.</param>
         public FrmMediatek(string idService)
         {
             InitializeComponent();
@@ -606,6 +608,7 @@ namespace MediaTekDocuments.view
             // Active le lien avec le datagrid
             DefaultLivre = true;
             dgvLivresListe.Enabled = true;
+            grpLivresRecherche.Enabled = true;
 
             // Liste des contrôles à masquer
             Control[] hide = {
@@ -638,6 +641,7 @@ namespace MediaTekDocuments.view
             VideLivresInfosTotal();
             ActiverChampsInfosLivre();
             AccesInfosLivresGrpBox(true);
+            grpLivresRecherche.Enabled = false;
 
             // Liste des contrôles à masquer
             Control[] hide = {
@@ -691,6 +695,7 @@ namespace MediaTekDocuments.view
                     Livre livre = new Livre(id, titre, image, isbn, auteur, collection, idGenre, genre, idPublic, lePublic, idRayon, rayon);
                     // on vérifie si ce nouvel id existe en base de données
                     var checkIdLivre = controller.GetDocuments(id);
+                    Console.WriteLine(id);
                     if (checkIdLivre.Count != 0)
                     {
                         MessageBox.Show("Le livre numéro " + id + " existe déjà.", "Erreur");
@@ -830,6 +835,7 @@ namespace MediaTekDocuments.view
             // Désactive le lien entre le datagrid et l'édition
             DefaultLivre = false;
             dgvLivresListe.Enabled = false;
+            grpLivresRecherche.Enabled = false;
 
             // Active les champs informations détaillées + focus sur ISBN + numéro non modifiable
             ActiverChampsInfosLivre();
@@ -1105,7 +1111,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerLivre_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Confirmez-vous cette annulation?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigLivres();
@@ -1120,7 +1126,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerExemplairesLivre_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler cette modification?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigLivres();
@@ -1691,6 +1697,7 @@ namespace MediaTekDocuments.view
             // Active le lien avec le grid
             DefaultDvd = true;
             dgvDvdListe.Enabled = true;
+            grpDvdRecherche.Enabled = true;
 
             // Liste des contrôles à masquer
             Control[] hide = {
@@ -1717,6 +1724,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultDvd = false;
+            grpDvdRecherche.Enabled = false;
 
             // Vide tous les champs et active les champs informations détaillées
             VideDvdInfosTotal();
@@ -1924,6 +1932,7 @@ namespace MediaTekDocuments.view
             // Désactive le lien entre le datagrid et l'édition
             DefaultDvd = false;
             dgvDvdListe.Enabled = false;
+            grpDvdRecherche.Enabled = false;
 
             // Active les champs informations détaillées + focus sur durée + numéro non modifiable
             ActiverChampsInfosDvd();
@@ -2200,7 +2209,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerDvd_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Confirmez-vous cette annulation?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigDvd();
@@ -2215,7 +2224,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerExemplairesDvd_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler cette modification?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigDvd();
@@ -2691,6 +2700,7 @@ namespace MediaTekDocuments.view
             // Active le lien avec le grid
             DefaultRevue = true;
             dgvRevuesListe.Enabled = true;
+            grpRevuesRecherche.Enabled = true;
 
             // Liste des contrôles à masquer
             Control[] hide = {
@@ -2716,6 +2726,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultRevue = false;
+            grpRevuesRecherche.Enabled = false;
 
             // Vide tous les champs et active les champs informations détaillées
             VideRevuesInfosTotal();
@@ -2922,6 +2933,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultRevue = false;
+            grpRevuesRecherche.Enabled = false;
 
             // Active les champs nécessaires
             ActiverChampsInfosRevues();
@@ -3071,7 +3083,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerRevue_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Confirmez-vous cette annulation?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigRevues();
@@ -3609,7 +3621,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnAnnulerParution_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler cette modification?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigParutions();
@@ -3896,6 +3908,7 @@ namespace MediaTekDocuments.view
             // Active le lien avec le grid
             DefaultCmdLivre = true;
             dgvCmdLivreListe.Enabled = true;
+            grpCommandeLivreRecherche.Enabled = true;
 
             // Désactive l'accès à la gestion commande livre et le vide
             DesactiverChampsInfosCmdLivre();
@@ -3921,7 +3934,9 @@ namespace MediaTekDocuments.view
                 // Désactive le lien entre le datagrid et l'édition
                 DefaultCmdLivre = false;
                 dgvCmdLivreListe.Enabled = false;
-
+                grpCommandeLivreRecherche.Enabled = false;
+                
+     
                 // Active l'accès à la gestion de la commande
                 AccesInfosCmdLivreGrpBox(true);
                 ActiverChampsInfosCmdLivre();
@@ -3952,6 +3967,7 @@ namespace MediaTekDocuments.view
             // vérifie que les champs nécessaires soient bien renseignés
             if (!txbCmdLivreIdCmd.Text.Equals("") && !txbCmdLivreMontant.Text.Equals("") && !txbCmdLivreNbExemplaires.Equals(""))
             {
+                string ID = txbCmdLivreNumRecherche.Text;
                 try
                 {
                     string id = txbCmdLivreIdCmd.Text;
@@ -3967,7 +3983,7 @@ namespace MediaTekDocuments.view
                     if (checkIdCmdLivre.Count != 0)
                     {
                         MessageBox.Show("La commande n° " + id + " existe déjà.", "Erreur");
-                        txbCmdLivreIdCmd.Focus();
+                        ViderCmdLivreInfosCmd();
                     }
                     else
                     {
@@ -4069,6 +4085,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultCmdLivre = false;
+            grpCommandeLivreRecherche.Enabled = false;
 
             // Activer l'accès à la gestion de la commande
             AccesInfosCmdLivreGrpBox(true);
@@ -4234,7 +4251,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdLivreAnnuler_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler votre demande?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigCmdLivres();
@@ -4531,6 +4548,7 @@ namespace MediaTekDocuments.view
             // Active le lien avec le grid
             DefaultCmdDvd = true;
             dgvCmdDvdListe.Enabled = true;
+            grpCmdDvdRecherche.Enabled = true;
 
             // Désactive l'accès à la gestion commande dvd et le vide
             DesactiverChampsInfosCmdDvd();
@@ -4555,6 +4573,7 @@ namespace MediaTekDocuments.view
                 // Désactive le lien entre le datagrid et l'édition
                 DefaultCmdDvd = false;
                 dgvCmdDvdListe.Enabled = false;
+                grpCmdDvdRecherche.Enabled = false;
 
                 // Active l'accès à la gestion commande
                 AccesInfosCmdDvdGrpBox(true);
@@ -4607,6 +4626,7 @@ namespace MediaTekDocuments.view
                         if (controller.CreerCommandeDocument(commandeDvd))
                         {
                             MessageBox.Show("Commande du DVD " + idLivreDvd + " effectuée", "Information");
+                            AfficherCmdDvdInfosCmdGrid();
                         }
                         else
                         {
@@ -4701,6 +4721,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultCmdDvd = false;
+            grpCmdDvdRecherche.Enabled = false;
 
             // Active l'accès à la gestion commande
             AccesInfosCmdDvdGrpBox(true);
@@ -4866,7 +4887,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdDvdAnnuler_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler votre demande?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigCmdDvd();
@@ -5136,6 +5157,7 @@ namespace MediaTekDocuments.view
             // Activer le lien avec le grid
             DefaultCmdRevue = true;
             dgvCmdRevueListe.Enabled = true;
+            grpCmdRevueRecherche.Enabled = true;
 
             // Désactive l'accès à la gestion commande revues et le vide
             DesactiverChampsInfosCmdRevue();
@@ -5161,6 +5183,7 @@ namespace MediaTekDocuments.view
                 // Désactive le lien entre le datagrid et l'édition
                 DefaultCmdRevue = false;
                 dgvCmdRevueListe.Enabled = false;
+                grpCmdRevueRecherche.Enabled = false;
 
                 // Active l'accès à la gestion de la commande
                 AccesInfosCmdRevueGrpBox(true);
@@ -5285,6 +5308,7 @@ namespace MediaTekDocuments.view
         {
             // Désactive le lien entre le datagrid et l'édition
             DefaultCmdRevue = false;
+            grpCmdRevueRecherche.Enabled = false;
 
             // Activer l'accès à la gestion de la commande
             AccesInfosCmdRevueGrpBox(true);
@@ -5399,7 +5423,7 @@ namespace MediaTekDocuments.view
         /// <param name="e"></param>
         private void BtnCmdRevueAnnuler_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Voulez-vous annuler votre demande?", "Information",
+            if (MessageBox.Show(this, "Annuler?", "Information",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 RestaurationConfigCmdRevues();
@@ -5407,12 +5431,13 @@ namespace MediaTekDocuments.view
             }
         }
 
-        // <summary>
+        /// <summary>
         /// Vérifie si la date de parution est comprise entre date commande et date fin abonnement.
-        /// <param name="dateCommande">Date de prise de commande</param>
-        /// <param name="dateFinAbonnement">Date de fin d'abonnement</param>
-        /// <param name="dateParution">Date de comparaison entre les deux précédentes</param>
-        /// <returns>true si la date est comprise entre ces deux dates</returns>
+        /// </summary>
+        /// <param name="dateCommande">Date de prise de commande.</param>
+        /// <param name="dateFinAbonnement">Date de fin d'abonnement.</param>
+        /// <param name="dateParution">Date de comparaison entre les deux précédentes.</param>
+        /// <returns>true si la date est comprise entre ces deux dates.</returns>
         public bool ParutionAbonnement(DateTime dateCommande, DateTime dateFinAbonnement, DateTime dateParution)
         {
             return (DateTime.Compare(dateCommande, dateParution) < 0 && DateTime.Compare(dateParution, dateFinAbonnement) < 0);
@@ -5421,8 +5446,8 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Vérifie qu'aucun exemplaire ne soit rattaché à un abonnement.
         /// </summary>
-        /// <param name="abonnement">l'abonnement cible</param>
-        /// <returns>return true si aucun exemplaire rattaché</returns>
+        /// <param name="abonnement">Abonnement cible.</param>
+        /// <returns>return true si aucun exemplaire rattaché.</returns>
         public bool VerifierLienAbonnementExemplaire(Abonnement abonnement)
         {
             List<Exemplaire> lesExemplairesLienAbo = controller.GetExemplairesDocument(abonnement.IdRevue);
@@ -5438,7 +5463,7 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Permet ou interdit l'accès à la gestion des commandes revues.
         /// </summary>
-        /// <param name="access"></param>
+        /// <param name="access">Vrai si l'accès doit être autorisé, faux sinon.</param>
         private void AccesInfosCmdRevueGrpBox(bool access)
         {
             grpCmdRevueInfos.Enabled = access;
@@ -5447,7 +5472,7 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Gère l'accès à la gestion commande revues.
         /// </summary>
-        /// <param name="isReadOnly"></param>
+        /// <param name="isReadOnly">Vrai si l'accès doit être en lecture seule, faux sinon.
         private void SetReadOnlyCmdRevue(bool isReadOnly)
         {
             txbCmdRevueMontant.ReadOnly = isReadOnly;
@@ -5513,5 +5538,6 @@ namespace MediaTekDocuments.view
             txbCmdRevueNumRecherche.Text = "";
         }
         #endregion
+
     }
 }

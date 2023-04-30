@@ -2935,7 +2935,7 @@ namespace MediaTekDocuments.view
             this.btnAnnulerLivre.Location = new System.Drawing.Point(572, 19);
             this.btnAnnulerLivre.Name = "btnAnnulerLivre";
             this.btnAnnulerLivre.Size = new System.Drawing.Size(96, 32);
-            this.btnAnnulerLivre.TabIndex = 13;
+            this.btnAnnulerLivre.TabIndex = 35;
             this.btnAnnulerLivre.Text = "Annuler";
             this.btnAnnulerLivre.UseVisualStyleBackColor = true;
             this.btnAnnulerLivre.Visible = false;
@@ -2948,7 +2948,7 @@ namespace MediaTekDocuments.view
             this.btnValiderAjouterLivre.Location = new System.Drawing.Point(150, 19);
             this.btnValiderAjouterLivre.Name = "btnValiderAjouterLivre";
             this.btnValiderAjouterLivre.Size = new System.Drawing.Size(96, 32);
-            this.btnValiderAjouterLivre.TabIndex = 27;
+            this.btnValiderAjouterLivre.TabIndex = 33;
             this.btnValiderAjouterLivre.Text = "Valider";
             this.btnValiderAjouterLivre.UseVisualStyleBackColor = true;
             this.btnValiderAjouterLivre.Visible = false;
@@ -2960,7 +2960,7 @@ namespace MediaTekDocuments.view
             this.btnModifierLivre.Location = new System.Drawing.Point(314, 19);
             this.btnModifierLivre.Name = "btnModifierLivre";
             this.btnModifierLivre.Size = new System.Drawing.Size(96, 32);
-            this.btnModifierLivre.TabIndex = 12;
+            this.btnModifierLivre.TabIndex = 34;
             this.btnModifierLivre.Text = "Modifier";
             this.btnModifierLivre.UseVisualStyleBackColor = true;
             this.btnModifierLivre.Click += new System.EventHandler(this.BtnModifierLivre_Click);
@@ -3106,21 +3106,21 @@ namespace MediaTekDocuments.view
             this.txbLivresIdRayon.Location = new System.Drawing.Point(441, 170);
             this.txbLivresIdRayon.Name = "txbLivresIdRayon";
             this.txbLivresIdRayon.Size = new System.Drawing.Size(100, 20);
-            this.txbLivresIdRayon.TabIndex = 36;
+            this.txbLivresIdRayon.TabIndex = 99;
             // 
             // txbLivresIdPublic
             // 
             this.txbLivresIdPublic.Location = new System.Drawing.Point(441, 145);
             this.txbLivresIdPublic.Name = "txbLivresIdPublic";
             this.txbLivresIdPublic.Size = new System.Drawing.Size(100, 20);
-            this.txbLivresIdPublic.TabIndex = 35;
+            this.txbLivresIdPublic.TabIndex = 99;
             // 
             // txbLivresIdGenre
             // 
             this.txbLivresIdGenre.Location = new System.Drawing.Point(441, 121);
             this.txbLivresIdGenre.Name = "txbLivresIdGenre";
             this.txbLivresIdGenre.Size = new System.Drawing.Size(100, 20);
-            this.txbLivresIdGenre.TabIndex = 34;
+            this.txbLivresIdGenre.TabIndex = 99;
             this.txbLivresIdGenre.Visible = false;
             // 
             // label59
@@ -3158,7 +3158,7 @@ namespace MediaTekDocuments.view
             this.txbLivresRayon.Name = "txbLivresRayon";
             this.txbLivresRayon.ReadOnly = true;
             this.txbLivresRayon.Size = new System.Drawing.Size(207, 20);
-            this.txbLivresRayon.TabIndex = 30;
+            this.txbLivresRayon.TabIndex = 31;
             // 
             // txbLivresPublic
             // 
@@ -3166,7 +3166,7 @@ namespace MediaTekDocuments.view
             this.txbLivresPublic.Name = "txbLivresPublic";
             this.txbLivresPublic.ReadOnly = true;
             this.txbLivresPublic.Size = new System.Drawing.Size(207, 20);
-            this.txbLivresPublic.TabIndex = 29;
+            this.txbLivresPublic.TabIndex = 30;
             // 
             // txbLivresGenre
             // 
@@ -3174,7 +3174,7 @@ namespace MediaTekDocuments.view
             this.txbLivresGenre.Name = "txbLivresGenre";
             this.txbLivresGenre.ReadOnly = true;
             this.txbLivresGenre.Size = new System.Drawing.Size(207, 20);
-            this.txbLivresGenre.TabIndex = 28;
+            this.txbLivresGenre.TabIndex = 29;
             // 
             // txbLivresCollection
             // 
@@ -3641,6 +3641,7 @@ namespace MediaTekDocuments.view
             // txbCmdDvdIdCmd
             // 
             this.txbCmdDvdIdCmd.Location = new System.Drawing.Point(150, 41);
+            this.txbCmdDvdIdCmd.MaxLength = 5;
             this.txbCmdDvdIdCmd.Name = "txbCmdDvdIdCmd";
             this.txbCmdDvdIdCmd.Size = new System.Drawing.Size(100, 20);
             this.txbCmdDvdIdCmd.TabIndex = 44;

@@ -14,7 +14,7 @@ using TechTalk.SpecFlow.Tracing;
 namespace MediaTekDocuments.view
 {
     /// <summary>
-    /// Classe d'affichage des abonnements arrivant à échéance
+    /// Classe d'affichage des abonnements arrivant à échéance.
     /// </summary>
     public partial class FrmEcheancesAbos : Form
     {
@@ -23,7 +23,7 @@ namespace MediaTekDocuments.view
         private readonly List<AbonnementEcheance> lesEcheancesAbos;
 
         /// <summary>
-        /// Constructeur de la classe FrmEcheancesAbos
+        /// Constructeur de la classe FrmEcheancesAbos.
         /// </summary>
         public FrmEcheancesAbos()
         {
@@ -34,9 +34,9 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Rempli le grid avec la liste reçue en paramètre
+        /// Rempli le grid avec la liste reçue en paramètre.
         /// </summary>
-        /// <param name="echeanceAbonnements">liste des abonnements arrivant à échéance</param>
+        /// <param name="echeanceAbonnements">Liste des abonnements arrivant à échéance.</param>
         private void RemplirEcheancesAbos(List<AbonnementEcheance> echeanceAbonnements)
         {
             bdgEcheancesAbos.DataSource = echeanceAbonnements;
@@ -51,7 +51,7 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Ferme la fenêtre d'authentification
+        /// Ferme la fenêtre d'authentification.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -61,7 +61,7 @@ namespace MediaTekDocuments.view
         }
 
         /// <summary>
-        /// Tri sur les colonnes
+        /// Tri sur les colonnes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Suivi
+    /// Classe métier Suivi.
     /// </summary>
     public class Suivi
     {
         /// <summary>
-        /// Propriété Id de Suivi
+        /// Propriété Id de Suivi.
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Propriété Libelle de Suivi
+        /// Propriété Libelle de Suivi.
         /// </summary>
         public string Libelle { get; set; }
 
         /// <summary>
-        /// Constructeur de la classe métier Suivi
-        /// Valorise les propriétés de cette classe
+        /// Constructeur de la classe métier Suivi.
+        /// Valorise les propriétés de cette classe.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="libelle"></param>
+        /// <param name="id">Identifiant du suivi.</param>
+        /// <param name="libelle">Libelle du suivi.</param>
         public Suivi(string id, string libelle)
         {
             this.Id = id;
@@ -34,9 +34,9 @@ namespace MediaTekDocuments.model
         }
 
         /// <summary>
-        /// Récupération du libellé pour l'affichage dans les combos
+        /// Récupération du libellé pour l'affichage dans les combobox.
         /// </summary>
-        /// <returns>Libelle</returns>
+        /// <returns>Libelle au format String.</returns>
         public override string ToString()
         {
             return this.Libelle;
