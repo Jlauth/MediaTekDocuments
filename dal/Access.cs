@@ -10,6 +10,14 @@ using System.Collections.Generic;
 using System.Configuration;
 
 namespace MediaTekDocuments.dal
+/*
+Auteur : [votre nom]
+Date de création : [la date de création du code]
+Description : [une description concise de ce que fait ce code]
+
+Modifications :
+[la liste des modifications effectuées avec les dates et les auteurs]
+*/
 {
     /// <summary>
     /// Classe d'accès aux données
@@ -25,8 +33,8 @@ namespace MediaTekDocuments.dal
         /// Adresse de l'API
         /// Switch de la déclaration au besoin (local ou distant)
         /// </summary>
-        //private static readonly string uriApi = "http://hafsatc.cluster027.hosting.ovh.net/rest_mediatekdocuments/";
-        private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
+        private static readonly string uriApi = "http://hafsatc.cluster027.hosting.ovh.net/rest_mediatekdocuments/";
+        //private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
 
         /// <summary>
         /// Instance unique de la classe
@@ -86,9 +94,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Création et retour de l'instance unique de la classe
+        /// Création et retour de l'instance unique de la classe.
         /// </summary>
-        /// <returns>instance unique de la classe</returns>
+        /// <returns>Instance unique de la classe</returns>
         public static Access GetInstance()
         {
             if (instance == null)
@@ -99,10 +107,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Récupération de la chaîne de connexion
+        /// Récupération de la chaîne de connexion.
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">Nom de la chaîne de connexion à récupérer.</param>
+        /// <returns>La chaîne de connexion si elle existe, sinon null.</returns>
         static string GetConnectionStringByName(string name)
         {
             string returnValue = null;
@@ -115,20 +123,22 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne tous les documents à partir de la BDD
+        /// Retourne tous les documents à partir de la BDD.
         /// </summary>
-        /// <param name="idDocument"></param>
-        /// <returns></returns>
+        /// <param name="idDocument">ID du document concerné.</param>
+        /// <returns>Liste d'objets Document.</returns>
         public List<Document> GetAllDocuments(string idDocument)
         {
             List<Document> lesDocuments = TraitementRecup<Document>(GET, "document/" + idDocument);
+            String jsonTest = JsonConvert.SerializeObject(lesDocuments);
+            Console.WriteLine("document concerné = " + jsonTest);
             return lesDocuments;
         }
 
         /// <summary>
-        /// Retourne tous les genres à partir de la BDD
+        /// Retourne tous les genres à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Genre</returns>
+        /// <returns>Liste d'objets Genre.</returns>
         public List<Categorie> GetAllGenres()
         {
             IEnumerable<Genre> lesGenres = TraitementRecup<Genre>(GET, "genre");
@@ -136,9 +146,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne tous les rayons à partir de la BDD
+        /// Retourne tous les rayons à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Rayon</returns>
+        /// <returns>Liste d'objets Rayon.</returns>
         public List<Categorie> GetAllRayons()
         {
             IEnumerable<Rayon> lesRayons = TraitementRecup<Rayon>(GET, "rayon");
@@ -146,9 +156,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne toutes les catégories de public à partir de la BDD
+        /// Retourne toutes les catégories de public à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Public</returns>
+        /// <returns>Liste d'objets Public.</returns>
         public List<Categorie> GetAllPublics()
         {
             IEnumerable<Public> lesPublics = TraitementRecup<Public>(GET, "public");
@@ -156,9 +166,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne toutes les livres à partir de la BDD
+        /// Retourne toutes les livres à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Livre</returns>
+        /// <returns>Liste d'objets Livre.</returns>
         public List<Livre> GetAllLivres()
         {
             List<Livre> lesLivres = TraitementRecup<Livre>(GET, "livre");
@@ -166,9 +176,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne toutes les DVD à partir de la BDD
+        /// Retourne toutes les DVD à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets DVD</returns>
+        /// <returns>Liste d'objets DVD.</returns>
         public List<Dvd> GetAllDvd()
         {
             List<Dvd> lesDvd = TraitementRecup<Dvd>(GET, "dvd");
@@ -176,9 +186,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne toutes les revues à partir de la BDD
+        /// Retourne toutes les revues à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Revue</returns>
+        /// <returns>Liste d'objets Revue.</returns>
         public List<Revue> GetAllRevues()
         {
             List<Revue> lesRevues = TraitementRecup<Revue>(GET, "revue");
@@ -186,9 +196,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne les suivis à partir de la BDD
+        /// Retourne les suivis à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets Suivi</returns>
+        /// <returns>Liste d'objets Suivi.</returns>
         public List<Suivi> GetAllSuivis()
         {
             IEnumerable<Suivi> lesSuivis = TraitementRecup<Suivi>(GET, "suivi");
@@ -196,9 +206,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne tous les états document à partir de la BDD
+        /// Retourne tous les états document à partir de la BDD.
         /// </summary>
-        /// <returns>Liste d'objets État</returns>
+        /// <returns>Liste d'objets État.</returns>
         public List<Etat> GetAllEtats()
         {
             IEnumerable<Etat> lesEtatsDocument = TraitementRecup<Etat>(GET, "etat");
@@ -285,7 +295,7 @@ namespace MediaTekDocuments.dal
         /// <summary>
         /// Retourne les abonnements d'une revue à partir de la BDD.
         /// </summary>
-        /// <param name="idRevue">id de la revue concernée.</param>
+        /// <param name="idRevue">IDde la revue concernée.</param>
         /// <returns>Liste d'objets Abonnement.</returns>
         public List<Abonnement> GetAbonnementsRevue(string idRevue)
         {
@@ -294,9 +304,9 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Retourne tous les abonnements à échéance
+        /// Retourne tous les abonnements à échéance.
         /// </summary>
-        /// <returns>Liste d'objets Abonnement</returns>
+        /// <returns>Liste d'objets Abonnement.</returns>
         public List<AbonnementEcheance> GetAbonnementsEcheance()
         {
             List<AbonnementEcheance> lesAbonnementsEcheances = TraitementRecup<AbonnementEcheance>(GET, "echeancessabos");
@@ -304,10 +314,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Récupère l'utilisateur cible en BDD
+        /// Récupère l'utilisateur cible en BDD.
         /// </summary>
-        /// <param name="utilisateur">l'utilisateur cible</param>
-        /// <returns>true si l'utilisateur a été trouvé (retour != null)</returns>
+        /// <param name="utilisateur">Utilisateur cible.</param>
+        /// <returns>true si l'utilisateur a été trouvé (retour != null).</returns>
         public string ControleAuthentification(Utilisateur utilisateur)
         {
             String jsonRecupererUtilisateur = JsonConvert.SerializeObject(utilisateur);
@@ -337,10 +347,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'un document dans la BDD
+        /// Ajout d'un document dans la BDD.
         /// </summary>
-        /// <param name="document">document à ajouter</param>
-        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        /// <param name="document">Document à ajouter.</param>
+        /// <returns>true si ajout a pu se faire (retour != null).</returns>
         public bool CreerDocument(Document document)
         {
             String jsonCreerDocument = JsonConvert.SerializeObject(document);
@@ -359,10 +369,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'un livre dans la BDD
+        /// Ajout d'un livre dans la BDD.
         /// </summary>
-        /// <param name="livre">livre à ajouter</param>
-        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        /// <param name="livre">Livre à ajouter.</param>
+        /// <returns>true si ajout a pu se faire (retour != null).</returns>
         public bool CreerLivre(Livre livre)
         {
             String jsonCreerLivre = JsonConvert.SerializeObject(livre);
@@ -382,10 +392,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'un dvd dans la BDD
+        /// Ajout d'un DVD dans la BDD.
         /// </summary>
-        /// <param name="dvd">dvd à ajouter</param>
-        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        /// <param name="dvd">DVD à ajouter</param>
+        /// <returns>true si ajout a pu se faire (retour != null).</returns>
         public bool CreerDvd(Dvd dvd)
         {
             String jsonDvd = JsonConvert.SerializeObject(dvd);
@@ -404,10 +414,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'une revenue dans la BDD
+        /// Ajout d'une revenue dans la BDD.
         /// </summary>
-        /// <param name="revue">revue à ajouter</param>
-        /// <returns>true si ajout a pu se faire (retour != null)</returns>
+        /// <param name="revue">Revue à ajouter.</param>
+        /// <returns>true si ajout a pu se faire (retour != null).</returns>
         public bool CreerRevue(Revue revue)
         {
             String jsonRevue = JsonConvert.SerializeObject(revue);
@@ -426,10 +436,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'un exemplaire en BDD
+        /// Ajout d'un exemplaire en BDD.
         /// </summary>
-        /// <param name="exemplaire">exemplaire à insérer</param>
-        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        /// <param name="exemplaire">Exemplaire à insérer.</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null).</returns>
         public bool CreerExemplaire(Exemplaire exemplaire)
         {
             String jsonExemplaire = JsonConvert.SerializeObject(exemplaire, new CustomDateTimeConverter());
@@ -448,10 +458,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'un abonnement en BDD
+        /// Ajout d'un abonnement en BDD.
         /// </summary>
-        /// <param name="abonnement">objet abonnement</param>
-        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        /// <param name="abonnement">Abonnement à insérer.</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null).</returns>
         public bool CreerAbonnement(Abonnement abonnement)
         {
             String jsonAbonnement = JsonConvert.SerializeObject(abonnement, new CustomDateTimeConverter());
@@ -470,10 +480,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Ajout d'une commande document en BDD
+        /// Ajout d'une commande de type document en BDD.
         /// </summary>
-        /// <param name="commandeDocument">objet commande document</param>
-        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        /// <param name="commandeDocument">Objet CommandeDocument</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null).</returns>
         public bool CreerCommandeDocument(CommandeDocument commandeDocument)
         {
             String jsonCreerCommandeDocument = JsonConvert.SerializeObject(commandeDocument, new CustomDateTimeConverter());
@@ -492,12 +502,12 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Créer un abonnement d'une revue en BDD
+        /// Créer un abonnement d'une revue en BDD.
         /// </summary>
-        /// <param name="id">id de l'abonnement</param>
-        /// <param name="dateFinAbonnement">date de fin d'abonnement</param>
-        /// <param name="idRevue">idRevue lié à la revue</param>
-        /// <returns>true si l'insertion a pu se faire (retour != null)</returns>
+        /// <param name="id">ID de l'abonnement.</param>
+        /// <param name="dateFinAbonnement">Date de fin d'abonnement.</param>
+        /// <param name="idRevue">ID lié à la revue.</param>
+        /// <returns>true si l'insertion a pu se faire (retour != null).</returns>
         public bool CreerAbonnementRevue(string id, DateTime dateFinAbonnement, string idRevue)
         {
             String jsonDateCommande = JsonConvert.SerializeObject(dateFinAbonnement, new CustomDateTimeConverter());
@@ -517,10 +527,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'un livre en BDD
+        /// Modification d'un livre en BDD.
         /// </summary>
-        /// <param name="livre">le livre à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="livre">Livre à modifier</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierLivre(Livre livre)
         {
             String jsonLivre = JsonConvert.SerializeObject(livre);
@@ -539,10 +549,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'un dvd en BDD
+        /// Modification d'un DVD en BDD.
         /// </summary>
-        /// <param name="dvd">le dvd à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="dvd">DVD à modifier.</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierDvd(Dvd dvd)
         {
             String jsonDvd = JsonConvert.SerializeObject(dvd);
@@ -561,10 +571,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'une revue en BDD
+        /// Modification d'une revue en BDD.
         /// </summary>
-        /// <param name="revue">la revue à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="revue">Revue à modifier.</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierRevue(Revue revue)
         {
             String jsonRevue = JsonConvert.SerializeObject(revue);
@@ -583,10 +593,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'une commande document en BDD
+        /// Modification d'une commande document en BDD.
         /// </summary>
-        /// <param name="commandeDocument">la commande document à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="commandeDocument">ComandeDocument à modifier.</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierCommandeDocument(CommandeDocument commandeDocument)
         {
             String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
@@ -606,10 +616,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'une commande revue en BDD
+        /// Modification d'une commande de type revue en BDD.
         /// </summary>
-        /// <param name="abonnementRevue">la revue à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="abonnementRevue">Revue à modifier.</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierCommandeRevue(Abonnement abonnementRevue)
         {
             String jsonCommandeRevue = JsonConvert.SerializeObject(abonnementRevue);
@@ -629,10 +639,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification d'un exemplaire en BDD
+        /// Modification d'un exemplaire en BDD.
         /// </summary>
-        /// <param name="exemplaire">exemplaire à modifier</param>
-        /// <returns>true si la modification a pu se faire (retour != null)</returns>
+        /// <param name="exemplaire">Exemplaire à modifier.</param>
+        /// <returns>true si la modification a pu se faire (retour != null).</returns>
         public bool ModifierExemplaire(Exemplaire exemplaire)
         {
             String jsonModifierExemplaire = JsonConvert.SerializeObject(exemplaire);
@@ -652,10 +662,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppression d'un livre en BDD
+        /// Suppression d'un livre en BDD.
         /// </summary>
-        /// <param name="livre">le livre à supprimer</param>
-        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        /// <param name="livre">Livre à supprimer.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerLivre(Livre livre)
         {
             String jsonLivre = JsonConvert.SerializeObject(livre);
@@ -674,10 +684,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppression d'un dvd en BDD
+        /// Suppression d'un DVD en BDD
         /// </summary>
-        /// <param name="dvd">le dvd à supprimer</param>
-        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        /// <param name="dvd">DVD à supprimer.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerDvd(Dvd dvd)
         {
             String jsonDvd = JsonConvert.SerializeObject(dvd);
@@ -696,10 +706,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppression d'une revue en BDD
+        /// Suppression d'une revue en BDD.
         /// </summary>
-        /// <param name="revue">la revue à supprimer</param>
-        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        /// <param name="revue">Revue à supprimer.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerRevue(Revue revue)
         {
             String jsonRevue = JsonConvert.SerializeObject(revue);
@@ -718,10 +728,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppression d'un exemplaire en BDD
+        /// Suppression d'un exemplaire en BDD.
         /// </summary>
-        /// <param name="exemplaire">l'exemplaire à supprimer</param>
-        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        /// <param name="exemplaire">Exemplaire à supprimer.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerExemplaire(Exemplaire exemplaire)
         {
             String jsonExemplaire = "{\"id\":\"" + exemplaire.Id + "\",\"numero\":\"" + exemplaire.Numero + "\"}";
@@ -740,10 +750,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>²
-        /// Suppression d'une commande document en BDD
+        /// Suppression d'une commande document en BDD.
         /// </summary>
-        /// <param name="commandeDocument">le document concerné</param>
-        /// <returns>true si la suppression a pu se faire (retour != null)</returns>
+        /// <param name="commandeDocument">CommandeDocument concernée.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerCommandeDocument(Commande commandeDocument)
         {
             String jsonCommandeDocument = JsonConvert.SerializeObject(commandeDocument);
@@ -763,10 +773,10 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Suppression d'une commande revue en BDD
+        /// Suppression d'une commande de type revue en BDD.
         /// </summary>
-        /// <param name="abonnement">la revue concernée</param>
-        /// <returns></returns>
+        /// <param name="abonnement">Abonnement concerné.</param>
+        /// <returns>true si la suppression a pu se faire (retour != null).</returns>
         public bool SupprimerAbonnement(Abonnement abonnement)
         {
             String jsonSupprimerAbonnement = JsonConvert.SerializeObject(abonnement);
@@ -785,12 +795,12 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Traitement de la récupération du retour de l'api, avec conversion du json en liste pour les select (GET)
+        /// Effectue le traitement de récupération du retour de l'API et convertit le JSON en une liste d'objets pour les requêtes de type SELECT (GET).
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="methode">verbe HTTP (GET, POST, PUT, DELETE)</param>
-        /// <param name="message">information envoyée</param>
-        /// <returns>liste d'objets récupérés (ou liste vide)</returns>
+        /// <typeparam name="T">Type de l'objet à récupérer.</typeparam>
+        /// <param name="methode">Verbe HTTP (GET, POST, PUT, DELETE).</param>
+        /// <param name="message">Informations envoyées à l'API.</param>
+        /// <returns>Une liste d'objets récupérés (ou une liste vide).</returns>
         private List<T> TraitementRecup<T>(String methode, String message)
         {
             List<T> liste = new List<T>();
@@ -824,13 +834,8 @@ namespace MediaTekDocuments.dal
             return liste;
         }
 
-        internal Utilisateur GetUser(object login)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
-        /// Modification du convertisseur Json pour gérer le format de date
+        /// Modification du convertisseur Json pour gérer le format de date.
         /// </summary>
         private sealed class CustomDateTimeConverter : IsoDateTimeConverter
         {
@@ -841,8 +846,8 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
-        /// Modification du convertisseur Json pour prendre en compte les booléens
-        /// classe trouvée sur le site :
+        /// Modification du convertisseur Json pour prendre en compte les booléens.
+        /// Classe trouvée sur le site :
         /// https://www.thecodebuzz.com/newtonsoft-jsonreaderexception-could-not-convert-string-to-boolean/
         /// </summary>
         private sealed class CustomBooleanJsonConverter : JsonConverter<bool>

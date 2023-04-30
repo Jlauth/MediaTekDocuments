@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 namespace MediaTekDocuments.model
 {
     /// <summary>
-    /// Classe métier Service
+    /// Classe métier Service.
     /// </summary>
     public class Service
     {
         /// <summary>
-        /// Propriété Id de Service
+        /// Propriété Id de Service.
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// Propriété Libelle de Service
+        /// Propriété Libelle de Service.
         /// </summary>
         public string Libelle { get; }
 
         /// <summary>
-        /// Constructeur de la classe métier Service
-        /// Valorise les propriétés de cette classe
+        /// Constructeur de la classe métier Service.
+        /// Valorise les propriétés de cette classe.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="libelle"></param>
+        /// <param name="id">Identifiant du service.</param>
+        /// <param name="libelle">Libelle du service.</param>
         public Service(string id, string libelle)
         {
             this.Id = id;
