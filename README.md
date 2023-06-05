@@ -18,7 +18,7 @@ Langage d’exploitation du SGBD : 		SQL
 
 <h1>Technologies utilisées</h1>
 
-* Environnement de développement intégré :	
+Environnement de développement intégré :	
 * Visual Studio Code 2019 Community pour l’application bureau C#.
 * Apache Netbeans IDE 12.0 pour l’API REST.
 
